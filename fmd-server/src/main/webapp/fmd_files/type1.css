@@ -1,0 +1,71 @@
+BODY {
+	{FONT-FAMILY: ??; FONT-SIZE: 12pt; LINE-HEIGHT: 14pt;background-color:#ffffff}
+}
+SELECT {
+	BORDER-RIGHT: #009b9b 1px solid; BORDER-TOP: #009b9b 1px solid; FONT-SIZE: 14px; BORDER-LEFT: #009b9b 1px solid; COLOR: #333333; BORDER-BOTTOM: #009b9b 1px solid
+}
+input {
+	font-family: "Courier New";
+	BORDER-TOP-WIDTH: 1px;
+	BORDER-LEFT-WIDTH: 1px;
+	FONT-SIZE: 14px;
+	BORDER-BOTTOM-WIDTH: 1px;
+	BORDER-RIGHT-WIDTH: 1px;
+	color: #000000;
+
+}
+BODY {
+	SCROLLBAR-FACE-COLOR: #fff3fb; FONT-SIZE: 14px; SCROLLBAR-HIGHLIGHT-COLOR: #cb79ad; SCROLLBAR-SHADOW-COLOR: #cb79ad; COLOR: #666666; SCROLLBAR-3DLIGHT-COLOR: #ffffff; SCROLLBAR-ARROW-COLOR: #cb79ad; SCROLLBAR-TRACK-COLOR: #ffffff; SCROLLBAR-DARKSHADOW-COLOR: #ffffff
+}
+.bordertop {
+	BORDER-RIGHT: black 0px solid; BORDER-TOP: #6b0e41 1px solid; BORDER-LEFT: black 0px solid; BORDER-BOTTOM: black 0px solid
+}
+.borderlr {
+	BORDER-RIGHT: #666666 1px solid; BORDER-TOP: black 0px solid; BORDER-LEFT: #666666 1px solid; BORDER-BOTTOM: #666666 1px solid
+}
+.bg {
+	BACKGROUND-POSITION: left top; BACKGROUND-IMAGE: url(images/bg2.gif); BACKGROUND-REPEAT: repeat-x
+}
+.borderbottom {
+	BORDER-RIGHT: black 0px solid; BORDER-TOP: black 0px solid; BORDER-LEFT: black 0px solid; BORDER-BOTTOM: #999999 1px solid
+}
+.borderleft {
+	BORDER-RIGHT: black 0px solid; BORDER-TOP: black 0px solid; BORDER-LEFT: #999999 1px solid; BORDER-BOTTOM: black 0px solid
+}
+.borderright {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: black 0px solid; BORDER-LEFT: black 0px solid; BORDER-BOTTOM: #999999 0px solid
+}
+.topleft {
+	BORDER-RIGHT: black 0px solid; BORDER-TOP: #999999 1px solid; BORDER-LEFT: #999999 1px solid; BORDER-BOTTOM: black 0px solid
+}
+.bottomleft {
+	BORDER-RIGHT: black 0px solid; BORDER-TOP: black 0px solid; BORDER-LEFT: #999999 1px solid; BORDER-BOTTOM: #999999 1px solid
+}
+TD {
+	FONT-SIZE: 14px; COLOR: #000000; LINE-HEIGHT: 24px
+}
+A {
+	FONT-SIZE: 14px; COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #FF0A83; TEXT-DECORATION: underline
+}
+.marquee {
+	BORDER-RIGHT: #ff9900 1px solid; BORDER-TOP: #ff9900 1px solid; BORDER-LEFT: #ff9900 1px solid; BORDER-BOTTOM: #ff9900 1px solid
+}
+.border4 {
+	BORDER-RIGHT: black 0px solid; BORDER-TOP: black 0px solid; BORDER-LEFT: #f9e2f5 4px solid; BORDER-BOTTOM: black 0px solid
+}
+.efont {
+	FONT-FAMILY: "Arial", "??им?"
+}
+TEXTAREA {
+	font-family: "Courier New";
+	BORDER-TOP-WIDTH: 1px;
+	BORDER-LEFT-WIDTH: 1px;
+	FONT-SIZE: 14px;
+	BORDER-BOTTOM-WIDTH: 1px;
+	BORDER-RIGHT-WIDTH: 1px;
+	color: #000000;
+	border-top-style: none;
+}
