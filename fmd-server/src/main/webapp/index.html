@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0037)http://www.lm58.com.cn/fmd/index.html -->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <link rel="shortcut icon" href="images/favicon.ico" /> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -60,11 +59,23 @@
 														src="http://v.qq.com/iframe/player.html?vid=b01293c68oq&amp;width=750&amp;height=500&amp;auto=0"
 														allowfullscreen="" frameborder="0" height="500"
 														width="750"></iframe> -->
-														<embed
+														<!-- <embed 
+														id="player" 
+														name="player"
 														src="http://static.video.qq.com/TPout.swf?auto=1&amp;vid=b01293c68oq"
-														type="application/x-shockwave-flash" width="750"
-														height="500" align="middle"></embed>
-														</td></tr>
+														
+														type="application/x-shockwave-flash" pluginspage="http://www.microsoft.com/windows/mediaPlayer/"
+														width="750"
+														height="500" align="middle"></embed> -->
+												<video src="./media/fmd2.mp4" width="750" height="500" controls autoplay loop> 
+													<source type=video/mp4 />
+													<!-- If the browser doesn't understand the <video> element, then reference a Flash file. You could also write something like "Use a Better Browser!" if you're feeling nasty. (Better to use a Flash file though.) -->
+													<embed id="player" name="player" src="./media/fmd2.mp4"
+														type="application/x-mplayer3"
+														pluginspage="http://www.microsoft.com/windows/mediaPlayer/"
+														width="750" height="500" align="middle" autoplay="true"></embed>
+													</video>
+												</td></tr>
 										</tbody>
 									</table></td>
 							</tr>
@@ -139,5 +150,18 @@
 
 	<div id="WOW_TRANSLATE_POP" class="WOW_TRANSLATE_POP_STYLE"
 		style="font-family: song; font-size: 10px; padding: 5px 10px; min-width: 150px; max-width: 550px; width: auto; height: auto; border: 1px solid rgb(17, 17, 17); position: fixed; text-align: left; word-break: break-all; display: none; color: rgb(0, 0, 0); z-index: 999999; background-color: rgb(255, 255, 255);"></div>
+<!-- <script type="text/javascript">
+//暂定
+	var trnode=document.getElementById("player");
+	trnode.parentNode.removeChild(trnode);
+	
+	//播放
+	var container=document.getElementById("radio_container");
+	
+	var str= "<embed  id='player'  name='player' src='http://static.video.qq.com/TPout.swf?auto=1&amp;vid=b01293c68oq'"+
+			 " type='application/x-shockwave-flash' pluginspage='http://www.microsoft.com/windows/mediaPlayer/' "+
+			 " width='750' height='500' align='middle'></embed> ";
+	container.innerHTML+=str;		 
+</script> -->
 </body>
 </html>
