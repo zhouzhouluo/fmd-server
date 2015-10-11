@@ -51,6 +51,10 @@ public class TeamController {
 		ModelAndView modelAndView = new ModelAndView("list");
 
 		List teams = teamService.getTeams();
+		if(teams !=null){
+			Team team = (Team)teams.get(0);
+			System.out.println("team:"+team.getName());
+		}	
 		modelAndView.addObject("teams", teams);
 
 		return modelAndView;
