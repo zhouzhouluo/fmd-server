@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>播放视频</title>
+</head>
+<body>
+	<video src="./media/fmd2.mp4" width="320" height="240" controls autoplay
+		loop>
+		<source type=video/mp4 />
+		<!-- If the browser doesn't understand the <video> element, then reference a Flash file. You could also write something like "Use a Better Browser!" if you're feeling nasty. (Better to use a Flash file though.) -->
+		<embed id="player" name="player"
+			src="./media/fmd2.mp4"
+			type="application/x-shockwave-flash"
+			pluginspage="http://www.microsoft.com/windows/mediaPlayer/"
+			width="750" height="500" align="middle"
+			autoplay = "true"></embed>
+	</video>
+</body>
+</html>
