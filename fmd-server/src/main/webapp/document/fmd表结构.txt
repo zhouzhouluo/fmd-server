@@ -26,6 +26,7 @@ EMAIL	email
 创建人	cjr
 修改人	xgr
 
+
 2.个人资金记录表	capital_log
 id		id
 编号		number
