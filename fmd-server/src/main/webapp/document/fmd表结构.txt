@@ -1,70 +1,73 @@
-1.会员表
+1.会员表	member_user
 id
-用户id
-密码1
-密码2
-密码3
-推荐人
-推荐人id
-接点人
-接点人id
-业务区域
-收件地址
-邮编
-QQ
-手机电话
-EMAIL
-开户银行
-银行户口姓名
-开户地址
-银行点
-银行卡号
-资金
-创建时间
-修改时间
-创建人
-修改人
-
-2.个人资金记录表
-id
-编号
-会员
-时间
-操作
-详细信息
-支出
-入账
-总奖金额
-对碰奖
-推荐奖
-2文鸡
-状态
+用户id  	userid
+密码1	pwd1
+密码2	pwd2
+密码3	pwd3
+推荐人	referee
+推荐人id	referee_id
+接点人	node
+接点人id	node_id
+业务区域	area
+收件地址	receiv_address
+邮编		zip_code	
+QQ		qq
+手机电话	phone_number
+EMAIL	email
+开户银行	bank_name
+银行户口姓名	account_name
+开户地址		account_address
+银行点		account_node
+银行卡号		account
+资金		capital	
+身份证	identity
+创建时间	cjsj
+修改时间	xgsj
+创建人	cjr
+修改人	xgr
 
 
-3.资金提现记录表
-id
-编号
-会员
-申请时间
-操作
-资金
-扣税
-实取
-审批时间
-审批人
-状态
+2.个人资金记录表	capital_log
+id		id
+编号		number
+会员		member
+会员id	member_id
+时间		time
+操作		operation
+明细		detail
+支出		payout
+入账		income
+余额		remain
+对碰奖	touch_pay	
+推荐奖	recommend_pay
+2文鸡	?
+状态		state
+
+3.资金提现记录表	withdraw_log
+id		id
+编号		number
+会员		member
+会员id	member_id
+申请时间	apply_time
+操作		operation
+资金		capital		
+扣税		tax
+实取		take	
+审批时间	approve_time
+审批人	approve
+审批人id	approve_id
+状态		state
+
+4.user	user
+id		id
+登陆名	login
+密码		pwd
 
 
-4.user
-id
-登陆名
-密码
-
-5.log
-id
-用户id
-类型
-操作时间
-明细
-状态
-
+5.log	log
+id		id
+用户id	user_id
+类型		type
+操作时间	operation_time
+明细		detail
+状态		state
