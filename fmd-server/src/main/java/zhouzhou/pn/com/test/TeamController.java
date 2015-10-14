@@ -2,6 +2,7 @@ package zhouzhou.pn.com.test;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +13,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fmd.entity.User;
+import com.fmd.service.UserService;
+
 @Controller
 public class TeamController {
 
 	@Autowired
 	private TeamService teamService;
 
+
+	@Resource(name = "userService")  
+    private UserService userService;
+	
 	@RequestMapping(value = "/team/add")
 	public ModelAndView addTeamPage() {
 		ModelAndView modelAndView = new ModelAndView("add");
-		modelAndView.addObject("team", new Team());
+//		modelAndView.addObject("team", new Team());
+		
+		System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+//		User user = new User();
+//		user.setLogin("罗亦洲");
+//		user.setPwd("zhgouzhouluo");
+//		userService.save(user);
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		
+		
 		return modelAndView;
 	}
 	@RequestMapping(value = "/team/add2")
