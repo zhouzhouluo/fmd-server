@@ -2,12 +2,21 @@ package com.fmd.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * 个人资金记录表
- * @author luoyizhou
+ * @author Administrator
  *
  */
+@Entity
+@Table(name="capital_log")
 public class Capital_log {
+	@Id
+    @GeneratedValue
 	private int Id;
 	private int number;
 	private String member;

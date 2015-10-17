@@ -2,12 +2,21 @@ package com.fmd.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * 日志
  * @author Administrator
  *
  */
+@Entity
+@Table(name="log")
 public class Log {
+	@Id
+    @GeneratedValue
 	private int Id;
 	private int user_id;
 	private String user_name;

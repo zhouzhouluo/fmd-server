@@ -24,7 +24,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Dispatcher</servlet-name>
-		<url-pattern>*.im</url-pattern>
+		<url-pattern>*.htm</url-pattern>
 	</servlet-mapping>
 
 	<filter>

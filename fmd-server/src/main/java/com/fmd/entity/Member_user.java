@@ -2,7 +2,15 @@ package com.fmd.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="member_user")
 public class Member_user {
+	@Id
+    @GeneratedValue
 	private int Id;
 	private int userid;
 	private String pwd1;

@@ -2,21 +2,29 @@ package com.fmd.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="withdraw_log")
 public class Withdraw_log {
-	int Id;
-	int number;
-	String member;
-	int member_id;
-	Date apply_time;
-	int operation;
-	String detail;
-	float capital;
-	float tax;
-	float take;
-	Date approve_time;
-	String approve;
-	int approve_id;
-	int state;
+	@Id
+    @GeneratedValue
+    private int Id;
+	private int number;
+	private String member;
+	private int member_id;
+	private Date apply_time;
+	private int operation;
+	private String detail;
+	private float capital;
+	private float tax;
+	private float take;
+	private Date approve_time;
+	private String approve;
+	private int approve_id;
+	private int state;
 	public int getId() {
 		return Id;
 	}
