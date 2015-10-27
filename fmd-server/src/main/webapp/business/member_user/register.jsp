@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
+	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+%>
+<c:set var="ctx" value="<%=basePath%>" />
+<c:set var="base" value="<%=base%>" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +18,7 @@
 </head>
 
 <body>
-	<form action="fmd-server/member/save">
+	<form action="${ctx}/member/save.htm" method="post" >
 		<table>
 			<tr style="padding-top: 20px;">
 				<td><label for="userid">用户ID:</label></td>
@@ -46,8 +56,8 @@
 			</tr>
 			<tr><td>&nbsp;</td></tr>
 			<tr>
-				<td><input type="button"></td>
-				<td><input id="phone_number" name="phone_number" placeholder="联系电话" type="text" /></td>
+				<td><input type="submit" value="提交"></td>
+				<td><input type="reset" value="重置"></td>
 			</tr>
 		</table>
 

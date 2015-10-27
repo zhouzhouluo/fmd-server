@@ -18,7 +18,7 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
     /** 
      * 注入DAO 
      */  
-    @Resource(name = "Member_userDao")  
+    @Resource(name = "member_userDao")  
     public void setDao(BaseDao<Member_user> dao) {  
         super.setDao(dao);  
     }  

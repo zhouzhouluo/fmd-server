@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title>会员系统</title>
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]> 
+<script> 
+   (function() {
+     if (! 
+     /*@cc_on!@*/
+     0) return;
+     var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+     var i= e.length;
+     while (i--){
+         document.createElement(e[i])
+     } 
+})() 
+</script>
+<![endif]-->
+</head>
+<body>
+	<div id ="header_wrapper">
+		<header>
+			<div class="container">
+			<div id = "logo"> 
+				<h1> <a href="index.html"><img alt="首页" src="images/logo.jpg"></a></h1>
+			</div>
+			</div>
+			<div id="nav">
+			<nav class="container">
+				<ul>
+					<li class="on"><a href="index.html">资料管理</a></li><li>
+					<a href="index.html">会员管理</a></li><li>
+					<a href="index.html">奖金管理</a></li><li>
+					<a href="index.html">货币管理</a></li><li>
+					<a href="index.html">退出</a></li>
+				</ul>
+			</nav>	
+			</div>	
+			
+		</header>
+	</div>
+	<div id = "body_wrapper">
+		<iframe src="./member_user/register.jsp" width="1000px" height="1000px"></iframe>
+	</div>
+	
+	<div id = "footer_wrapper">
+	
+	</div>
+</body>
+</html>

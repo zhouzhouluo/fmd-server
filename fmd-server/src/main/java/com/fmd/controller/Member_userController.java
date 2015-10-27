@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fmd.entity.Member_user;
@@ -25,15 +26,14 @@ public class Member_userController {
     private Member_userService member_userService;
 	
 	
-	@RequestMapping("/save")
+	@RequestMapping(value="save",method=RequestMethod.POST)
 	public String save(Member_user member_user){
+		System.out.println("-----------------------------------------:");
 		member_user.setCjsj(new Date());
 		member_user.setCapital("960");
-		member_user.setPwd1("111111");
-		member_user.setPwd2("222222");
-		member_user.setPwd3("333333");
+		member_user.setState(1);
 		member_userService.save(member_user);
-		return null;
+		return "/business/member_user/register";
 	}
 	@RequestMapping("/member/update")
 	public String update(){

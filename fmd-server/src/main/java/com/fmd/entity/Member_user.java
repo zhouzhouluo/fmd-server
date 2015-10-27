@@ -12,14 +12,14 @@ public class Member_user {
 	@Id
     @GeneratedValue
 	private int Id;
-	private int userid;
+	private String userid;
 	private String pwd1;
 	private String pwd2;
 	private String pwd3;
 	private String referee;
-	private int referee_id;
+	private String referee_id;
 	private String node;
-	private int node_id;
+	private String node_id;
 	private int area;
 	private String receiv_address;
 	private String zip_code;
@@ -44,10 +44,10 @@ public class Member_user {
 	public void setId(int id) {
 		Id = id;
 	}
-	public int getUserid() {
+	public String getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 	public String getPwd1() {
@@ -74,10 +74,10 @@ public class Member_user {
 	public void setReferee(String referee) {
 		this.referee = referee;
 	}
-	public int getReferee_id() {
+	public String getReferee_id() {
 		return referee_id;
 	}
-	public void setReferee_id(int referee_id) {
+	public void setReferee_id(String referee_id) {
 		this.referee_id = referee_id;
 	}
 	public String getNode() {
@@ -86,10 +86,10 @@ public class Member_user {
 	public void setNode(String node) {
 		this.node = node;
 	}
-	public int getNode_id() {
+	public String getNode_id() {
 		return node_id;
 	}
-	public void setNode_id(int node_id) {
+	public void setNode_id(String node_id) {
 		this.node_id = node_id;
 	}
 	public int getArea() {
