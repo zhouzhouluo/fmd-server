@@ -19,6 +19,7 @@
 	<script language="javascript" src="../_files/Pro.js"></script>
 	<script language="JavaScript" src="../_files/jsReg.js" type="text/javascript"></script>
 	<script language="JavaScript" src="../_files/chkPWD.js" type="text/javascript"></script>
+	<script language="JavaScript" src="../_files/getcity.js" type="text/javascript"></script>
 	<link href="../_files/WdatePicker.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -220,7 +221,8 @@
 														<td><input id="TreePlace_1" type="radio"
 															name="TreePlace_1" value="1"><label
 																for="TreePlace_1">右区</label></td>
-																<input id="area" type="hidden" name="area" value="0">
+																<input id="area" type="hidden"
+															name="area" value="0">
 													</tr>
 												</tbody>
 											</table>
@@ -379,17 +381,14 @@
 						</div>
 				</form>
 
-				<script language="JavaScript" src="getcity.js"
-					type="text/javascript"></script>
-
 				<script language="javascript">
-   /*  GetStr(3, 1);
+   /*  GetStr(3, 1);*/
     Selected();
     function Selected() {
-        var bankname = document.Form1["BankName"].value;
+        var bankname = document.Form1["bank_name"].value;
         var province = document.Form1["province"].value;
-        var city = document.Form1["city"].value;
-        document.Form1["BankAddress"].value = bankname + province + city + "分行";
+        var city = document.Form1["account_address"].value;
+        document.Form1["account_node"].value = bankname + province + city + "分行";
         //    switch (bankname)
         //	{
         //       case "中国工商银行" :
@@ -402,7 +401,7 @@
         //		document.Form1["BankCard"].value="95588";
         //		break;
         //	}
-    } */
+    } 
 function Fatherbotton_onclick() {
 
 }

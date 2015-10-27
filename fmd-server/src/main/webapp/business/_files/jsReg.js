@@ -719,22 +719,6 @@ function chk_reg()
 	if(chk)
 	{
 		//document.getElementById('regbotton').disabled='disabled';
-		var TreePlace=0;
-		var radiolist ="TreePlace";   
-		for(var   i=0;i<document.getElementById(radiolist).rows.length;i++)   
-		{   
-			for(var   x=0;x<document.getElementById(radiolist).rows[i].cells.length;x++)   
-			{   
-				if(document.getElementById(radiolist).rows[i].cells[x].firstChild!="undefine")   
-				{     
-					if(document.getElementById(radiolist).rows[i].cells[x].firstChild.checked)   
-					{ 
-					   TreePlace=document.getElementById(radiolist).rows[i].cells[x].firstChild.value;
-					   //alert(document.getElementById(radiolist).rows[i].cells[x].firstChild.value);   
-					 }                                   
-				}   
-			}   
-		}
 //		alert(uLevel);
 //		return false;
 //		

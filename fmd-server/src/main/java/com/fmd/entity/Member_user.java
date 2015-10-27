@@ -23,7 +23,7 @@ public class Member_user {
 	private int area;
 	private String receiv_address;
 	private String zip_code;
-	private int qq;
+	private String qq;
 	private int phone_number;
 	private String email;
 	private String bank_name;
@@ -110,10 +110,10 @@ public class Member_user {
 	public void setZip_code(String zip_code) {
 		this.zip_code = zip_code;
 	}
-	public int getQq() {
+	public String getQq() {
 		return qq;
 	}
-	public void setQq(int qq) {
+	public void setQq(String qq) {
 		this.qq = qq;
 	}
 	public int getPhone_number() {
