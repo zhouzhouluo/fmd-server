@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
+	<title>会员管理</title>
+<link href="../_files/WdatePicker.css" rel="stylesheet" type="text/css">
+<script src="../_files/main.js" type="text/javascript"></script>
+<script src="../_files/meizzDate.js" type="text/javascript"></script>
+<script src="../_files/fckeditor.js"></script>
+<script src="../_files/function.js" type="text/javascript"></script>
+<script src="../_files/menu.js" type="text/javascript"></script>
+<script type="text/javascript" src="../_files/WdatePicker.js"></script>
+<link href="../_files/common.css" rel="stylesheet" media="screen"
+	type="text/css">
+<link href="../_files/style.css" rel="stylesheet" media="screen"
+	type="text/css">
+<link href="../_files/font.css" rel="stylesheet" media="all"
+	type="text/css">
+</head>
+<body>
+	<noscript>&lt;iframe src=*.html&gt;&lt;/iframe&gt;</noscript>
+	<form name="Form1" method="post" action="Admin_Member.html" id="Form1">
+		<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+			value="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">
+
+			<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+				<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT"
+				value=""> <input type="hidden" name="__EVENTVALIDATION"
+					id="__EVENTVALIDATION"
+					value="/wEWFwKyvqbaDgKvruq2CAKHm5yBAgLtn42lAgLyn42lAgLzn42lAgLwn42lAgLxn42lAgL2n42lAgL3n42lAgLb4JSOBgLG4JSOBgLZ4JSOBgLY4JSOBgLzt9zuCwLduqHwAgKKlN3WBALV34V3AozJ39UDAvuCsfYFAuqc0YcBArGgkdIEAsjEgOEHMdncuDnLu+upvumFX8XltpewC7RIeDbDjkMNeEV5jK0=">
+						<div class="ncenter_box">
+							<div class="accounttitle">
+								<h1>会员管理</h1>
+							</div>
+							<table class="tab2">
+								<tbody>
+									<tr align="center" style="display: none">
+										<td height="30"><a
+											href="http://xz20141114.dflvip.com/UserAdmin/Admin_Member.aspx#"
+											onclick="chk_idAll(Form1,1);">全部选择</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<a
+											href="http://xz20141114.dflvip.com/UserAdmin/Admin_Member.aspx#"
+											onclick="chk_idAll(Form1,0);">全部取消</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+											href="http://xz20141114.dflvip.com/UserAdmin/Admin_Member.aspx#"
+											style="color: #FF0000">注：只有没有推荐会员，下面也没有会员的才可以删除</a></td>
+									</tr>
+									<tr align="center">
+										<td>用户：<input name="UserName" type="text" maxlength="18"
+											id="UserName" style="width: 80px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												姓名：<input name="BankUserName" type="text" maxlength="10"
+												id="BankUserName" style="width: 80px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<select name="dluLevel" id="dluLevel">
+														<option selected="selected" value="0">全部</option>
+														<option value="1">消费卡</option>
+														<option value="2">vlp会员</option>
+														<option value="3">金卡会员</option>
+														<option value="4">钻卡会员</option>
+														<option value="5">社区店</option>
+														<option value="6">市级代理</option>
+
+												</select>&nbsp;&nbsp; 报单中心： <select name="dlisAgent" id="dlisAgent">
+														<option selected="selected" value="3">全部</option>
+														<option value="0">否</option>
+														<option value="1">待审</option>
+														<option value="2">是</option>
+
+												</select> 开始时间<input name="StarTime" type="text" id="StarTime"
+													onclick="WdatePicker()" style="width: 100px;">结束时间<input
+														name="EndTime" type="text" id="EndTime"
+														onclick="WdatePicker()" style="width: 100px;"> <input
+															type="submit" name="lbSeach" value="搜索" id="lbSeach"></td>
+									</tr>
+								</tbody>
+							</table>
+							<table class="tab2" id="chk_idAll">
+
+
+								<tbody>
+									<tr class="tit2" align="center">
+										<td height="27"><strong>序号</strong></td>
+										<td><strong>用户名</strong></td>
+										<td><strong>姓名</strong></td>
+										<td><strong>开通时间</strong></td>
+										<td><strong>投资金额</strong></td>
+
+										<td><strong>奖金币</strong></td>
+										<td style="display: none"><strong>重复消费</strong></td>
+										<td style="display:"><strong>电子币</strong></td>
+										<td style="display:"><strong>消费币</strong></td>
+										<td style="display: none"><strong>合计</strong></td>
+										<td><strong>推荐人</strong></td>
+										<td><strong>报单中心</strong></td>
+										<td><strong>市代</strong></td>
+										<td><strong>操作</strong></td>
+									</tr>
+
+									<tr id="u621" align="center">
+										<td height="28"><span id="Repeater1__ctl1_lbId">621</span></td>
+										<td><font color="">872539</font></td>
+										<td>啊啊啊啊啊</td>
+										<td>2015-10-28 14:36:53</td>
+										<td><span id="Repeater1__ctl1_IbRegMoney">1000.00</span>
+
+										</td>
+
+										<td><span id="Repeater1__ctl1_IbmoneyCash">0.00</span></td>
+										<td style="display: none">0</td>
+										<td><span id="Repeater1__ctl1_Ibzsq">0.00</span></td>
+										<td style="display:"><span
+											id="Repeater1__ctl1_IbShoppingCash">0.00</span></td>
+										<td style="display: none"><span
+											id="Repeater1__ctl1_Ibheji">0.00</span></td>
+										<td>100000</td>
+										<td>100000</td>
+										<td>100000</td>
+
+
+										<td>正常 <a
+											href="http://xz20141114.dflvip.com/UserAdmin/ReadUser.aspx?UserID=621">查看</a>
+
+
+
+											<input id="Repeater1__ctl1_chkSelect" type="checkbox"
+											name="Repeater1:_ctl1:chkSelect"></td>
+									</tr>
+
+									<tr id="u620" align="center">
+										<td height="28"><span id="Repeater1__ctl2_lbId">620</span></td>
+										<td><font color="">205615</font></td>
+										<td>啊啊啊啊啊啊啊啊啊啊啊啊啊</td>
+										<td>2015-10-28 14:36:53</td>
+										<td><span id="Repeater1__ctl2_IbRegMoney">1000.00</span>
+
+										</td>
+
+										<td><span id="Repeater1__ctl2_IbmoneyCash">0.00</span></td>
+										<td style="display: none">0</td>
+										<td><span id="Repeater1__ctl2_Ibzsq">0.00</span></td>
+										<td style="display:"><span
+											id="Repeater1__ctl2_IbShoppingCash">0.00</span></td>
+										<td style="display: none"><span
+											id="Repeater1__ctl2_Ibheji">0.00</span></td>
+										<td>100000</td>
+										<td>100000</td>
+										<td>100000</td>
+
+
+										<td>正常 <a
+											href="http://xz20141114.dflvip.com/UserAdmin/ReadUser.aspx?UserID=620">查看</a>
+
+
+
+											<input id="Repeater1__ctl2_chkSelect" type="checkbox"
+											name="Repeater1:_ctl2:chkSelect"></td>
+									</tr>
+
+									<tr id="u619" align="center">
+										<td height="28"><span id="Repeater1__ctl3_lbId">619</span></td>
+										<td><font color="">361158</font></td>
+										<td>啊啊啊啊</td>
+										<td>2015-10-28 14:36:53</td>
+										<td><span id="Repeater1__ctl3_IbRegMoney">1000.00</span>
+
+										</td>
+
+										<td><span id="Repeater1__ctl3_IbmoneyCash">0.00</span></td>
+										<td style="display: none">0</td>
+										<td><span id="Repeater1__ctl3_Ibzsq">0.00</span></td>
+										<td style="display:"><span
+											id="Repeater1__ctl3_IbShoppingCash">0.00</span></td>
+										<td style="display: none"><span
+											id="Repeater1__ctl3_Ibheji">0.00</span></td>
+										<td>100000</td>
+										<td>100000</td>
+										<td>100000</td>
+
+
+										<td>正常 <a
+											href="http://xz20141114.dflvip.com/UserAdmin/ReadUser.aspx?UserID=619">查看</a>
+
+
+
+											<input id="Repeater1__ctl3_chkSelect" type="checkbox"
+											name="Repeater1:_ctl3:chkSelect"></td>
+									</tr>
+
+									<tr id="u618" align="center">
+										<td height="28"><span id="Repeater1__ctl4_lbId">618</span></td>
+										<td><font color="">118509</font></td>
+										<td>特色他</td>
+										<td>2015-10-28 14:36:53</td>
+										<td><span id="Repeater1__ctl4_IbRegMoney">1000.00</span>
+
+										</td>
+
+										<td><span id="Repeater1__ctl4_IbmoneyCash">0.00</span></td>
+										<td style="display: none">0</td>
+										<td><span id="Repeater1__ctl4_Ibzsq">0.00</span></td>
+										<td style="display:"><span
+											id="Repeater1__ctl4_IbShoppingCash">0.00</span></td>
+										<td style="display: none"><span
+											id="Repeater1__ctl4_Ibheji">0.00</span></td>
+										<td>100000</td>
+										<td>100000</td>
+										<td>100000</td>
+
+
+										<td>正常 <a
+											href="http://xz20141114.dflvip.com/UserAdmin/ReadUser.aspx?UserID=618">查看</a>
+
+
+
+											<input id="Repeater1__ctl4_chkSelect" type="checkbox"
+											name="Repeater1:_ctl4:chkSelect"></td>
+									</tr>
+
+									<tr id="u617" align="center">
+										<td height="28"><span id="Repeater1__ctl5_lbId">617</span></td>
+										<td><font color="">708979</font></td>
+										<td>托尔斯泰</td>
+										<td>2015-10-28 14:36:53</td>
+										<td><span id="Repeater1__ctl5_IbRegMoney">1000.00</span>
+
+										</td>
+
+										<td><span id="Repeater1__ctl5_IbmoneyCash">0.00</span></td>
+										<td style="display: none">0</td>
+										<td><span id="Repeater1__ctl5_Ibzsq">100.00</span></td>
+										<td style="display:"><span
+											id="Repeater1__ctl5_IbShoppingCash">0.00</span></td>
+										<td style="display: none"><span
+											id="Repeater1__ctl5_Ibheji">100.00</span></td>
+										<td>100000</td>
+										<td>100000</td>
+										<td>100000</td>
+
+
+										<td>正常 <a
+											href="http://xz20141114.dflvip.com/UserAdmin/ReadUser.aspx?UserID=617">查看</a>
+
+
+
+											<input id="Repeater1__ctl5_chkSelect" type="checkbox"
+											name="Repeater1:_ctl5:chkSelect"></td>
+									</tr>
+
+									<tr id="u1" align="center">
+										<td height="28"><span id="Repeater1__ctl6_lbId">1</span></td>
+										<td><font color="red">100000</font></td>
+										<td>宝宝</td>
+										<td>2014-5-29 0:00:00</td>
+										<td><span id="Repeater1__ctl6_IbRegMoney">10000.00</span>
+
+										</td>
+
+										<td><span id="Repeater1__ctl6_IbmoneyCash">750.00</span>
+
+										</td>
+										<td style="display: none">50.00</td>
+										<td><span id="Repeater1__ctl6_Ibzsq">999900.00</span></td>
+										<td style="display:"><span
+											id="Repeater1__ctl6_IbShoppingCash">2000000.00</span></td>
+										<td style="display: none"><span
+											id="Repeater1__ctl6_Ibheji">3000650.00</span></td>
+										<td></td>
+										<td></td>
+										<td>100000</td>
+
+
+										<td>正常 <a
+											href="http://xz20141114.dflvip.com/UserAdmin/ReadUser.aspx?UserID=1">查看</a>
+
+
+
+											<input id="Repeater1__ctl6_chkSelect" type="checkbox"
+											name="Repeater1:_ctl6:chkSelect"></td>
+									</tr>
+
+
+
+									<tr id="u1" align="center">
+										<td height="28" colspan="4">合计：</td>
+										<td>15000.00</td>
+										<td>750.00</td>
+										<td style="display: none">50.00</td>
+										<td>1000000.00</td>
+										<td style="display: none">2000000.00</td>
+										<td style="display: none">3000750.00</td>
+										<td>-</td>
+
+
+										<td>-</td>
+										<td>-</td>
+										<td>-</td>
+									</tr>
+									<tr id="Tr1" align="center">
+										<td height="28" colspan="4">总计：</td>
+										<td>15000.00</td>
+										<td>750.00</td>
+										<td style="display: none">50.00</td>
+										<td>0</td>
+										<td style="display: none">2000000.00</td>
+										<td style="display: none">3000750.00</td>
+										<td>-</td>
+
+
+										<td>-</td>
+
+
+										<td>-</td>
+										<td>-</td>
+										<td>-</td>
+
+
+
+									</tr>
+									<tr>
+
+										<td height="30" colspan="12" align="right">
+											<!-- AspNetPager V7.0 for VS2008  Copyright:2003-2007 Webdiyer (www.webdiyer.com) -->
+											<div id="AspNetPager1">
+												<div style="float: left; width: 45%;">
+													第<font color="red"><b>1</b></font>页，共有记录6条，分1页，每页显示12条记录
+												</div>
+												<div style="width: 55%; float: left;">
+													<a disabled="disabled" style="margin-right: 5px;">第一页</a><a
+														disabled="disabled" style="margin-right: 5px;">前一页</a><span
+														style="margin-right: 5px; font-weight: Bold; color: red;">1</span><a
+														disabled="disabled" style="margin-right: 5px;">下一页</a><a
+														disabled="disabled" style="margin-right: 5px;">最后一页</a>&nbsp;&nbsp;<select
+														name="AspNetPager1_input" id="AspNetPager1_input"
+														onchange="__doPostBack(&#39;AspNetPager1&#39;,&#39;&#39;)">
+														<option selected="true">1</option>
+													</select>
+												</div>
+											</div> <!-- AspNetPager V7.0 for VS2008 End -->
+
+
+
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+
+
+						</div> <script type="text/javascript">
+<!--
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+// -->
+</script>
+	</form>
+
+
+	<lmk-translate data-hello="我是由“划词翻译”生成的，不要担心;)" class=""
+		style="top: 433px; left: 339px;">译</lmk-translate>
+</body>
+</html>

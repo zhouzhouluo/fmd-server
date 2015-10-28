@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
+<title>User_treeview</title>
+<meta name="GENERATOR" content="Microsoft Visual Studio .NET 7.1">
+<style type="text/css">
+<!--
+a {
+	text-decoration: none;
+	font-size: 12px;
+	line-height: 16px;
+	color: #fff;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #fff00;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #fff;
+	font-weight: bold;
+}
+
+a:link {
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+}
+
+.box {
+	border: 1px solid #990066;
+}
+
+a:active {
+	text-decoration: none;
+}
+
+td {
+	font-size: 12px;
+	line-height: 18px;
+	/*
+ 
+background-color:#FFFFFF;
+filter: Alpha(Opacity=80);
+, FinishOpacity=8, Style=1, StartX=45, StartY=2, FinishX=5, FinishY=5
+*/
+}
+
+table.tablefilter {
+	width: 95px;
+	height: 70px;
+	filter: Alpha(Opacity = 100);
+	background-position: center;
+	background-repeat: no-repeat;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #adba84;
+	border-left-style: solid;
+	border-left-color: #adba84;
+	border-left-width: 1px;
+	border-bottom-color: #adba84;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #93C0FF;
+}
+
+td.tdfilter {
+	/*
+border:solid 1px #CCCCCC;
+
+BACKGROUND: url(../templets/XZ20140517/images/q.jpg) repeat-x left top;
+	bordercolordark:#FF0000;
+   
+	position:relative;
+	height: 28px;
+     */
+	
+}
+
+.borderall {
+	border: solid 1px #CCCCCC;
+}
+
+.borderlr {
+	border-left: solid 1px #CCCCCC;
+	border-right: solid 1px #CCCCCC;
+}
+
+.borderlrt {
+	/*
+	border-left:solid 1px #CCCCCC;
+	border-right:solid 1px #CCCCCC;
+	border-top:solid 1px #CCCCCC;
+*/
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: #e5e5e5;
+	vertical-align: middle;
+}
+
+.borderlrb {
+	border-left: solid 1px #CCCCCC;
+	border-right: solid 1px #CCCCCC;
+	border-bottom: solid 1px #CCCCCC;
+}
+
+.borderno {
+	border: none;
+}
+
+.STYLE91 {
+	font-size: 12px;
+	color: #000000;
+}
+
+.STYLE92 {
+	font-size: 16px;
+	color: #000000;
+	font-weight: bold;
+}
+
+.l {
+	text-align: center;
+	width: 40%;
+}
+
+.m {
+	text-align: center;
+	width: 20%;
+}
+
+.r {
+	text-align: center;
+	width: 40%;
+}
+
+.tablefilter td {
+	/*background-color: #92A45B;*/
+	
+}
+
+.lshy td {
+	background-color: #F7DEF1;
+	border: 1px solid #CCC;
+}
+
+.zshy td {
+	background-color: #CCC;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #93C0FF;
+	border-right-color: #adba84;
+	border-bottom-color: #adba84;
+	border-left-color: #adba84;
+}
+
+.lshy {
+	background-color: #F7DEF1;
+}
+
+.zshy {
+	background-color: #CCC;
+}
+
+.kongwei {
+	background-color: #CCC;
+}
+
+.ulevel1 {
+	background-color: #325E7F;
+	/*BACKGROUND: url(../templets/XZ20140517/images/q.jpg) repeat-x left top;*/
+	color: #ffffff;
+}
+
+.ulevel2 {
+	background-color: #C2D7EC;
+}
+
+.ulevel3 {
+	background-color: #F3D31C;
+}
+
+.ulevel4 {
+	background-color: #F9B763;
+}
+
+.ulevel5 {
+	background-color: #95AF00;
+}
+
+.ulevel6 {
+	background-color: #FF0000;
+}
+-->
+</style>
+<script language="javascript">
+    var ismusicok = 0
+    function purl(url, title) {
+        parent.show_title(title);
+        parent.switchTab('TabPage1', 'Tab3');
+        parent.menu(parent.document.getElementById('Tab3'))
+        parent.frames["content3"].location = url;
+        parent.MM_showHideLayers('layer_wait', '', 'show');
+    }
+
+
+    function pmusicurl() {
+        parent.switchTab('TabPage1', 'Tab2');
+        parent.menu(parent.document.getElementById('Tab2'))
+        //if(ismusicok == 0){parent.frames["content2"].location = 'api/api_aobo.asp?action=aobomusic';ismusicok = 1;}
+    }
+</script>
+<link href="../_files/WdatePicker.css" rel="stylesheet" type="text/css">
+<script src="../_files/main.js" type="text/javascript"></script>
+<script src="../_files/meizzDate.js" type="text/javascript"></script>
+<script src="../_files/fckeditor.js"></script>
+<script src="../_files/function.js" type="text/javascript"></script>
+<script src="../_files/menu.js" type="text/javascript"></script>
+<script type="text/javascript" src="../_files/WdatePicker.js"></script>
+<link href="../_files/common.css" rel="stylesheet" media="screen"
+	type="text/css">
+<link href="../_files/style.css" rel="stylesheet" media="screen"
+	type="text/css">
+<link href="../_files/font.css" rel="stylesheet" media="all"
+	type="text/css">
+</head>
+<body>
+	<noscript>&lt;iframe src=*.html&gt;&lt;/iframe&gt;</noscript>
+	<form name="Form1" method="post" action="User_treeview.html" id="Form1">
+		<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+		<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT"
+			value=""> <input type="hidden" name="__VIEWSTATE"
+			id="__VIEWSTATE"
+			value="/wEPDwUJNDY5MzIxOTY3D2QWAgIFD2QWAgIHDw8WAh4EVGV4dAX4TTx0YWJsZSB3aWR0aD0xMDAlICBib3JkZXI9MCBhbGlnbj1jZW50ZXIgY2VsbHBhZGRpbmc9MCBjZWxsc3BhY2luZz0wIGNsYXNzPXRiX2JvcmRlcj4NCgkJPHRyPg0KCSAgICAgICA8dGQgYmdjb2xvcj0jZjZmNmVjPg0KCQk8dGFibGUgd2lkdGg9MTAwJSAgYm9yZGVyPTAgY2VsbHNwYWNpbmc9MSBjZWxscGFkZGluZz00Pg0KCTx0ciBjbGFzcz10ZXh0Pg0KCTx0ZD48dGFibGUgd2lkdGg9MTAwJSBib3JkZXI9MCBjZWxscGFkZGluZz0nMScgY2VsbHNwYWNpbmc9JzEnPg0KPHRyIGFsaWduPWNlbnRlcj4NCjx0ZCBjbGFzcz0nYm9yZGVybHJ0JyB3aWR0aD0nMTAwJScgdmFsaWduPSd0b3AnIHRpdGxlPSfnrKwx5bGCJz4NCjxpbWcgd2lkdGg9MTIgaGVpZ2h0PTA+PGJyIC8+DQo8dGFibGUgd2lkdGg9IjEwMCIgY2VsbHNwYWNpbmc9MCBjZWxscGFkZGluZz0wIGJvcmRlcj0wIGNsYXNzPXRhYmxlZmlsdGVyPjx0ciBhbGlnbj1jZW50ZXIgPjx0ZCBjb2xzcGFuPTIgY2xhc3M9J3RkZmlsdGVyIHVsZXZlbDUnPg0KPGEgaHJlZj0nIyc+MTAwMDAwPC9hPjwvdGQ+PC90cj4NCjx0ciBhbGlnbj1jZW50ZXIgYmdjb2xvcj0nIzAwNjYwMCc+PHRkIGNvbHNwYW49MiBjbGFzcz10ZGZpbHRlciAgYmdjb2xvcj0nI2VlZWVlZSc+DQo8dGFibGUgYm9yZGVyPTAgY2VsbHNwYWNpbmc9MSBjZWxscGFkZGluZz0yIHdpZHRoPScxMDAlJyAgY2xhc3M9J3pzaHknPjx0Ym9keT4NCjx0ciA+PHRkIGNsYXNzPWw+NTwvdGQ+PHRkIGNsYXNzPW0+5oC7PC90ZD48dGQgY2xhc3M9cj4wPC90ZD48L3RyPg0KPHRyID48dGQgY2xhc3M9bD41PC90ZD48dGQgY2xhc3M9bT7kvZk8L3RkPjx0ZCBjbGFzcz1yPjA8L3RkPjwvdHI+DQo8dHIgPjx0ZCBjbGFzcz1sPjU8L3RkPjx0ZCBjbGFzcz1tPuaWsDwvdGQ+PHRkIGNsYXNzPXI+MDwvdGQ+PC90cj4NCjwvdGJvZHk+PC90YWJsZT4NCjwvdGQ+PC90cj48L3RhYmxlPg0KPC90cj4NCjx0ciBhbGlnbj1jZW50ZXI+DQo8dGQgY2xhc3M9J2JvcmRlcm5vJyAgd2lkdGg9JzEwMCUnIHZhbGlnbj0ndG9wJz4NCjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV9ib3R0b21fbC5naWYgYWx0PSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2xpbmUuZ2lmIHdpZHRoPTI1JSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX3RvcC5naWYgYWx0PeeItuiKgueCuSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2xpbmUuZ2lmIHdpZHRoPTI1JSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2JvdHRvbV9yLmdpZiBhbHQ9IGhlaWdodD0zMD4NCjwvdHI+DQo8L3RhYmxlPg0KPHRhYmxlIHdpZHRoPTEwMCUgYm9yZGVyPTAgY2VsbHBhZGRpbmc9JzEnIGNlbGxzcGFjaW5nPScxJz4NCjx0ciBhbGlnbj1jZW50ZXI+DQo8dGQgY2xhc3M9J2JvcmRlcmxydCcgd2lkdGg9JzUwJScgdmFsaWduPSd0b3AnIHRpdGxlPSfnrKwy5bGCJz4NCjxpbWcgd2lkdGg9MTIgaGVpZ2h0PTA+PGJyIC8+DQo8dGFibGUgd2lkdGg9IjEwMCIgY2VsbHNwYWNpbmc9MCBjZWxscGFkZGluZz0wIGNsYXNzPXRhYmxlZmlsdGVyPjx0ciBhbGlnbj1jZW50ZXIgPjx0ZCBjb2xzcGFuPTIgY2xhc3M9J3RkZmlsdGVyIHVsZXZlbDEnPjxhIGhyZWY9Jz9Vc2VySUQ9NjE3Jz43MDg5Nzk8L2E+PC90ZD48L3RyPjx0ciBhbGlnbj1jZW50ZXIgYmdjb2xvcj0nIzAwNjYwMCc+PHRkIGNvbHNwYW49MiBjbGFzcz10ZGZpbHRlciAgYmdjb2xvcj0nI2VlZWVlZSc+DQo8dGFibGUgYm9yZGVyPTAgY2VsbHNwYWNpbmc9MSBjZWxscGFkZGluZz0yIHdpZHRoPScxMDAlJyAgY2xhc3M9J3pzaHknID48dGJvZHk+DQo8dHIgPjx0ZCBjbGFzcz1sPjQ8L3RkPjx0ZCBjbGFzcz1tPuaAuzwvdGQ+PHRkIGNsYXNzPXI+MDwvdGQ+PC90cj4NCjx0ciA+PHRkIGNsYXNzPWw+NDwvdGQ+PHRkIGNsYXNzPW0+5L2ZPC90ZD48dGQgY2xhc3M9cj4wPC90ZD48L3RyPg0KPHRyID48dGQgY2xhc3M9bD40PC90ZD48dGQgY2xhc3M9bT7mlrA8L3RkPjx0ZCBjbGFzcz1yPjA8L3RkPjwvdHI+DQo8L3Rib2R5PjwvdGFibGU+DQo8L3RkPjwvdHI+PC90YWJsZT4NCg0KPHRkIGNsYXNzPSdib3JkZXJscnQnIHdpZHRoPSc1MCUnIHZhbGlnbj0ndG9wJyB0aXRsZT0n56ysMuWxgic+DQo8aW1nIHdpZHRoPTEyIGhlaWdodD0wPjxiciAvPg0KPHRhYmxlIHdpZHRoPSIxMDAiIGNlbGxzcGFjaW5nPTAgY2VsbHBhZGRpbmc9MCBjbGFzcz10YWJsZWZpbHRlcj48dHIgYWxpZ249Y2VudGVyID48dGQgY29sc3Bhbj0yIGNsYXNzPSd0ZGZpbHRlciB1bGV2ZWwxJz48YSBocmVmPSc/VXNlcklEPTYyMic+NTkyOTUzPC9hPjwvdGQ+PC90cj48dHIgYWxpZ249Y2VudGVyIGJnY29sb3I9JyMwMDY2MDAnPjx0ZCBjb2xzcGFuPTIgY2xhc3M9dGRmaWx0ZXIgIGJnY29sb3I9JyNlZWVlZWUnPg0KPHRhYmxlIGJvcmRlcj0wIGNlbGxzcGFjaW5nPTEgY2VsbHBhZGRpbmc9MiB3aWR0aD0nMTAwJScgIGNsYXNzPSdsc2h5JyA+PHRib2R5Pg0KPHRyID48dGQgY2xhc3M9bD4wPC90ZD48dGQgY2xhc3M9bT7mgLs8L3RkPjx0ZCBjbGFzcz1yPjA8L3RkPjwvdHI+DQo8dHIgPjx0ZCBjbGFzcz1sPjA8L3RkPjx0ZCBjbGFzcz1tPuS9mTwvdGQ+PHRkIGNsYXNzPXI+MDwvdGQ+PC90cj4NCjx0ciA+PHRkIGNsYXNzPWw+MDwvdGQ+PHRkIGNsYXNzPW0+5pawPC90ZD48dGQgY2xhc3M9cj4wPC90ZD48L3RyPg0KPC90Ym9keT48L3RhYmxlPg0KPC90ZD48L3RyPjwvdGFibGU+DQoNCjwvdHI+DQo8dHIgYWxpZ249Y2VudGVyPg0KPHRkIGNsYXNzPSdib3JkZXJubycgIHdpZHRoPSc1MCUnIHZhbGlnbj0ndG9wJz4NCjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV9ib3R0b21fbC5naWYgYWx0PSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2xpbmUuZ2lmIHdpZHRoPTI1JSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX3RvcC5naWYgYWx0PeeItuiKgueCuSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2xpbmUuZ2lmIHdpZHRoPTI1JSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2JvdHRvbV9yLmdpZiBhbHQ9IGhlaWdodD0zMD4NCjx0ZCBjbGFzcz0nYm9yZGVybm8nICB3aWR0aD0nNTAlJyB2YWxpZ249J3RvcCc+DQo8aW1nIHNyYz0uLi9pbWFnZXMvdHJlZS90X3RyZWVfYm90dG9tX2wuZ2lmIGFsdD0gaGVpZ2h0PTMwPjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV9saW5lLmdpZiB3aWR0aD0yNSUgaGVpZ2h0PTMwPjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV90b3AuZ2lmIGFsdD3niLboioLngrkgaGVpZ2h0PTMwPjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV9saW5lLmdpZiB3aWR0aD0yNSUgaGVpZ2h0PTMwPjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV9ib3R0b21fci5naWYgYWx0PSBoZWlnaHQ9MzA+DQo8L3RyPg0KPC90YWJsZT4NCjx0YWJsZSB3aWR0aD0xMDAlIGJvcmRlcj0wIGNlbGxwYWRkaW5nPScxJyBjZWxsc3BhY2luZz0nMSc+DQo8dHIgYWxpZ249Y2VudGVyPg0KPHRkIGNsYXNzPSdib3JkZXJscnQnIHdpZHRoPScyNSUnIHZhbGlnbj0ndG9wJyB0aXRsZT0n56ysM+Wxgic+DQo8aW1nIHdpZHRoPTEyIGhlaWdodD0wPjxiciAvPg0KPHRhYmxlIHdpZHRoPSIxMDAiIGNlbGxzcGFjaW5nPTAgY2VsbHBhZGRpbmc9MCBjbGFzcz10YWJsZWZpbHRlcj48dHIgYWxpZ249Y2VudGVyID48dGQgY29sc3Bhbj0yIGNsYXNzPSd0ZGZpbHRlciB1bGV2ZWwxJz48YSBocmVmPSc/VXNlcklEPTYxOCc+MTE4NTA5PC9hPjwvdGQ+PC90cj48dHIgYWxpZ249Y2VudGVyIGJnY29sb3I9JyMwMDY2MDAnPjx0ZCBjb2xzcGFuPTIgY2xhc3M9dGRmaWx0ZXIgIGJnY29sb3I9JyNlZWVlZWUnPg0KPHRhYmxlIGJvcmRlcj0wIGNlbGxzcGFjaW5nPTEgY2VsbHBhZGRpbmc9MiB3aWR0aD0nMTAwJScgIGNsYXNzPSd6c2h5JyA+PHRib2R5Pg0KPHRyID48dGQgY2xhc3M9bD4zPC90ZD48dGQgY2xhc3M9bT7mgLs8L3RkPjx0ZCBjbGFzcz1yPjA8L3RkPjwvdHI+DQo8dHIgPjx0ZCBjbGFzcz1sPjM8L3RkPjx0ZCBjbGFzcz1tPuS9mTwvdGQ+PHRkIGNsYXNzPXI+MDwvdGQ+PC90cj4NCjx0ciA+PHRkIGNsYXNzPWw+MzwvdGQ+PHRkIGNsYXNzPW0+5pawPC90ZD48dGQgY2xhc3M9cj4wPC90ZD48L3RyPg0KPC90Ym9keT48L3RhYmxlPg0KPC90ZD48L3RyPjwvdGFibGU+DQoNCjx0ZCBjbGFzcz0nYm9yZGVybHJ0JyB3aWR0aD0nMjUlJyB2YWxpZ249J3RvcCcgdGl0bGU9J+esrDPlsYInPg0KPGltZyB3aWR0aD0xMiBoZWlnaHQ9MD48YnIgLz4NCjx0YWJsZSBjZWxsc3BhY2luZz0wIGNlbGxwYWRkaW5nPTAgY2xhc3M9dGFibGVmaWx0ZXI+PHRyIGFsaWduPWNlbnRlcj48dGQgIGNsYXNzPWtvbmd3ZWk+DQo8YSBocmVmPSdSZWcuYXNweD9SZUlEPTEmYW1wO1RyZWVQbGFjZT0gDQoxJkZhdGhlcklEPTYxNycgIHRpdGxlPSfmjqjojZAnPlvnqbrkvY1dPGJyIC8+5o6o6I2QPC9hPg0KPC90ZD48L3RyPjwvdGFibGU+DQo8dGQgY2xhc3M9J2JvcmRlcmxydCcgd2lkdGg9JzI1JScgdmFsaWduPSd0b3AnIHRpdGxlPSfnrKwz5bGCJz4NCjxpbWcgd2lkdGg9MTIgaGVpZ2h0PTA+PGJyIC8+DQo8dGFibGUgY2VsbHNwYWNpbmc9MCBjZWxscGFkZGluZz0wIGNsYXNzPXRhYmxlZmlsdGVyPjx0ciBhbGlnbj1jZW50ZXI+PHRkICBjbGFzcz1rb25nd2VpPg0KPGEgaHJlZj0nUmVnLmFzcHg/UmVJRD0xJmFtcDtUcmVlUGxhY2U9IA0KMCZGYXRoZXJJRD02MjInICB0aXRsZT0n5o6o6I2QJz5b56m65L2NXTxiciAvPuaOqOiNkDwvYT4NCjwvdGQ+PC90cj48L3RhYmxlPg0KPHRkIGNsYXNzPSdib3JkZXJscnQnIHdpZHRoPScyNSUnIHZhbGlnbj0ndG9wJyB0aXRsZT0n56ysM+Wxgic+DQo8aW1nIHdpZHRoPTEyIGhlaWdodD0wPjxiciAvPg0KPHRhYmxlIGNlbGxzcGFjaW5nPTAgY2VsbHBhZGRpbmc9MCBjbGFzcz10YWJsZWZpbHRlcj48dHIgYWxpZ249Y2VudGVyPjx0ZCAgY2xhc3M9a29uZ3dlaT4NCjxhIGhyZWY9J1JlZy5hc3B4P1JlSUQ9MSZhbXA7VHJlZVBsYWNlPSANCjEmRmF0aGVySUQ9NjIyJyAgdGl0bGU9J+aOqOiNkCc+W+epuuS9jV08YnIgLz7mjqjojZA8L2E+DQo8L3RkPjwvdHI+PC90YWJsZT4NCjwvdHI+DQo8dHIgYWxpZ249Y2VudGVyPg0KPHRkIGNsYXNzPSdib3JkZXJubycgIHdpZHRoPScyNSUnIHZhbGlnbj0ndG9wJz4NCjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV9ib3R0b21fbC5naWYgYWx0PSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2xpbmUuZ2lmIHdpZHRoPTI1JSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX3RvcC5naWYgYWx0PeeItuiKgueCuSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2xpbmUuZ2lmIHdpZHRoPTI1JSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2JvdHRvbV9yLmdpZiBhbHQ9IGhlaWdodD0zMD4NCjx0ZCBjbGFzcz0nYm9yZGVybm8nICB3aWR0aD0nMjUlJyB2YWxpZ249J3RvcCc+DQo8aW1nIHNyYz0uLi9pbWFnZXMvdHJlZS90X3RyZWVfYm90dG9tX2wuZ2lmIGFsdD0gaGVpZ2h0PTMwPjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV9saW5lLmdpZiB3aWR0aD0yNSUgaGVpZ2h0PTMwPjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV90b3AuZ2lmIGFsdD3niLboioLngrkgaGVpZ2h0PTMwPjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV9saW5lLmdpZiB3aWR0aD0yNSUgaGVpZ2h0PTMwPjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV9ib3R0b21fci5naWYgYWx0PSBoZWlnaHQ9MzA+DQo8dGQgY2xhc3M9J2JvcmRlcm5vJyAgd2lkdGg9JzI1JScgdmFsaWduPSd0b3AnPg0KPGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2JvdHRvbV9sLmdpZiBhbHQ9IGhlaWdodD0zMD48aW1nIHNyYz0uLi9pbWFnZXMvdHJlZS90X3RyZWVfbGluZS5naWYgd2lkdGg9MjUlIGhlaWdodD0zMD48aW1nIHNyYz0uLi9pbWFnZXMvdHJlZS90X3RyZWVfdG9wLmdpZiBhbHQ954i26IqC54K5IGhlaWdodD0zMD48aW1nIHNyYz0uLi9pbWFnZXMvdHJlZS90X3RyZWVfbGluZS5naWYgd2lkdGg9MjUlIGhlaWdodD0zMD48aW1nIHNyYz0uLi9pbWFnZXMvdHJlZS90X3RyZWVfYm90dG9tX3IuZ2lmIGFsdD0gaGVpZ2h0PTMwPg0KPHRkIGNsYXNzPSdib3JkZXJubycgIHdpZHRoPScyNSUnIHZhbGlnbj0ndG9wJz4NCjxpbWcgc3JjPS4uL2ltYWdlcy90cmVlL3RfdHJlZV9ib3R0b21fbC5naWYgYWx0PSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2xpbmUuZ2lmIHdpZHRoPTI1JSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX3RvcC5naWYgYWx0PeeItuiKgueCuSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2xpbmUuZ2lmIHdpZHRoPTI1JSBoZWlnaHQ9MzA+PGltZyBzcmM9Li4vaW1hZ2VzL3RyZWUvdF90cmVlX2JvdHRvbV9yLmdpZiBhbHQ9IGhlaWdodD0zMD4NCjwvdHI+DQo8L3RhYmxlPg0KPHRhYmxlIHdpZHRoPTEwMCUgYm9yZGVyPTAgY2VsbHBhZGRpbmc9JzEnIGNlbGxzcGFjaW5nPScxJz4NCjx0ciBhbGlnbj1jZW50ZXI+DQo8dGQgY2xhc3M9J2JvcmRlcmxydCcgd2lkdGg9JzEyJScgdmFsaWduPSd0b3AnIHRpdGxlPSfnrKw05bGCJz4NCjxpbWcgd2lkdGg9MTIgaGVpZ2h0PTA+PGJyIC8+DQo8dGFibGUgd2lkdGg9IjEwMCIgY2VsbHNwYWNpbmc9MCBjZWxscGFkZGluZz0wIGNsYXNzPXRhYmxlZmlsdGVyPjx0ciBhbGlnbj1jZW50ZXIgPjx0ZCBjb2xzcGFuPTIgY2xhc3M9J3RkZmlsdGVyIHVsZXZlbDEnPjxhIGhyZWY9Jz9Vc2VySUQ9NjE5Jz4zNjExNTg8L2E+PC90ZD48L3RyPjx0ciBhbGlnbj1jZW50ZXIgYmdjb2xvcj0nIzAwNjYwMCc+PHRkIGNvbHNwYW49MiBjbGFzcz10ZGZpbHRlciAgYmdjb2xvcj0nI2VlZWVlZSc+DQo8dGFibGUgYm9yZGVyPTAgY2VsbHNwYWNpbmc9MSBjZWxscGFkZGluZz0yIHdpZHRoPScxMDAlJyAgY2xhc3M9J3pzaHknID48dGJvZHk+DQo8dHIgPjx0ZCBjbGFzcz1sPjI8L3RkPjx0ZCBjbGFzcz1tPuaAuzwvdGQ+PHRkIGNsYXNzPXI+MDwvdGQ+PC90cj4NCjx0ciA+PHRkIGNsYXNzPWw+MjwvdGQ+PHRkIGNsYXNzPW0+5L2ZPC90ZD48dGQgY2xhc3M9cj4wPC90ZD48L3RyPg0KPHRyID48dGQgY2xhc3M9bD4yPC90ZD48dGQgY2xhc3M9bT7mlrA8L3RkPjx0ZCBjbGFzcz1yPjA8L3RkPjwvdHI+DQo8L3Rib2R5PjwvdGFibGU+DQo8L3RkPjwvdHI+PC90YWJsZT4NCg0KPHRkIGNsYXNzPSdib3JkZXJscnQnIHdpZHRoPScxMiUnIHZhbGlnbj0ndG9wJyB0aXRsZT0n56ysNOWxgic+DQo8aW1nIHdpZHRoPTEyIGhlaWdodD0wPjxiciAvPg0KPHRhYmxlIGNlbGxzcGFjaW5nPTAgY2VsbHBhZGRpbmc9MCBjbGFzcz10YWJsZWZpbHRlcj48dHIgYWxpZ249Y2VudGVyPjx0ZCAgY2xhc3M9a29uZ3dlaT4NCjxhIGhyZWY9J1JlZy5hc3B4P1JlSUQ9MSZhbXA7VHJlZVBsYWNlPSANCjEmRmF0aGVySUQ9NjE4JyAgdGl0bGU9J+aOqOiNkCc+W+epuuS9jV08YnIgLz7mjqjojZA8L2E+DQo8L3RkPjwvdHI+PC90YWJsZT4NCjx0ZCBjbGFzcz0nYm9yZGVybHJ0JyB3aWR0aD0nMTIlJyB2YWxpZ249J3RvcCcgdGl0bGU9J+esrDTlsYInPg0KPGltZyB3aWR0aD0xMiBoZWlnaHQ9MD48YnIgLz4NCjx0YWJsZSB3aWR0aD0iMTAwIiBjZWxsc3BhY2luZz0wIGNlbGxwYWRkaW5nPTAgY2xhc3M9dGFibGVmaWx0ZXI+PHRyIGFsaWduPWNlbnRlcj48dGQgY2xhc3M9a29uZ3dlaT48YnI+W+epuuS9jTldPC90ZD48L3RyPjwvdGFibGU+DQo8dGQgY2xhc3M9J2JvcmRlcmxydCcgd2lkdGg9JzEyJScgdmFsaWduPSd0b3AnIHRpdGxlPSfnrKw05bGCJz4NCjxpbWcgd2lkdGg9MTIgaGVpZ2h0PTA+PGJyIC8+DQo8dGFibGUgd2lkdGg9IjEwMCIgY2VsbHNwYWNpbmc9MCBjZWxscGFkZGluZz0wIGNsYXNzPXRhYmxlZmlsdGVyPjx0ciBhbGlnbj1jZW50ZXI+PHRkIGNsYXNzPWtvbmd3ZWk+PGJyPlvnqbrkvY0xMF08L3RkPjwvdHI+PC90YWJsZT4NCjx0ZCBjbGFzcz0nYm9yZGVybHJ0JyB3aWR0aD0nMTIlJyB2YWxpZ249J3RvcCcgdGl0bGU9J+esrDTlsYInPg0KPGltZyB3aWR0aD0xMiBoZWlnaHQ9MD48YnIgLz4NCjx0YWJsZSB3aWR0aD0iMTAwIiBjZWxsc3BhY2luZz0wIGNlbGxwYWRkaW5nPTAgY2xhc3M9dGFibGVmaWx0ZXI+PHRyIGFsaWduPWNlbnRlcj48dGQgY2xhc3M9a29uZ3dlaT48YnI+W+epuuS9jTExXTwvdGQ+PC90cj48L3RhYmxlPg0KPHRkIGNsYXNzPSdib3JkZXJscnQnIHdpZHRoPScxMiUnIHZhbGlnbj0ndG9wJyB0aXRsZT0n56ysNOWxgic+DQo8aW1nIHdpZHRoPTEyIGhlaWdodD0wPjxiciAvPg0KPHRhYmxlIHdpZHRoPSIxMDAiIGNlbGxzcGFjaW5nPTAgY2VsbHBhZGRpbmc9MCBjbGFzcz10YWJsZWZpbHRlcj48dHIgYWxpZ249Y2VudGVyPjx0ZCBjbGFzcz1rb25nd2VpPjxicj5b56m65L2NMTJdPC90ZD48L3RyPjwvdGFibGU+DQo8dGQgY2xhc3M9J2JvcmRlcmxydCcgd2lkdGg9JzEyJScgdmFsaWduPSd0b3AnIHRpdGxlPSfnrKw05bGCJz4NCjxpbWcgd2lkdGg9MTIgaGVpZ2h0PTA+PGJyIC8+DQo8dGFibGUgd2lkdGg9IjEwMCIgY2VsbHNwYWNpbmc9MCBjZWxscGFkZGluZz0wIGNsYXNzPXRhYmxlZmlsdGVyPjx0ciBhbGlnbj1jZW50ZXI+PHRkIGNsYXNzPWtvbmd3ZWk+PGJyPlvnqbrkvY0xM108L3RkPjwvdHI+PC90YWJsZT4NCjx0ZCBjbGFzcz0nYm9yZGVybHJ0JyB3aWR0aD0nMTIlJyB2YWxpZ249J3RvcCcgdGl0bGU9J+esrDTlsYInPg0KPGltZyB3aWR0aD0xMiBoZWlnaHQ9MD48YnIgLz4NCjx0YWJsZSB3aWR0aD0iMTAwIiBjZWxsc3BhY2luZz0wIGNlbGxwYWRkaW5nPTAgY2xhc3M9dGFibGVmaWx0ZXI+PHRyIGFsaWduPWNlbnRlcj48dGQgY2xhc3M9a29uZ3dlaT48YnI+W+epuuS9jTE0XTwvdGQ+PC90cj48L3RhYmxlPg0KPC90cj4NCjx0ciBhbGlnbj1jZW50ZXI+DQo8L3RyPg0KPC90YWJsZT4NCjwvdHI+DQo8L3RhYmxlPg0KPHRhYmxlIHdpZHRoPTEwMCUgIGJvcmRlcj0wIGNlbGxzcGFjaW5nPTEgY2VsbHBhZGRpbmc9ND4NCjx0ciBhbGlnbj1jZW50ZXIgY2xhc3M9aGVhZD4NCjx0ZD4NCjx0YWJsZSB3aWR0aD0xMDAlICBib3JkZXI9MCBjZWxsc3BhY2luZz0xIGNlbGxwYWRkaW5nPTQgc3R5bGU9IGJhY2tncm91bmQtY29sb3I6I0ZGRkZGRjtib3JkZXI6c29saWQgMXB4ICNGRkNDQ0M+DQo8dHIgY2xhc3M9aGVhZCBhbGlnbj1jZW50ZXI+DQo8dGQgd2lkdGg9ODAgPuS4iumDqOW6leiJsjwvdGQ+DQo8dGQgY2xhc3M9dWxldmVsMSAgPua2iOi0ueWNoTwvdGQ+DQo8dGQgY2xhc3M9dWxldmVsMiAgPnZscOS8muWRmDwvdGQ+DQo8dGQgY2xhc3M9dWxldmVsMyAgPumHkeWNoeS8muWRmDwvdGQ+DQo8dGQgY2xhc3M9dWxldmVsNCAgPumSu+WNoeS8muWRmDwvdGQ+DQo8dGQgY2xhc3M9dWxldmVsNSAgPuekvuWMuuW6lzwvdGQ+DQo8dGQgY2xhc3M9dWxldmVsNiAgPuW4gue6p+S7o+eQhjwvdGQ+DQo8L3RyPg0KPC90YWJsZT4NCjwvdGQ+DQo8dGQ+DQo8dGFibGUgd2lkdGg9MzAwICBib3JkZXI9MCBjZWxsc3BhY2luZz0xIGNlbGxwYWRkaW5nPTQgc3R5bGU9YmFja2dyb3VuZC1jb2xvcjojRkZGRkZGO2JvcmRlcjpzb2xpZCAxcHggI0ZGQ0NDQz4NCjx0ciBjbGFzcz1oZWFkIGFsaWduPWNlbnRlcj4NCjx0ZCB3aWR0aD04MD7kuIvpg6jlupXoibI8L3RkPg0KPHRkIGNsYXNzPWxzaHk+6Z2e5q2j5byP5Lya5ZGYPC90ZD4NCjx0ZCBjbGFzcz16c2h5Puato+W8j+S8muWRmDwvdGQ+DQo8L3RyPg0KPC90YWJsZT4NCjwvdGQ+DQo8L3RyPg0KPC90YWJsZT4NCjwvdGQ+DQo8L3RyPg0KPC90YWJsZT5kZGSi3LHfj1SR691sbGBt2duxYFin24yvvYTXxBcmOoiz4A==">
+
+		<script type="text/javascript">
+<!--
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+// -->
+</script>
+		<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+			value="/wEWAwKe7rj8CwKvruq2CALS9pLoCB2H0SVU9AgPsKw4lYN/WY/t+PHHb/KrX9VUbyfdp7qy">
+
+		<div class="ncenter_box">
+			<div class="accounttitle">
+				<h1>团队网络</h1>
+			</div>
+
+			<table class="tab2">
+				<tbody>
+					<tr>
+						<td class="head" background="login_08z.gif" style="height: 30px"><strong>&nbsp;<span
+								class="style3">会员系谱图<input name="UserName" type="text"
+									value="100000" id="UserName"></span></strong> <input
+							onclick="__doPostBack(&#39;action&#39;,&#39;&#39;)" name="action"
+							type="button" id="action" class="buttonCN" value="跳转"> <span
+							id="FatherUrl"></span></td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="tab2">
+				<tbody>
+					<tr>
+						<td><span id="lbTree"><table width="100%" border="0"
+									align="center" cellpadding="0" cellspacing="0"
+									class="tb_border">
+									<tbody>
+										<tr>
+											<td bgcolor="#f6f6ec">
+												<table width="100%" border="0" cellspacing="1"
+													cellpadding="4">
+													<tbody>
+														<tr class="text">
+															<td><table width="100%" border="0" cellpadding="1"
+																	cellspacing="1">
+																	<tbody>
+																		<tr align="center">
+																			<td class="borderlrt" width="100%" valign="top"
+																				title="第1层"><img width="12" height="0"><br>
+																				<table width="100" cellspacing="0" cellpadding="0"
+																					border="0" class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td colspan="2" class="tdfilter ulevel5"><a
+																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx#">100000</a>
+																							</td>
+																						</tr>
+																						<tr align="center" bgcolor="#006600">
+																							<td colspan="2" class="tdfilter"
+																								bgcolor="#eeeeee">
+																								<table border="0" cellspacing="1"
+																									cellpadding="2" width="100%" class="zshy">
+																									<tbody>
+																										<tr>
+																											<td class="l">5</td>
+																											<td class="m">总</td>
+																											<td class="r">0</td>
+																										</tr>
+																										<tr>
+																											<td class="l">5</td>
+																											<td class="m">余</td>
+																											<td class="r">0</td>
+																										</tr>
+																										<tr>
+																											<td class="l">5</td>
+																											<td class="m">新</td>
+																											<td class="r">0</td>
+																										</tr>
+																									</tbody>
+																								</table>
+																							</td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																		</tr>
+																		<tr align="center">
+																			<td class="borderno" width="100%" valign="top">
+																				<img src="../_files/t_tree_bottom_l.gif" alt="height=30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_top.gif" alt="父节点" height="30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_bottom_r.gif" alt="height=30">
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+																<table width="100%" border="0" cellpadding="1"
+																	cellspacing="1">
+																	<tbody>
+																		<tr align="center">
+																			<td class="borderlrt" width="50%" valign="top"
+																				title="第2层"><img width="12" height="0"><br>
+																				<table width="100" cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td colspan="2" class="tdfilter ulevel1"><a
+																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617">708979</a></td>
+																						</tr>
+																						<tr align="center" bgcolor="#006600">
+																							<td colspan="2" class="tdfilter"
+																								bgcolor="#eeeeee">
+																								<table border="0" cellspacing="1"
+																									cellpadding="2" width="100%" class="zshy">
+																									<tbody>
+																										<tr>
+																											<td class="l">4</td>
+																											<td class="m">总</td>
+																											<td class="r">0</td>
+																										</tr>
+																										<tr>
+																											<td class="l">4</td>
+																											<td class="m">余</td>
+																											<td class="r">0</td>
+																										</tr>
+																										<tr>
+																											<td class="l">4</td>
+																											<td class="m">新</td>
+																											<td class="r">0</td>
+																										</tr>
+																									</tbody>
+																								</table>
+																							</td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																			<td class="borderlrt" width="50%" valign="top"
+																				title="第2层"><img width="12" height="0"><br>
+																				<table width="100" cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td colspan="2" class="tdfilter ulevel1"><a
+																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=622">592953</a></td>
+																						</tr>
+																						<tr align="center" bgcolor="#006600">
+																							<td colspan="2" class="tdfilter"
+																								bgcolor="#eeeeee">
+																								<table border="0" cellspacing="1"
+																									cellpadding="2" width="100%" class="lshy">
+																									<tbody>
+																										<tr>
+																											<td class="l">0</td>
+																											<td class="m">总</td>
+																											<td class="r">0</td>
+																										</tr>
+																										<tr>
+																											<td class="l">0</td>
+																											<td class="m">余</td>
+																											<td class="r">0</td>
+																										</tr>
+																										<tr>
+																											<td class="l">0</td>
+																											<td class="m">新</td>
+																											<td class="r">0</td>
+																										</tr>
+																									</tbody>
+																								</table>
+																							</td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																		</tr>
+																		<tr align="center">
+																			<td class="borderno" width="50%" valign="top"><img
+																				src="../_files/t_tree_bottom_l.gif" alt="height=30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_top.gif" alt="父节点" height="30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_bottom_r.gif" alt="height=30"></td>
+																			<td class="borderno" width="50%" valign="top"><img
+																				src="../_files/t_tree_bottom_l.gif" alt="height=30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_top.gif" alt="父节点" height="30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_bottom_r.gif" alt="height=30"></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<table width="100%" border="0" cellpadding="1"
+																	cellspacing="1">
+																	<tbody>
+																		<tr align="center">
+																			<td class="borderlrt" width="25%" valign="top"
+																				title="第3层"><img width="12" height="0"><br>
+																				<table width="100" cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td colspan="2" class="tdfilter ulevel1"><a
+																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=618">118509</a></td>
+																						</tr>
+																						<tr align="center" bgcolor="#006600">
+																							<td colspan="2" class="tdfilter"
+																								bgcolor="#eeeeee">
+																								<table border="0" cellspacing="1"
+																									cellpadding="2" width="100%" class="zshy">
+																									<tbody>
+																										<tr>
+																											<td class="l">3</td>
+																											<td class="m">总</td>
+																											<td class="r">0</td>
+																										</tr>
+																										<tr>
+																											<td class="l">3</td>
+																											<td class="m">余</td>
+																											<td class="r">0</td>
+																										</tr>
+																										<tr>
+																											<td class="l">3</td>
+																											<td class="m">新</td>
+																											<td class="r">0</td>
+																										</tr>
+																									</tbody>
+																								</table>
+																							</td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																			<td class="borderlrt" width="25%" valign="top"
+																				title="第3层"><img width="12" height="0"><br>
+																				<table cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td class="kongwei"><a
+																								href="http://xz20141114.dflvip.com/Member/Reg.aspx?ReID=1&TreePlace=%201&FatherID=617"
+																								title="推荐">[空位]<br>推荐
+																							</a></td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																			<td class="borderlrt" width="25%" valign="top"
+																				title="第3层"><img width="12" height="0"><br>
+																				<table cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td class="kongwei"><a
+																								href="http://xz20141114.dflvip.com/Member/Reg.aspx?ReID=1&TreePlace=%200&FatherID=622"
+																								title="推荐">[空位]<br>推荐
+																							</a></td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																			<td class="borderlrt" width="25%" valign="top"
+																				title="第3层"><img width="12" height="0"><br>
+																				<table cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td class="kongwei"><a
+																								href="http://xz20141114.dflvip.com/Member/Reg.aspx?ReID=1&TreePlace=%201&FatherID=622"
+																								title="推荐">[空位]<br>推荐
+																							</a></td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																		</tr>
+																		<tr align="center">
+																			<td class="borderno" width="25%" valign="top"><img
+																				src="../_files/t_tree_bottom_l.gif" alt="height=30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_top.gif" alt="父节点" height="30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_bottom_r.gif" alt="height=30"></td>
+																			<td class="borderno" width="25%" valign="top"><img
+																				src="../_files/t_tree_bottom_l.gif" alt="height=30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_top.gif" alt="父节点" height="30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_bottom_r.gif" alt="height=30"></td>
+																			<td class="borderno" width="25%" valign="top"><img
+																				src="../_files/t_tree_bottom_l.gif" alt="height=30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_top.gif" alt="父节点" height="30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_bottom_r.gif" alt="height=30"></td>
+																			<td class="borderno" width="25%" valign="top"><img
+																				src="../_files/t_tree_bottom_l.gif" alt="height=30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_top.gif" alt="父节点" height="30"><img
+																				src="../_files/t_tree_line.gif" width="25%" height="30"><img
+																				src="../_files/t_tree_bottom_r.gif" alt="height=30"></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<table width="100%" border="0" cellpadding="1"
+																	cellspacing="1">
+																	<tbody>
+																		<tr align="center">
+																			<td class="borderlrt" width="12%" valign="top"
+																				title="第4层"><img width="12" height="0"><br>
+																				<table width="100" cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td colspan="2" class="tdfilter ulevel1"><a
+																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=619">361158</a></td>
+																						</tr>
+																						<tr align="center" bgcolor="#006600">
+																							<td colspan="2" class="tdfilter"
+																								bgcolor="#eeeeee">
+																								<table border="0" cellspacing="1"
+																									cellpadding="2" width="100%" class="zshy">
+																									<tbody>
+																										<tr>
+																											<td class="l">2</td>
+																											<td class="m">总</td>
+																											<td class="r">0</td>
+																										</tr>
+																										<tr>
+																											<td class="l">2</td>
+																											<td class="m">余</td>
+																											<td class="r">0</td>
+																										</tr>
+																										<tr>
+																											<td class="l">2</td>
+																											<td class="m">新</td>
+																											<td class="r">0</td>
+																										</tr>
+																									</tbody>
+																								</table>
+																							</td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																			<td class="borderlrt" width="12%" valign="top"
+																				title="第4层"><img width="12" height="0"><br>
+																				<table cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td class="kongwei"><a
+																								href="http://xz20141114.dflvip.com/Member/Reg.aspx?ReID=1&TreePlace=%201&FatherID=618"
+																								title="推荐">[空位]<br>推荐
+																							</a></td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																			<td class="borderlrt" width="12%" valign="top"
+																				title="第4层"><img width="12" height="0"><br>
+																				<table width="100" cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td class="kongwei"><br>[空位9]</td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																			<td class="borderlrt" width="12%" valign="top"
+																				title="第4层"><img width="12" height="0"><br>
+																				<table width="100" cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td class="kongwei"><br>[空位10]</td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																			<td class="borderlrt" width="12%" valign="top"
+																				title="第4层"><img width="12" height="0"><br>
+																				<table width="100" cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td class="kongwei"><br>[空位11]</td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																			<td class="borderlrt" width="12%" valign="top"
+																				title="第4层"><img width="12" height="0"><br>
+																				<table width="100" cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td class="kongwei"><br>[空位12]</td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																			<td class="borderlrt" width="12%" valign="top"
+																				title="第4层"><img width="12" height="0"><br>
+																				<table width="100" cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td class="kongwei"><br>[空位13]</td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																			<td class="borderlrt" width="12%" valign="top"
+																				title="第4层"><img width="12" height="0"><br>
+																				<table width="100" cellspacing="0" cellpadding="0"
+																					class="tablefilter">
+																					<tbody>
+																						<tr align="center">
+																							<td class="kongwei"><br>[空位14]</td>
+																						</tr>
+																					</tbody>
+																				</table></td>
+																		</tr>
+																		<tr align="center">
+																		</tr>
+																	</tbody>
+																</table></td>
+														</tr>
+													</tbody>
+												</table>
+												<table width="100%" border="0" cellspacing="1"
+													cellpadding="4">
+													<tbody>
+														<tr align="center" class="head">
+															<td>
+																<table width="100%" border="0" cellspacing="1"
+																	cellpadding="4"
+																	style="background-color: #FFFFFF; border: solid" 1px=""
+																	#ffcccc="">
+																	<tbody>
+																		<tr class="head" align="center">
+																			<td width="80">上部底色</td>
+																			<td class="ulevel1">消费卡</td>
+																			<td class="ulevel2">vlp会员</td>
+																			<td class="ulevel3">金卡会员</td>
+																			<td class="ulevel4">钻卡会员</td>
+																			<td class="ulevel5">社区店</td>
+																			<td class="ulevel6">市级代理</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</td>
+															<td>
+																<table width="300" border="0" cellspacing="1"
+																	cellpadding="4"
+																	style="background-color: #FFFFFF; border: solid" 1px=""
+																	#ffcccc="">
+																	<tbody>
+																		<tr class="head" align="center">
+																			<td width="80">下部底色</td>
+																			<td class="lshy">非正式会员</td>
+																			<td class="zshy">正式会员</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+									</tbody>
+								</table></span></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+		</div>
+	</form>
+</body>
+</html>

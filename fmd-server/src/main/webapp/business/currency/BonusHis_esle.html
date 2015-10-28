@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
+<title>货币历史</title>
+<link href="../_files/WdatePicker.css" rel="stylesheet" type="text/css">
+<script src="../_files/main.js" type="text/javascript"></script>
+<script src="../_files/meizzDate.js" type="text/javascript"></script>
+<script src="../_files/fckeditor.js"></script>
+<script src="../_files/function.js" type="text/javascript"></script>
+<script src="../_files/menu.js" type="text/javascript"></script>
+<script type="text/javascript"src="../_files/WdatePicker.js"></script>
+<link href="../_files/common.css" rel="stylesheet" media="screen" type="text/css">
+<link href="../_files/style.css" rel="stylesheet" media="screen" type="text/css">
+<link href="../_files/font.css" rel="stylesheet" media="all" type="text/css">
+</head>
+
+<body>
+	<noscript>&lt;iframe src=*.html&gt;&lt;/iframe&gt;</noscript>
+
+	<form name="Form1" method="post" action="BonusHis_esle.html" id="Form1">
+		<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+			value="/wEPDwUKMTE5NzQyMDE3Ng9kFgICBQ9kFgYCBQ8QZA8WDWYCAQICAgMCBAIFAgYCBwIIAgkCCgILAgwWDRAFCT095YWo6YOoPQUBMGcQBRLlhrvnu5Pop4Hngrnnp6/liIYFAjIwZxAFBumHkeW4gQUCMjFnEAUM5aWW6YeR5o+Q546wBQIyMmcQBQzmj5DnjrDov5Tlm54FAjIzZxAFCei9rOi0p+W4gQUCMjRnEAUP6L2s6LSn5biB6L+U5ZueBQIyNWcQBQzmsYfmrL7lhYXlgLwFAjI2ZxAFDOi0p+W4gei9rOi0pgUCMjdnEAUM5byA6YCa5Lya5ZGYBQIyOGcQBQzlj5HmlL7otKfluIEFAjI5ZxAFDOWPkeaUvuaxh+asvgUCMzBnEAUM6Zu25ZSu6LSt54mpBQIzN2dkZAINDxYCHgtfIUl0ZW1Db3VudAIFFgoCAQ9kFghmDxUEBjEyNDgyNAYxMDAwMDAKMjAxNS0xMC0yOAgxNDozNjo1M2QCAQ8VBAbph5HluIES57Wx5LiA55m85pS+5aWW6YeRATAIMTcwLjAwMDBkAgIPFQEGMC4wMDAwZAIDDxUBBjAuMDAwMGQCAg9kFghmDxUEBjEyNDgyMwYxMDAwMDAKMjAxNS0xMC0yOAgxNDozNjo1M2QCAQ8VBAbph5HluIES57Wx5LiA55m85pS+5aWW6YeRATAIMTcwLjAwMDBkAgIPFQEGMC4wMDAwZAIDDxUBBjAuMDAwMGQCAw9kFghmDxUEBjEyNDgyMgYxMDAwMDAKMjAxNS0xMC0yOAgxNDozNjo1M2QCAQ8VBAbph5HluIES57Wx5LiA55m85pS+5aWW6YeRATAIMTcwLjAwMDBkAgIPFQEGMC4wMDAwZAIDDxUBBjAuMDAwMGQCBA9kFghmDxUEBjEyNDgyMQYxMDAwMDAKMjAxNS0xMC0yOAgxNDozNjo1M2QCAQ8VBAbph5HluIES57Wx5LiA55m85pS+5aWW6YeRATAIMTcwLjAwMDBkAgIPFQEGMC4wMDAwZAIDDxUBBjAuMDAwMGQCBQ9kFghmDxUEBjEyNDgyMAYxMDAwMDAKMjAxNS0xMC0yOAgxNDozNjo1M2QCAQ8VBAbph5HluIES57Wx5LiA55m85pS+5aWW6YeRATAIMTcwLjAwMDBkAgIPFQEGMC4wMDAwZAIDDxUBBjAuMDAwMGQCDw8PFgIeC1JlY29yZGNvdW50AgVkZGQB2g6PDjMB3qryA2oNJpSpLn5LuxxnuN6WMVGxFcOpbw==">
+
+		<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+		<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT"
+			value=""> <input type="hidden" name="__EVENTVALIDATION"
+			id="__EVENTVALIDATION"
+			value="/wEWEgL5/M73DAKvruq2CAKP6I22BQKR6M21BQKR6MG1BQKR6MW1BQKR6Pm1BQKR6P21BQKR6PG1BQKR6PW1BQKR6Om1BQKR6K22BQKR6KG2BQKS6M21BQKS6Om1BQLzt9zuCwLduqHwAgKEkoXnBOdTifqm7LfjajahyOPUqSNSQTc7R30eTWphtFocgzR6">
+
+
+
+
+		<div class="ncenter_box">
+			<div class="accounttitle">
+				<h1>总资金动态</h1>
+			</div>
+
+
+
+
+			<table class="tab2">
+				<tbody>
+					<tr>
+						<td>用户</td>
+						<td><input name="UserName" type="text" maxlength="16"
+							id="UserName" style="width: 80px;"></td>
+						<td><select name="dlBonus" id="dlBonus">
+								<option value="0">==全部=</option>
+								<option value="20">冻结见点积分</option>
+								<option value="21">金币</option>
+								<option value="22">奖金提现</option>
+								<option value="23">提现返回</option>
+								<option value="24">转货币</option>
+								<option value="25">转货币返回</option>
+								<option value="26">汇款充值</option>
+								<option value="27">货币转账</option>
+								<option value="28">开通会员</option>
+								<option value="29">发放货币</option>
+								<option value="30">发放汇款</option>
+								<option value="37">零售购物</option>
+
+						</select></td>
+						<td>开始时间</td>
+						<td><input name="StarTime" type="text" id="StarTime"
+							onclick="WdatePicker()" style="width: 100px;"></td>
+						<td>结束时间</td>
+						<td><input name="EndTime" type="text" id="EndTime"
+							onclick="WdatePicker()" style="width: 100px;"></td>
+
+						<td width="20%"><input type="submit" name="btSeach"
+							value="搜索" id="btSeach"></td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="tab2" id="chk_idAll">
+
+
+				<tbody>
+					<tr>
+						<td><strong>编号</strong></td>
+						<td><strong>会员</strong></td>
+						<td><strong>日期</strong></td>
+						<td><strong>时间</strong></td>
+						<td><strong>操作</strong></td>
+						<td><strong>详细信息</strong></td>
+						<td><strong>支出</strong></td>
+						<td><strong>入账</strong></td>
+						<td style="display: none"><strong>余额</strong></td>
+						<td style="display: none"><strong>实际</strong></td>
+
+
+					</tr>
+
+					<tr>
+						<td>124824</td>
+						<td>100000</td>
+						<td>2015-10-28</td>
+						<td>14:36:53</td>
+						<td>金币</td>
+						<td>統一發放奖金</td>
+						<td>0</td>
+						<td>170.0000</td>
+						<td style="display: none">0.0000</td>
+						<td style="display: none">0.0000</td>
+
+
+					</tr>
+
+					<tr>
+						<td>124823</td>
+						<td>100000</td>
+						<td>2015-10-28</td>
+						<td>14:36:53</td>
+						<td>金币</td>
+						<td>統一發放奖金</td>
+						<td>0</td>
+						<td>170.0000</td>
+						<td style="display: none">0.0000</td>
+						<td style="display: none">0.0000</td>
+
+
+					</tr>
+
+					<tr>
+						<td>124822</td>
+						<td>100000</td>
+						<td>2015-10-28</td>
+						<td>14:36:53</td>
+						<td>金币</td>
+						<td>統一發放奖金</td>
+						<td>0</td>
+						<td>170.0000</td>
+						<td style="display: none">0.0000</td>
+						<td style="display: none">0.0000</td>
+
+
+					</tr>
+
+					<tr>
+						<td>124821</td>
+						<td>100000</td>
+						<td>2015-10-28</td>
+						<td>14:36:53</td>
+						<td>金币</td>
+						<td>統一發放奖金</td>
+						<td>0</td>
+						<td>170.0000</td>
+						<td style="display: none">0.0000</td>
+						<td style="display: none">0.0000</td>
+
+
+					</tr>
+
+					<tr>
+						<td>124820</td>
+						<td>100000</td>
+						<td>2015-10-28</td>
+						<td>14:36:53</td>
+						<td>金币</td>
+						<td>統一發放奖金</td>
+						<td>0</td>
+						<td>170.0000</td>
+						<td style="display: none">0.0000</td>
+						<td style="display: none">0.0000</td>
+
+
+					</tr>
+
+
+
+					<tr>
+						<td colspan="10">
+							<!-- AspNetPager V7.0 for VS2008  Copyright:2003-2007 Webdiyer (www.webdiyer.com) -->
+							<div id="AspNetPager1">
+								<div style="float: left; width: 45%;">
+									第<font color="red"><b>1</b></font>页，共有记录5条，分1页，每页显示12条记录
+								</div>
+								<div style="width: 55%; float: left;">
+									<a disabled="disabled" style="margin-right: 5px;">第一页</a><a
+										disabled="disabled" style="margin-right: 5px;">前一页</a><span
+										style="margin-right: 5px; font-weight: Bold; color: red;">1</span><a
+										disabled="disabled" style="margin-right: 5px;">下一页</a><a
+										disabled="disabled" style="margin-right: 5px;">最后一页</a>&nbsp;&nbsp;<select
+										name="AspNetPager1_input" id="AspNetPager1_input"
+										onchange="__doPostBack(&#39;AspNetPager1&#39;,&#39;&#39;)">
+										<option selected="true">1</option>
+									</select>
+								</div>
+							</div> <!-- AspNetPager V7.0 for VS2008 End -->
+
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+		</div>
+		<script type="text/javascript">
+<!--
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+// -->
+</script>
+	</form>
+</body>
+</html>

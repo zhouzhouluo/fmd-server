@@ -23,18 +23,18 @@ function copyclip(meintext)
 {
  if (window.clipboardData){
  if (window.clipboardData.setData("Text", meintext)){
-		alert('¸´ÖÆ³É¹¦');
+		alert('å¤åˆ¶æˆåŠŸ');
 		return true;
    }
    else {
-		alert('¸´ÖÆÊ§°Ü\n');
+		alert('å¤åˆ¶å¤±è´¥\n');
 		return false;
 	}
   }else if (window.netscape) {
    try{
 	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
    } catch (e) {
-	  alert("±»ä¯ÀÀÆ÷¾Ü¾ø£¡\nÇëÔÚä¯ÀÀÆ÷µØÖ·À¸ÊäÈë'about:config'²¢»Ø³µ\nÈ»ºó½«'signed.applets.codebase_principal_support'ÉèÖÃÎª'true'");
+	  alert("è¢«æµè§ˆå™¨æ‹’ç»ï¼\nè¯·åœ¨æµè§ˆå™¨åœ°å€æ è¾“å…¥'about:config'å¹¶å›è½¦\nç„¶åå°†'signed.applets.codebase_principal_support'è®¾ç½®ä¸º'true'");
 	  return false;
    }
 
@@ -68,7 +68,7 @@ function copyclip(meintext)
    clip.setData(trans,null,clipid.kGlobalClipboard);
 
    }
-   alert('¸´ÖÆ³É¹¦');
+   alert('å¤åˆ¶æˆåŠŸ');
    return true;
 }
 /* innerhtml.js
@@ -285,7 +285,7 @@ function oblog_ViewCode(rnum)
 	preWin.document.open();
 	preWin.document.write(bodyTag);
 	preWin.document.close();
-	preWin.document.title="²é¿´´úÂëÄÚÈİ";
+	preWin.document.title="æŸ¥çœ‹ä»£ç å†…å®¹";
 	preWin.document.charset="UTF-8";
 }
 
@@ -296,8 +296,8 @@ function dialog(blogurl){
 	var src = "";
 	var path = blogurl+"../images/dialog/";
 	//alert(path);
-	var sFunc = '<input id="dialogOk" type="button" style="font-size:12px;width:71px;height:22px;line-height:24px;border-style:none;background:transparent url('+path+'button4.bmp);width: 71px;height: 22px;"  onmouseover=BtnOver(this,"'+path+'") onmouseout=BtnOut(this,"'+path+'") value="È· ÈÏ" onclick="new dialog(\''+blogurl+'\').reset();" /> <input id="dialogCancel" type="button" style="font-size:12px;width:71px;height:22px;line-height:24px;border-style:none;background:transparent url('+path+'button4.bmp);width: 71px;height: 22px;" value="È¡ Ïû" onclick="new dialog(\''+blogurl+'\').reset();" />';
-	var sClose = '<span id="dialogBoxClose" onclick="new dialog(\''+blogurl+'\').reset();" style="color: #fff; cursor:pointer; ">¹Ø±Õ</span>';
+	var sFunc = '<input id="dialogOk" type="button" style="font-size:12px;width:71px;height:22px;line-height:24px;border-style:none;background:transparent url('+path+'button4.bmp);width: 71px;height: 22px;"  onmouseover=BtnOver(this,"'+path+'") onmouseout=BtnOut(this,"'+path+'") value="ç¡® è®¤" onclick="new dialog(\''+blogurl+'\').reset();" /> <input id="dialogCancel" type="button" style="font-size:12px;width:71px;height:22px;line-height:24px;border-style:none;background:transparent url('+path+'button4.bmp);width: 71px;height: 22px;" value="å– æ¶ˆ" onclick="new dialog(\''+blogurl+'\').reset();" />';
+	var sClose = '<span id="dialogBoxClose" onclick="new dialog(\''+blogurl+'\').reset();" style="color: #fff; cursor:pointer; ">å…³é—­</span>';
 	var sBody = '\
 		<table id="dialogBodyBox" border="0" align="center" cellpadding="0" cellspacing="0" width="100%" height="100%" >\
 			<tr height="10"><td colspan="4" align="center"></td></tr>\
@@ -319,7 +319,7 @@ function dialog(blogurl){
 					<table onselectstart="return false;" style="-moz-user-select:none;" width="100%" border="0" cellpadding="0" cellspacing="0">\
 						<tr>\
 							<td width="6" ></td>\
-							<td id="dialogBoxTitle" onmousedown="new dialog().moveStart(event, \'dialogBox\')" style="color:#fff;cursor:move;font-size:12px;font-weight:bold;">ÌáÊ¾ĞÅÏ¢</td>\
+							<td id="dialogBoxTitle" onmousedown="new dialog().moveStart(event, \'dialogBox\')" style="color:#fff;cursor:move;font-size:12px;font-weight:bold;">æç¤ºä¿¡æ¯</td>\
 							<td id="dialogClose" width="27" align="right" valign="middle">\
 								' + sClose + '\
 							</td>\
@@ -620,7 +620,7 @@ oAjax._OnReadyStateChange = function( xreq, callback ){
 //			alert(xreq.responseText);
           	callback (this.ArrayValue(xreq.responseXML) );                     
         }else{
-//			alert('·şÎñÆ÷¶Ë´íÎó£¡');
+//			alert('æœåŠ¡å™¨ç«¯é”™è¯¯ï¼');
 		document.write (xreq.responseText);
 		}
     } else {

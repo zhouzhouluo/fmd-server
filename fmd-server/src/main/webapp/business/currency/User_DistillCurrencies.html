@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
+<title>货币提现</title>
+<link href="../_files/WdatePicker.css" rel="stylesheet" type="text/css">
+<script src="../_files/main.js" type="text/javascript"></script>
+<script src="../_files/meizzDate.js" type="text/javascript"></script>
+<script src="../_files/fckeditor.js"></script>
+<script src="../_files/function.js" type="text/javascript"></script>
+<script src="../_files/menu.js" type="text/javascript"></script>
+<script type="text/javascript" src="../_files/WdatePicker.js"></script>
+<link href="../_files/common.css" rel="stylesheet" media="screen"
+	type="text/css">
+<link href="../_files/style.css" rel="stylesheet" media="screen"
+	type="text/css">
+<link href="../_files/font.css" rel="stylesheet" media="all"
+	type="text/css">
+</head>
+
+<body>
+	<noscript>&lt;iframe src=*.html&gt;&lt;/iframe&gt;</noscript>
+	<form name="Form1" method="post" action="User_DistillCurrencies.html"
+		id="Form1">
+		<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+			value="/wEPDwUINzI2MzAyODYPZBYCAgUPZBYIAgEPDxYCHgRUZXh0BQg4NTAuMDAwMGRkAgUPD2QWAh4Hb25jbGljawUrcmV0dXJuIGNvbmZpcm0oJ+ehruWumueUs+ivt+aPkOeOsOWQl++8gScpO2QCCQ8WAh4LXyFJdGVtQ291bnRmZAIKDw8WAh4LUmVjb3JkY291bnRmZGRkawq0LpuGynzwY6BKX55kh3KNyP5CZjyAEvl/uUYhFB8=">
+		<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+		<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT"
+			value=""> <input type="hidden" name="__EVENTVALIDATION"
+			id="__EVENTVALIDATION"
+			value="/wEWCAKr6rStBgLn+sP9CgLs0bLrBgLIk7LNDgK/pKuuBgLzt9zuCwLduqHwAgKKlN3WBNA59ZMI2lndhwbpWOkifw3yI18Sx8l1bVVIQlFfqN1R">
+		<div class="ncenter_box">
+			<div class="accounttitle">
+				<h1>金币提现</h1>
+			</div>
+			<table width="98%" border="0" class="tab2">
+				<tbody>
+					<tr>
+						<td>（<font color="red">提醒：姓名：宝宝&nbsp;&nbsp;
+								账号：111111&nbsp; </font> ）
+						</td>
+					</tr>
+					<tr>
+						<td>奖金币余额： <span id="Label1">850.0000</span>
+							&nbsp;&nbsp;提现总额：0
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" height="30">申请提现金额额: <input name="Currency"
+							type="text" id="Currency" style="width: 100px;">(整数)
+							扣5%手续费&nbsp;&nbsp;&nbsp;&nbsp;开户姓名：<input name="TextBox1"
+							type="text" id="TextBox1" style="width: 80px;">&nbsp;&nbsp;&nbsp;三级密码:<input
+							name="UserPassword" type="password" maxlength="18"
+							id="UserPassword" style="width: 100px;"> <input
+							type="submit" name="btDistillCurrencies" value="确定申请"
+							onclick="return confirm(&#39;确定申请提现吗！&#39;);"
+							language="javascript" id="btDistillCurrencies"></td>
+					</tr>
+					<tr>
+						<td colspan="2" height="30">开始时间:<input name="StarTime"
+							type="text" id="StarTime" onclick="WdatePicker()"
+							style="width: 100px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							结束时间:<input name="EndTime" type="text" id="EndTime"
+							onclick="WdatePicker()" style="width: 100px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="submit" name="lbSeach" value="搜索" id="lbSeach"></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table width="98%" border="0" class="tab2" id="chk_idAll">
+
+				<tbody>
+					<tr>
+						<td><strong>序号</strong></td>
+						<td><strong>类型</strong></td>
+						<td align="center"><strong>金额</strong></td>
+						<td align="center"><strong>扣税</strong></td>
+						<td align="center"><strong>实取</strong></td>
+
+						<td><strong>申请时间</strong></td>
+						<td><strong>状态</strong></td>
+						<td><strong>操作</strong></td>
+					</tr>
+					<tr class="GridItem" onMouseOver="over(this)"
+						onMouseOut="over(this)">
+						<td><span id="Repeater1__ctl1_lbId">1640</span></td>
+						<td>提现</td>
+						<td align=center><span id="Repeater1__ctl1_IbCurrencyNum">100.0000</span>
+
+
+						</td>
+
+						<td align=center>5.00</td>
+						<td align=center>95.00</td>
+						<td>2015-10-28 15:46:13</td>
+						<td><font color="red">未付款</font></td>
+						<td><a onclick="return confirm(&#39;请确定是否取消提现申请！&#39;);"
+							id="Repeater1__ctl1_ModIspay"
+							href="javascript:__doPostBack(&#39;Repeater1$_ctl1$ModIspay&#39;,&#39;&#39;)">取消提现</a></td>
+					</tr>
+
+
+
+					<tr id="u1" align="center">
+						<td height="28" colspan="2">合计：</td>
+						<td>100.00</td>
+						<td style="display:">5.00</td>
+						<td>95.00</td>
+
+
+						<td>-</td>
+						<td>-</td>
+
+
+						<td>-</td>
+					</tr>
+					<tr id="Tr1" align="center">
+						<td height="28" colspan="2">总计：</td>
+						<td>100.00</td>
+						<td style="display:">5.00</td>
+						<td>95.00</td>
+
+						<td>-</td>
+
+						<td>-</td>
+
+						<td>-</td>
+					</tr>
+
+
+					<tr>
+						<td colspan="8">
+							<!-- AspNetPager V7.0 for VS2008  Copyright:2003-2007 Webdiyer (www.webdiyer.com) -->
+							<div id="AspNetPager1">
+								<div style="float: left; width: 45%;">
+									第<font color="red"><b>1</b></font>页，共有记录0条，分1页，每页显示12条记录
+								</div>
+								<div style="width: 55%; float: left;">
+									<a disabled="disabled" style="margin-right: 5px;">第一页</a><a
+										disabled="disabled" style="margin-right: 5px;">前一页</a><span
+										style="margin-right: 5px; font-weight: Bold; color: red;">1</span><a
+										disabled="disabled" style="margin-right: 5px;">下一页</a><a
+										disabled="disabled" style="margin-right: 5px;">最后一页</a>&nbsp;&nbsp;<select
+										name="AspNetPager1_input" id="AspNetPager1_input"
+										onchange="__doPostBack(&#39;AspNetPager1&#39;,&#39;&#39;)">
+										<option selected="true">1</option>
+									</select>
+								</div>
+							</div> <!-- AspNetPager V7.0 for VS2008 End -->
+
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+
+
+
+		</div>
+		<script type="text/javascript">
+<!--
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+// -->
+</script>
+	</form>
+</body>
+</html>
