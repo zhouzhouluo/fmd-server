@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.fmd.dao.BaseDao;
+import com.fmd.dao.Member_userDao;
 import com.fmd.entity.Member_user;
 import com.fmd.entity.User;
 import com.fmd.service.Member_userService;
@@ -22,9 +23,14 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
     public void setDao(BaseDao<Member_user> dao) {  
         super.setDao(dao);  
     }  
-  
+    @Resource(name = "member_userDao")  
+    private Member_userDao member_userDao;
     /** 
      * 若CustomerService 定义了BaseService没有的方法，则可以在这里实现 
      */  
-  
+    
+    @Override
+    public Member_user login(String userid) {
+    	return	member_userDao.login(userid);
+	}
 }  

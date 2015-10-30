@@ -16,10 +16,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>户注册</title> 
-	<script language="javascript" src="../_files/Pro.js"></script>
-	<script language="JavaScript" src="../_files/jsReg.js" type="text/javascript"></script>
-	<script language="JavaScript" src="../_files/chkPWD.js" type="text/javascript"></script>
-	<script language="JavaScript" src="../_files/getcity.js" type="text/javascript"></script>
+	<script src="../_files/Pro.js"></script>
+	<script src="../_files/jsReg.js" type="text/javascript"></script>
+	<script src="../_files/chkPWD.js" type="text/javascript"></script>
+	<script src="../_files/getcity.js" type="text/javascript"></script>
 	<link href="../_files/WdatePicker.css" rel="stylesheet" type="text/css">
 </head>
 

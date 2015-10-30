@@ -7,12 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.fmd.entity.Member_user;
-import com.fmd.entity.User;
 import com.fmd.service.Member_userService;
-import com.fmd.service.UserService;
 /**
  * 
  * @author Administrator
@@ -28,7 +24,6 @@ public class Member_userController {
 	
 	@RequestMapping(value="save",method=RequestMethod.POST)
 	public String save(Member_user member_user){
-		System.out.println("-----------------------------------------:");
 		member_user.setCjsj(new Date());
 		member_user.setCapital("960");
 		member_user.setState(1);
@@ -42,5 +37,15 @@ public class Member_userController {
 	@RequestMapping("/member/grid")
 	public String grid(){
 		return null;
+	}
+	@RequestMapping("login")
+	public String login(String userid,String pwd){
+		System.out.println("-----------------------------------------userid:"+userid);
+		System.out.println("-----------------------------------------pwd:"+pwd);
+		Member_user member_user= member_userService.login(userid);
+		if (member_user!=null&&pwd.equals(member_user.getPwd1())) {
+			return "business/member_user/my_member";
+		}
+		return "business/login";
 	}
 }

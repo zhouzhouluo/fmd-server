@@ -18,6 +18,8 @@
     <mvc:resources location="/css/*" mapping="/css/**" />  
     <mvc:resources location="/js/*" mapping="/js/**" />  
     <mvc:resources location="/images/*" mapping="/images/**" />  
+    <mvc:resources location="/business/_files/" mapping="/business/_files/**" />  
+    <mvc:resources location="/js/*" mapping="/js/**" /> 
       
     <!-- 添加注解驱动 -->  
     <mvc:annotation-driven />  
@@ -51,4 +53,18 @@
         <property name="prefix" value="/"></property>  
         <property name="suffix" value=".jsp"></property>  
     </bean>  
+    <!-- 拦截器 -->
+    <!-- <bean id="AnnotationHandlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"> 
+		<property name="interceptors">
+			<list>
+			     <bean class="com.fmd.util.MyInterceptor" />
+			</list>
+		</property>
+	</bean> -->
+	<mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean id="loginInterceptor" class="com.fmd.util.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>  
