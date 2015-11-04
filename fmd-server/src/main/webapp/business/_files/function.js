@@ -49,13 +49,13 @@ function submitdate()
 	var datereg=/^(\d{4})-(\d{1,2})-(\d{1,2})$/
 	var datareg=/^(\d){1,2}$/
 	if (!datereg.test(date)){
-	  alert("¿ªÊ¼Ê±¼äÊäÈë¸ñÊ½´íÎó");
+	  alert("å¼€å§‹æ—¶é—´è¾“å…¥æ ¼å¼é”™è¯¯");
 	   return false;
 	 }
 	var r=date.match(datereg)
 	var d=new Date(r[1],r[2]-1,r[3])
 	if (!(d.getFullYear()==r[1]&&d.getMonth()==r[2]-1&&d.getDate()==r[3])){
-	  alert("¿ªÊ¼Ê±¼äÊäÈë¸ñÊ½´íÎó");
+	  alert("å¼€å§‹æ—¶é—´è¾“å…¥æ ¼å¼é”™è¯¯");
 	   return false;
 	 }
 	 
@@ -63,20 +63,20 @@ function submitdate()
 	var datereg=/^(\d{4})-(\d{1,2})-(\d{1,2})$/
 	var datareg=/^(\d){1,2}$/
 	if (!datereg.test(edate)){
-	  alert("½áÊøÊ±¼äÊäÈë¸ñÊ½´íÎó");
+	  alert("ç»“æŸæ—¶é—´è¾“å…¥æ ¼å¼é”™è¯¯");
 	   return false;
 	 }
 	var er=edate.match(datereg)
 	var ed=new Date(er[1],er[2]-1,er[3])
 	if (!(ed.getFullYear()==er[1]&&ed.getMonth()==er[2]-1&&ed.getDate()==er[3])){
-	  alert("½áÊøÊ±¼äÊäÈë¸ñÊ½´íÎó");
+	  alert("ç»“æŸæ—¶é—´è¾“å…¥æ ¼å¼é”™è¯¯");
 	   return false;
 	 }	
 	
 	date = date.replace(/\-/g,"\/");
 	edate = edate.replace(/\-/g,"\/");	
 	if ((new Date(date) > new Date(edate))){
-		alert("½áÊøÈÕÆÚ²»ÄÜĞ¡ÓÚ¿ªÊ¼ÈÕÆÚ!");
+		alert("ç»“æŸæ—¥æœŸä¸èƒ½å°äºå¼€å§‹æ—¥æœŸ!");
 	return false;
 	}
 	 

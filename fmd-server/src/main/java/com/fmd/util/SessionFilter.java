@@ -35,15 +35,16 @@ public class SessionFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
             HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-    	System.out.println("ooooooooooooooooooooooooooooooooooooooooooooo");
+    	String url = request.getRequestURL().toString();
+    	System.out.println("ooooooooooooooooooooooooooooooooooooooooooooourl："+url);
         // 不过滤的uri
-        String[] notFilter = new String[] { "login.html", "index.html" };
+        String[] notFilter = new String[] { "login.jsp", "index.jsp","login.action" };
  
         // 请求的uri
         String uri = request.getRequestURI();
  
         // uri中包含background时才进行过滤
-        if (uri.indexOf("background") != -1) {
+        if (true) {
             // 是否过滤
             boolean doFilter = true;
             for (String s : notFilter) {
@@ -72,6 +73,7 @@ public class SessionFilter extends OncePerRequestFilter {
                     builder.append("';");
                     builder.append("</script>");
                     out.print(builder.toString());
+                    response.sendRedirect(request.getContextPath()+"/business/login.jsp");
                 } else {
                     // 如果session中存在登录者实体，则继续
                     filterChain.doFilter(request, response);

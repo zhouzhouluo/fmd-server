@@ -8,36 +8,34 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 %>
-<c:set var="ctx" value="<%=basePath%>" />
+<c:set var="basePath" value="<%=basePath%>" />
 <c:set var="base" value="<%=base%>" />
+<c:set var="path" value="<%=path%>" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta charset="utf-8">
 	<title>User_treerec</title>
-	<link href="${ctx}/business/_files/WdatePicker.css" rel="stylesheet" type="text/css">
-	<script src="${ctx}/business/_files/main.js" type="text/javascript"></script>
-	<script src="${ctx}/business/_files/meizzDate.js" type="text/javascript"></script>
-	<script type="text/javascript" src="${ctx}/business/_files/fckeditor.js"></script>
-	<script src="${ctx}/business/_files/function.js" type="text/javascript"></script>
-	<link href="${ctx}/business/_files/common.css" rel="stylesheet" media="screen" type="text/css">
-	<link href="${ctx}/business/_files/style.css" rel="stylesheet" media="screen" type="text/css">
-	<link href="${ctx}/business/_files/font.css" rel="stylesheet" media="all" type="text/css">
-	<script src="${ctx}/business/_files/main.js" type="text/javascript"></script>
-	<script src="${ctx}/business/_files/meizzDate.js" type="text/javascript"></script>
-	<script src="${ctx}/business/_files/fckeditor.js"></script>
-	<script src="${ctx}/business/_files/function.js" type="text/javascript"></script>
-	<script src="${ctx}/business/_files/menu.js" type="text/javascript"></script>
+	<link href="${path}/business/_files/WdatePicker.css" rel="stylesheet" type="text/css">
+	<script src="${path}/business/_files/main.js" type="text/javascript"></script>
+	<script src="${path}/business/_files/meizzDate.js" type="text/javascript"></script>
+	<script type="text/javascript" src="${path}/business/_files/fckeditor.js"></script>
+	<script src="${path}/business/_files/function.js" type="text/javascript"></script>
+	<link href="${path}/business/_files/common.css" rel="stylesheet" media="screen" type="text/css">
+	<link href="${path}/business/_files/style.css" rel="stylesheet" media="screen" type="text/css">
+	<link href="${path}/business/_files/font.css" rel="stylesheet" media="all" type="text/css">
+	<script src="${path}/business/_files/main.js" type="text/javascript"></script>
+	<script src="${path}/business/_files/meizzDate.js" type="text/javascript"></script>
+	<script src="${path}/business/_files/fckeditor.js"></script>
+	<script src="${path}/business/_files/function.js" type="text/javascript"></script>
+	<script src="${path}/business/_files/menu.js" type="text/javascript"></script>
 	<script type="text/javascript"src="WdatePicker.js"></script>
-	<link href="${ctx}/business/_files/common.css" rel="stylesheet" media="screen" type="text/css">
-	<link href="${ctx}/business/_files/style.css" rel="stylesheet" media="screen" type="text/css">
-	<link href="${ctx}/business/_files/font.css" rel="stylesheet" media="all" type="text/css">
-	<script src="${ctx}/business/_files/menu.js" type="text/javascript"></script>
-	<script type="text/javascript" src="${ctx}/business/_files/WdatePicker.js"></script>
-	<script type="text/javascript">
-		alert("登录成功");
-	</script>
+	<link href="${path}/business/_files/common.css" rel="stylesheet" media="screen" type="text/css">
+	<link href="${path}/business/_files/style.css" rel="stylesheet" media="screen" type="text/css">
+	<link href="${path}/business/_files/font.css" rel="stylesheet" media="all" type="text/css">
+	<script src="${path}/business/_files/menu.js" type="text/javascript"></script>
+	<script type="text/javascript" src="${path}/business/_files/WdatePicker.js"></script>
 </head>
 
 <body>

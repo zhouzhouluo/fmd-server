@@ -1,12 +1,18 @@
 package com.fmd.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.fmd.entity.Member_user;
 import com.fmd.service.Member_userService;
 /**
@@ -39,13 +45,15 @@ public class Member_userController {
 		return null;
 	}
 	@RequestMapping("login")
-	public String login(String userid,String pwd){
-		System.out.println("-----------------------------------------userid:"+userid);
-		System.out.println("-----------------------------------------pwd:"+pwd);
+	@ResponseBody
+	public String login(HttpServletRequest request,HttpServletResponse response,String userid,String pwd){
+		System.out.println("userid："+userid);
+		System.out.println("pwd："+pwd);
 		Member_user member_user= member_userService.login(userid);
 		if (member_user!=null&&pwd.equals(member_user.getPwd1())) {
-			return "business/member_user/my_member";
+			request.getSession().setAttribute("loginedUser", member_user);
+			return "true";
 		}
-		return "business/login";
+		return "false";
 	}
 }

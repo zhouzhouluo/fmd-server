@@ -17,10 +17,10 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 	public Member_user login(String userid) {
 		// TODO Auto-generated method stub
 		Query query = getSession().createQuery("from Member_user where userid = "+userid);
-        List<Member_user> member_users = query.list();      
+		List<Member_user> member_users = query.list();      
         if(member_users!=null&&member_users.size()>0){
         	return member_users.get(0);
-        }  
+        }
 		return null;
 	}  
 	  
