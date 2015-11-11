@@ -1,5 +1,7 @@
 package com.fmd.service.Impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
@@ -32,5 +34,24 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
     @Override
     public Member_user login(String userid) {
     	return	member_userDao.login(userid);
+	}
+	@Override
+	public String getMaxUserid() {
+		String max = member_userDao.getMaxUserid();	
+		max = String.valueOf(Integer.valueOf(max)+1);
+		int l = max.length();
+		for(int i=0;i<6-l;i++){
+			max = "0"+max;
+		}
+		return max;
+		
+	}
+	@Override
+	public List<Member_user> queryMember_users(String userid,int pagesize ,int from) {
+		return member_userDao.queryMember_users(userid,pagesize ,from);
+	}
+	@Override
+	public int countMember_users(String userid) {
+		return member_userDao.countMember_users(userid);
 	}
 }  

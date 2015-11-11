@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<session-config>
-		<session-timeout>30</session-timeout>
+		<session-timeout>3600</session-timeout>
 	</session-config>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -74,6 +74,26 @@
         <filter-name>encodingFilter</filter-name>  
         <url-pattern>/*</url-pattern>  
     </filter-mapping>  
+    
+    
+	<servlet>
+		<servlet-name>ImageServlet</servlet-name>
+		<servlet-class>com.fmd.util.ImageServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ImageServlet</servlet-name>
+		<url-pattern>/imgVcode</url-pattern>
+	</servlet-mapping>   
+	
+	<servlet>
+	    <servlet-name>business</servlet-name>
+	    <jsp-file>/business/index.jsp</jsp-file>
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>business</servlet-name>
+		<url-pattern>/business</url-pattern>
+	</servlet-mapping> 
 	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

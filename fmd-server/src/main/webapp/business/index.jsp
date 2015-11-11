@@ -10,7 +10,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	Object obj = request.getSession().getAttribute("loginedUser");
-	System.out.println("obj---------------------------------------:"+obj);
+	System.out.println("obj---------------------------------------:"+obj+"-------              path:"+path);
 	Member_user member_user = null;
 	if(obj!=null){
 		member_user = (Member_user)obj;
@@ -23,6 +23,7 @@
 <!-- saved from url=(0054)http://xz20141114.dflvip.com/UserAdmin/User_Index.aspx -->
 <html>
 <head>
+<link rel="shortcut icon" href="${path}/images/favicon.ico" /> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta charset="utf-8">
 <title></title>
@@ -97,10 +98,10 @@
 					class="">资料管理</a>
 				<ul style="visibility: hidden;">
 						<li><a
-							href="./member_user/User_EditInfo.html"
+							href="${path}/business/member_user/User_EditInfo.html"
 							target="content3">资料修改</a></li>
 						<li><a
-							href="./member_user/User_EditPassword.html"
+							href="${path}/business/member_user/User_EditPassword.html"
 							target="content3">密码修改</a></li>
 					</ul></li>
 				<li></li>
@@ -108,16 +109,16 @@
 					href="#">会员管理</a>
 				<ul>
 						<li><a 
-							href="./member_user/reg.jsp" 
+							href="${path}/business/member_user/reg.jsp" 
 							target="content3">会员注册</a></li>
 						<li><a
-							href="./member_user/User_treeview.html"
+							href="${path}/business/member_user/User_treeview.html"
 							target="content3">团队网络</a></li>
 						<li><a
-							href="./member_user/my_member.html"
+							href="${path}/business/member_user/my_member.html"
 							target="content3">我的会员</a></li>
 						<li><a
-							href="./manager/Admin_Member1.html"
+							href="${path}/business/manager/Admin_Member1.html"
 							target="content3">会员审核</a></li>
 					</ul></li>
 				<li></li>
@@ -125,10 +126,10 @@
 					href="#">奖金管理</a>
 				<ul>
 						<li><a
-							href="./bonus/BonusHis.html"
+							href="${path}/business/bonus/BonusHis.html"
 							target="content3">奖金记录</a></li>
 						<li><a
-							href="./bonus/User_BonusList.html"
+							href="${path}/business/bonus/User_BonusList.html"
 							target="content3">总奖金明细</a></li>
 					</ul></li>
 				<li></li>
@@ -136,13 +137,13 @@
 					href="#">货币管理</a>
 				<ul>
 						<li><a
-							href="./currency/User_DistillCurrencies.html"
+							href="${path}/business/currency/User_DistillCurrencies.html"
 							target="content3">金币提现</a></li>
 						<li><a
-							href="./currency/BonusHis_esle.html"
+							href="${path}/business/currency/BonusHis_esle.html"
 							target="content3">总资金动态</a></li>
 						<li><a
-							href="./currency/User_LoanCurrencies.html"
+							href="${path}/business/currency/User_LoanCurrencies.html"
 							target="content3">金币转账</a></li>
 					</ul></li>
 				<li></li>
@@ -151,7 +152,7 @@
 					class="">系统管理</a>
 				<ul style="visibility: hidden;">
 						<li><a
-							href="./manager/AdminLog.html"
+							href="${path}/business/manager/AdminLog.html"
 							target="content3">系统日志</a></li>
 					</ul></li>
 

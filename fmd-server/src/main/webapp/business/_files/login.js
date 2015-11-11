@@ -15,7 +15,8 @@ function createRequest() {
 		// 提交的数据
 		data : {
 			userid : $("#userid").val(),
-			pwd : $("#pwd").val()
+			pwd : $("#pwd").val(),
+			idcode : $("#idcode").val()
 		},
 		// 返回数据的格式
 		datatype : "html",// "xml", "html", "script", "json", "jsonp", "text".
@@ -23,8 +24,13 @@ function createRequest() {
 		// beforeSend:function(){$("#msg").html("logining");},
 		// 成功返回之后调用的函数
 		success : function(data) {
-			if(data=="true"){
-				window.parent.location.reload();
+			if(data=="1"){
+//				alert(window.parent);
+//				alert(window.parent.location);
+//				window.parent.location.reload();
+				window.parent.location.href=contextPath + "/business/index.jsp";
+			}else if(data=="2"){
+				alert("验证码错误");
 			}else{
 				alert("用户名或密码错误");
 			}

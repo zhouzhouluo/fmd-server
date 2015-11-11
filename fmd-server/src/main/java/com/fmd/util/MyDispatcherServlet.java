@@ -29,7 +29,7 @@ public class MyDispatcherServlet extends DispatcherServlet {
 //	private LocaleResolver localeResolver;
 
 	protected void doService(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("1111111111111111111111111111111111111");
+		System.out.println("MyDispatcherServlet-------------------------");
 		Locale targetLocal = null;
 		Locale sessionLocale = (Locale) WebUtils.getSessionAttribute(request, LOCALE_SESSION_ATTRIBUTE_NAME);
 		String urlLocale = request.getParameter("locale");
@@ -101,7 +101,7 @@ public class MyDispatcherServlet extends DispatcherServlet {
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		String prefix = getServletContext().getRealPath("/"); // 获取项目所在绝对路径
-		System.out.println("22222222222222222222222222222222222");
+//		System.out.println("22222222222222222222222222222222222");
 //		Config.readProperties(prefix + "WEB-INF/classes/config.properties");
 	}
 	

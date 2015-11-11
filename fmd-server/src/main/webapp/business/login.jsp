@@ -17,7 +17,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta charset="utf-8">
-<title>请输入二级密码</title>
+<title>用户登录</title>
 	<link href="${path}/business/_files/WdatePicker.css" rel="stylesheet" type="text/css">
 	<link href="${path}/business/_files/common.css" rel="stylesheet" media="screen" type="text/css">
 	<link href="${path}/business/_files/style.css" rel="stylesheet" media="screen" type="text/css">
@@ -33,6 +33,14 @@
 <script type="text/javascript">
 	var contextPath = "<%=path%>";
 </script>
+<style type="text/css">
+    .text {
+		width: 150px;
+		height: 20px;
+		vertical-align: middle;
+		line-height:20px;
+    }
+</style>
 </head>
 <body>
 	<form name="Form1" method="post" action="${path}/member/login.action"
@@ -51,17 +59,29 @@
 						<td valign="bottom" align="middle">请输入您的用户id和密码</td>
 					</tr>
 					<tr>
-						<td align="middle">
-							用户id：<input name="userid" type="text"
-							maxlength="16" id="userid" style="width: 100px;"></td>
+						<td align="left" style="font-size: 16pt;">
+							用户编号&nbsp;
+							<input name="userid" type="text"
+							maxlength="16" id="userid" class="text"></td>
 					</tr>
 					<tr>
-						<td align="middle">
-							密码 ：<input name="pwd" type="password"
-							maxlength="16" id="pwd" style="width: 100px;"></td>
+						<td align="left" style="font-size: 16pt;">
+							密码 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="pwd" type="password"
+							maxlength="16" id="pwd" class="text"></td>
 					</tr>
 					<tr>
-						<td valign="top" align="middle"><input type="button" name="chkbotton" value="登陆" id="chkbotton" onclick="createRequest();"></td>
+						<td align="left" style="font-size: 16pt;">
+							验证码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="idcode" type="text"
+							maxlength="16" id="idcode" class="text">
+							<img  src="${path}/imgVcode" id="imgVcode">
+							<a href="javascript:;"
+          						onclick="document.getElementById('imgVcode').src='${path}/imgVcode?'+new Date()">刷新</a>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top" align="left"><input type="button" name="chkbotton" value="登陆" id="chkbotton" onclick="createRequest();"></td>
 					</tr>
 				</tbody>
 			</table>

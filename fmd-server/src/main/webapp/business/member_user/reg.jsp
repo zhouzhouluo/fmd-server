@@ -1,3 +1,8 @@
+<%@page import="com.fmd.entity.Member_user"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+<%@page import="org.springframework.web.context.WebApplicationContext"%>
+<%@page import="com.fmd.service.Member_userService"%>
+<%@page import="com.fmd.util.ApplicationContextManagement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -7,6 +12,15 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+//	Member_userService member_userService= (Member_userService)ApplicationContextManagement.getApplicationContext().getBean("member_userService");
+	WebApplicationContext wac=WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+	Member_userService member_userService =(Member_userService)wac.getBean("member_userService");
+	String userid = member_userService.getMaxUserid();
+	Object obj = request.getSession().getAttribute("loginedUser");
+	Member_user member_user = null;
+	if(obj!=null){
+		member_user = (Member_user)obj;
+	}
 %>
 <c:set var="ctx" value="<%=basePath%>" />
 <c:set var="base" value="<%=base%>" />
@@ -35,7 +49,7 @@
 	<link href="../_files/common.css" rel="stylesheet" media="screen" type="text/css">
 		<link href="../_files/style.css" rel="stylesheet" media="screen" type="text/css">
 			<link href="../_files/font.css" rel="stylesheet" media="all" type="text/css">
-				<form name="Form1" method="post" action="${ctx}/member/save.htm" id="Form1">
+				<form name="Form1" method="post" action="${ctx}/member/save.action" id="Form1">
 					<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
 						value="/wEPDwUKMTU1NjcyODM2MQ9kFgICAQ9kFhgCAg8PZBYCHgV2YWx1ZQUGMTExMTExZAIDDw9kFgIfAAUGMTExMTExZAIEDw9kFgIfAAUGMjIyMjIyZAIFDw9kFgIfAAUGMjIyMjIyZAIGDw9kFgIfAAUGMzMzMzMzZAIHDw9kFgIfAAUGMzMzMzMzZAIQDw8WAh4EVGV4dAUIODMxMTQyNTNkZAIRDxBkDxYCZgIBFgIQBQblt6bljLoFATBnEAUG5Y+z5Yy6BQExZ2RkAhIPEGQPFgZmAgECAgIDAgQCBRYGEAUP5raI6LS55Y2hKDEwMDApBQExZxAFD3ZscOS8muWRmCgzMDAwKQUBMmcQBRPph5HljaHkvJrlkZgoMTAwMDApBQEzZxAFE+mSu+WNoeS8muWRmCgyMDAwMCkFATRnEAUQ56S+5Yy65bqXKDMwMDAwKQUBNWcQBRTluILnuqfku6PnkIYoMTAwMDAwKQUBNmdkZAIgDxAPZBYCHghvbmNoYW5nZQULU2VsZWN0ZWQoKTtkZGQCIg8QD2QWAh8CBRVzZXRjaXR5KCk7b3V0X2NpdHkoKTtkZGQCIw8QD2QWAh8CBQtTZWxlY3RlZCgpO2RkZGTmy74PWaNS9tcVm1DpM5rrXQJTedO6gNiJnXdN2lMEAg==">
 						<script type="text/javascript" src="prototype.ashx"></script> <script
@@ -56,7 +70,7 @@
 									<tr>
 										<td style="width: 90px; text-align: right">用户ID：</td>
 										<td colspan="2" align="left"><input name="userid"
-											type="text" value="380282" maxlength="14" id="userid"
+											type="text" value="<%=userid %>" maxlength="14" id="userid"
 											style="border-width: 1px; border-style: Solid;"><font
 												color="red">*必须填写</font> <span id="chkssn_stat"></span> <input
 												id="ssnbotton" onclick="checkssn();" type="button"
@@ -170,9 +184,9 @@
 									<tr style="display:">
 										<td style="width: 90px; text-align: right">推荐人：</td>
 										<td colspan="2" align="left"><input name="referee_id"
-											type="text" value="100000" maxlength="18" id="referee_id"
+											type="text" value="<%=member_user.getUserid() %>" maxlength="18" id="referee_id"
 											style="border-width: 1px; border-style: Solid; width: 160px;">
-												姓名：<input name="referee" type="text" value="宝宝"
+												姓名：<input name="referee" type="text" value="<%=member_user.getAccount_name()%>"
 												maxlength="10" id="referee"
 												style="border-width: 1px; border-style: Solid; width: 80px; display:">
 													<span id="chkout_uRe_stat"></span> <input id="rebotton"
@@ -185,9 +199,9 @@
 									<tr style="display:">
 										<td style="width: 90px; text-align: right">接点人ID：</td>
 										<td colspan="2" align="left"><input name="node_id"
-											type="text" value="100000" maxlength="18" id="node_id"
+											type="text" value="<%=member_user.getUserid()%>" maxlength="18" id="node_id"
 											style="border-width: 1px; border-style: Solid; width: 160px;">
-												姓名：<input name="node" type="text" value="宝宝"
+												姓名：<input name="node" type="text" value="<%=member_user.getAccount_name()%>"
 												maxlength="10" id="node"
 												style="border-width: 1px; border-style: Solid; width: 80px; display:">
 													<span id="chkout_uFather_stat"></span> <input
@@ -230,10 +244,10 @@
 										<td style="display: none">&nbsp;</td>
 									</tr>
 									
-									<tr style="display: none">
+									<tr style="display: ">
 										<td style="width: 90px; text-align: right;">身份证号：</td>
 										<td colspan="2" align="left"><input name="identity"
-											type="text" value="452322222222222222" maxlength="18"
+											type="text" value="" maxlength="18"
 											id="identity"
 											style="border-width: 1px; border-style: Solid; width: 246px;"></td>
 										<td style="display: none"><div class="d_default"
@@ -243,7 +257,7 @@
 										<td style="width: 90px; text-align: right; height: 32px;">
 											收件地址：</td>
 										<td colspan="2" style="height: 32px" align="left"><input
-											name="receiv_address" type="text" value="测试地址" maxlength="50"
+											name="receiv_address" type="text" value="" maxlength="50"
 											id="receiv_address"
 											style="border-width: 1px; border-style: Solid; width: 246px;"></td>
 										<td style="display: none"><div class="d_default"
@@ -358,7 +372,7 @@
 									<tr style="display:">
 										<td style="width: 90px; text-align: right">银行卡号：</td>
 										<td colspan="2" align="left"><input name="account"
-											type="text" value="4532210000000000000" maxlength="19"
+											type="text" value="" maxlength="19"
 											id="account"
 											style="border-width: 1px; border-style: Solid; width: 246px;"></td>
 										<td style="display: none"><div class="d_default"

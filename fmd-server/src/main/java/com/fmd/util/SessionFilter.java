@@ -36,9 +36,9 @@ public class SessionFilter extends OncePerRequestFilter {
             HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
     	String url = request.getRequestURL().toString();
-    	System.out.println("ooooooooooooooooooooooooooooooooooooooooooooourl："+url);
+//    	System.out.println("doFilterInternal--------------------："+url);
         // 不过滤的uri
-        String[] notFilter = new String[] { "login.jsp", "index.jsp","login.action" };
+        String[] notFilter = new String[] { "login.jsp", "index.jsp","login.action","index.html"};
  
         // 请求的uri
         String uri = request.getRequestURI();

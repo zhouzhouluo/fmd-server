@@ -747,9 +747,9 @@ function chk_reg()
 		var account_address = document.Form1.account_address.value;
 		var account = document.Form1.account.value;
 		
-		alert("userid="+userid+","+"pwd1="+pwd1+","+"pwd2="+pwd2+","+"pwd3="+pwd3+","+"zip_code="+zip_code+","+"referee_id="+referee_id+","+"referee="+referee+","+
-				"node_id="+node_id+","+"node="+node+","+"area="+area+","+"identity="+identity+","+"receiv_address="+receiv_address+","+"qq="+qq+","+"phone_number="+phone_number+","+
-				"email="+email+","+"bank_name="+bank_name+","+"account_name="+account_name+","+"account_address="+account_address+","+"account="+account+",");
+//		alert("userid="+userid+","+"pwd1="+pwd1+","+"pwd2="+pwd2+","+"pwd3="+pwd3+","+"zip_code="+zip_code+","+"referee_id="+referee_id+","+"referee="+referee+","+
+//				"node_id="+node_id+","+"node="+node+","+"area="+area+","+"identity="+identity+","+"receiv_address="+receiv_address+","+"qq="+qq+","+"phone_number="+phone_number+","+
+//				"email="+email+","+"bank_name="+bank_name+","+"account_name="+account_name+","+"account_address="+account_address+","+"account="+account+",");
 		
 		
 //		var BdName = document.Form1.BdName.value;
@@ -783,7 +783,7 @@ function chk_reg()
 //		    }
 //		}
 
-		document.getElementById('save_stat').innerHTML = '<img src=../images/loading.gif align="absmiddle" />数据提交中……请稍候……'
+		document.getElementById('save_stat').innerHTML = '<img src=../Images/loading.gif align="absmiddle" />数据提交中……请稍候……'
 
 //		alert(Cash);
 //				return false;

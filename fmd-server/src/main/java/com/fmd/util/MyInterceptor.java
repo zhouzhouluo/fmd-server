@@ -18,7 +18,7 @@ public class MyInterceptor implements HandlerInterceptor {
 	 */
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String url = request.getRequestURI();
-		System.out.println("preHandle111111111111111111111111111111111111111111111url: "+url);
+//		System.out.println("preHandle111111111111111111111111111111111111111111111url: "+url);
 		return true;
 	}
 
@@ -26,14 +26,14 @@ public class MyInterceptor implements HandlerInterceptor {
 	 * This implementation is empty.
 	 */
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		System.out.println("postHandle22222222222222222222222222222222222: ");
+//		System.out.println("postHandle22222222222222222222222222222222222: ");
 	}
 
 	/**
 	 * This implementation is empty.
 	 */
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		System.out.println("afterCompletion333333333333333333333333333333333333: ");
+//		System.out.println("afterCompletion333333333333333333333333333333333333: ");
 	}
 
 	public List<String> getUrlList() {

@@ -24,7 +24,7 @@ public class Member_user {
 	private String receiv_address;
 	private String zip_code;
 	private String qq;
-	private int phone_number;
+	private String phone_number;
 	private String email;
 	private String bank_name;
 	private String account_name;
@@ -116,10 +116,10 @@ public class Member_user {
 	public void setQq(String qq) {
 		this.qq = qq;
 	}
-	public int getPhone_number() {
+	public String getPhone_number() {
 		return phone_number;
 	}
-	public void setPhone_number(int phone_number) {
+	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
 	}
 	public String getEmail() {

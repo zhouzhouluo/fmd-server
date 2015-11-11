@@ -12,7 +12,10 @@ import com.fmd.entity.User;
 
 @Repository(value = "member_userDao")  
 public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Member_userDao {
-
+	/** 
+     * 若CustomerDao 定义了BaseDAO没有的方法，则可以在这里实现 
+     */
+	
 	@Override
 	public Member_user login(String userid) {
 		// TODO Auto-generated method stub
@@ -22,9 +25,28 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
         	return member_users.get(0);
         }
 		return null;
+	}
+
+	@Override
+	public String getMaxUserid() {
+		// TODO Auto-generated method stub
+		Query query = getSession().createQuery("select max(userid) from Member_user");
+		return query.uniqueResult().toString();
+	}
+
+	@Override
+	public List<Member_user> queryMember_users(String userid,int pagesize ,int from) {
+		Query query = getSession().createQuery("from Member_user where referee_id = "+userid);
+		query.setFirstResult(from); 
+		query.setMaxResults(pagesize); 
+		List<Member_user> member_users = query.list();      
+		return member_users;
+	}
+
+	@Override
+	public int countMember_users(String userid) {
+		Query query = getSession().createQuery("select count(0) from Member_user where referee_id = "+userid);
+		return Integer.parseInt(query.uniqueResult().toString());
 	}  
-	  
-    /** 
-     * 若CustomerDao 定义了BaseDAO没有的方法，则可以在这里实现 
-     */  
+	
 }  	

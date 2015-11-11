@@ -162,3 +162,10 @@ function read_checkbox(rname){
  	}
 	return str;
 }
+
+function doPostBack(pageNum){
+	document.Form1.pageNum.value=pageNum;
+	document.Form1.submit();
+}
+
+
