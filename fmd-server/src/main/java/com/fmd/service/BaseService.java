@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface BaseService<T> {  
 	  
-    public void save(T entity);  
+    public T save(T entity);  
   
     public void update(T entity);  
   

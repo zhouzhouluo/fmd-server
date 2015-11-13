@@ -28,7 +28,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     public BaseDaoImpl() {  
         ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();  
         clazz = (Class<T>) type.getActualTypeArguments()[0];  
-        System.out.println("DAO的真实实现类是：" + this.clazz.getName());  
+//        System.out.println("DAO的真实实现类是：" + this.clazz.getName());  
     }  
   
     /** 
@@ -44,13 +44,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         return this.sessionFactory.getCurrentSession();  
     }  
   
-    public void save(T entity) {  
-        this.getSession().save(entity);  
+    public T save(T entity) {  
+        return (T)this.getSession().save(entity);  
     }  
   
     public void update(T entity) {  
-    	System.out.println("zhe...BaseDaoImpl:"+entity.toString());
-        this.getSession().update(entity); 
+//    	System.out.println("zhe...BaseDaoImpl:"+entity.toString());
+    	this.getSession().update(entity); 
         this.getSession().flush();
     }  
   

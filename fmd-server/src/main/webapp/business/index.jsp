@@ -10,7 +10,6 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	Object obj = request.getSession().getAttribute("loginedUser");
-	System.out.println("obj---------------------------------------:"+obj+"-------              path:"+path);
 	Member_user member_user = null;
 	if(obj!=null){
 		member_user = (Member_user)obj;
@@ -98,10 +97,10 @@
 					class="">资料管理</a>
 				<ul style="visibility: hidden;">
 						<li><a
-							href="${path}/business/member_user/User_EditInfo.html"
+							href="${path}/business/member_user/User_EditInfo.jsp"
 							target="content3">资料修改</a></li>
 						<li><a
-							href="${path}/business/member_user/User_EditPassword.html"
+							href="${path}/business/member_user/User_EditPassword.jsp"
 							target="content3">密码修改</a></li>
 					</ul></li>
 				<li></li>
@@ -112,13 +111,13 @@
 							href="${path}/business/member_user/reg.jsp" 
 							target="content3">会员注册</a></li>
 						<li><a
-							href="${path}/business/member_user/User_treeview.html"
+							href="${path}/business/member_user/User_treeview.jsp"
 							target="content3">团队网络</a></li>
 						<li><a
-							href="${path}/business/member_user/my_member.html"
+							href="${path}/business/member_user/my_member.jsp"
 							target="content3">我的会员</a></li>
 						<li><a
-							href="${path}/business/manager/Admin_Member1.html"
+							href="${path}/business/manager/Admin_Member1.jsp"
 							target="content3">会员审核</a></li>
 					</ul></li>
 				<li></li>
@@ -157,7 +156,8 @@
 					</ul></li>
 
 				<li><a id="ctl00_lbtc"
-					href="http://xz20141114.dflvip.com/UserAdmin/user_index.aspx?t=logout">退出</a>
+					href="${path}/member/logout.action"
+					target="content3">退出</a>
 				</li>
 				<%}%>
 			</ul>

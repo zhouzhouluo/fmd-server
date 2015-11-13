@@ -25,12 +25,12 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	public void setDao(BaseDao<T> dao) {
 		this.dao = dao;
 	}
-	public void save(T entity) {
-		dao.save(entity);
+	public T save(T entity) {
+		return dao.save(entity);
 	}
 
 	public void update(T entity) {
-		System.out.println("zhe...BaseServiceImpl");
+//		System.out.println("zhe...BaseServiceImpl");
 		dao.update(entity);
 	}
 

@@ -36,13 +36,13 @@ public class SessionFilter extends OncePerRequestFilter {
             HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
     	String url = request.getRequestURL().toString();
-//    	System.out.println("doFilterInternal--------------------："+url);
+//    	System.out.println("url--------------------："+url);
         // 不过滤的uri
-        String[] notFilter = new String[] { "login.jsp", "index.jsp","login.action","index.html"};
+        String[] notFilter = new String[] { "login.jsp", "index.jsp","login.action","index.html","pwd2.action"};
  
         // 请求的uri
         String uri = request.getRequestURI();
- 
+//        System.out.println("uri--------------------："+uri);
         // uri中包含background时才进行过滤
         if (true) {
             // 是否过滤
@@ -58,6 +58,7 @@ public class SessionFilter extends OncePerRequestFilter {
                 // 执行过滤
                 // 从session中获取登录者实体
                 Object obj = request.getSession().getAttribute("loginedUser");
+                Object userPwd2 = request.getSession().getAttribute("userPwd2");
                 if (null == obj) {
                     // 如果session中不存在登录者实体，则弹出框提示重新登录
                     // 设置request和response的字符集，防止乱码
@@ -74,7 +75,11 @@ public class SessionFilter extends OncePerRequestFilter {
                     builder.append("</script>");
                     out.print(builder.toString());
                     response.sendRedirect(request.getContextPath()+"/business/login.jsp");
-                } else {
+                } else if(userPwd2==null&&(uri.indexOf("UserPassword.jsp")==-1)){
+                	request.setCharacterEncoding("UTF-8");
+                    response.setCharacterEncoding("UTF-8");
+                    response.sendRedirect(request.getContextPath()+"/business/member_user/UserPassword.jsp");
+                }else {
                     // 如果session中存在登录者实体，则继续
                     filterChain.doFilter(request, response);
                 }

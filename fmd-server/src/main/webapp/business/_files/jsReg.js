@@ -435,7 +435,6 @@ function init_reg(){
 //	document.getElementById("d_account_address").innerHTML = msg[13];
 
 }
-init_reg();
 function on_input(objname){
 	var strtxt;
 	var obj=document.getElementById(objname);
