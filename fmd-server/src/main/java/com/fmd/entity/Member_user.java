@@ -38,6 +38,8 @@ public class Member_user {
 	private int cjr;
 	private int xgr;
 	private int state;
+	private String leftid;
+	private String rightid;
 	public int getId() {
 		return Id;
 	}
@@ -199,6 +201,18 @@ public class Member_user {
 	}
 	public void setState(int state) {
 		this.state = state;
+	}
+	public String getLeftid() {
+		return leftid;
+	}
+	public void setLeftid(String leftid) {
+		this.leftid = leftid;
+	}
+	public String getRightid() {
+		return rightid;
+	}
+	public void setRightid(String rightid) {
+		this.rightid = rightid;
 	}
 	
 	

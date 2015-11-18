@@ -10,7 +10,7 @@ public interface Member_userDao extends BaseDao<Member_user> {
     /** 
      * 若BaseDAO 没有定义的方法，可以在这里添加 
      */  
-	Member_user login(String userid);
+	Member_user getUserByUserId(String userid);
 	String getMaxUserid();
 	List<Member_user> queryMember_users(String userid,int pagesize,int from);
 	int countMember_users(String userid);

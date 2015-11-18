@@ -17,7 +17,7 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
      */
 	
 	@Override
-	public Member_user login(String userid) {
+	public Member_user getUserByUserId(String userid) {
 		// TODO Auto-generated method stub
 		Query query = getSession().createQuery("from Member_user where userid = "+userid);
 		List<Member_user> member_users = query.list();      

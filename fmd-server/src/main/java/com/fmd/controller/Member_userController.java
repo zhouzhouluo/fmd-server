@@ -52,7 +52,7 @@ public class Member_userController {
 		if(!imgVcode.equalsIgnoreCase(idcode)){
 			return "2";
 		}
-		Member_user member_user= member_userService.login(userid);
+		Member_user member_user= member_userService.getUserByUserId(userid);
 		if (member_user!=null&&pwd.equals(member_user.getPwd1())) {
 			request.getSession().setAttribute("loginedUser", member_user);
 			return "1";
@@ -103,6 +103,7 @@ public class Member_userController {
 			}
 			member_userService.update(member_user);
 			request.getSession().setAttribute("loginedUser", member_user);
+			request.getSession().setAttribute("userPwd2", member_user.getPwd2());
 			return "1";
 		}else {
 			return "99";
@@ -120,7 +121,6 @@ public class Member_userController {
 						String UserPost,String UserTel,String txtQQ,String txtEmail){
 		Object obj = request.getSession().getAttribute("loginedUser");
 		if(obj!=null){
-			System.out.println("txtBankAddress:1111111111111"+txtBankAddress);
 			Member_user member_user = (Member_user)obj;
 			member_user.setAccount_node(txtBankAddress);
 			member_user.setAccount_name(BankUserName);
