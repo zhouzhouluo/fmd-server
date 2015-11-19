@@ -14,4 +14,6 @@ public interface Member_userDao extends BaseDao<Member_user> {
 	String getMaxUserid();
 	List<Member_user> queryMember_users(String userid,int pagesize,int from);
 	int countMember_users(String userid);
+	List<Member_user> queryMember_Dsp(int state,int pagesize,int from);
+	int countMember_Dsp(int state);
 }

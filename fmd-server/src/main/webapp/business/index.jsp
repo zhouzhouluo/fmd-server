@@ -111,7 +111,7 @@
 							href="${path}/business/member_user/reg.jsp" 
 							target="content3">会员注册</a></li>
 						<li><a
-							href="${path}/business/member_user/User_treeview.jsp"
+							href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid() %>"
 							target="content3">团队网络</a></li>
 						<li><a
 							href="${path}/business/member_user/my_member.jsp"

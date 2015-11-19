@@ -60,39 +60,35 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
 	}
 	@Override
 	public Map<Integer, Member_user> getTree(String userid) {
+		Member_user member_user1;
+		Member_user member_user2;
+		Member_user member_user3;
+		Member_user member_user4;
+		Member_user member_user5;
+		Member_user member_user6;
+		Member_user member_user7;
+		
 		Member_user member_user = member_userDao.getUserByUserId(userid);
-		Map<Integer, Member_user> hashMap = new HashMap<Integer, Member_user>();
-	 	int i=1;
-        Queue<Member_user> q=new LinkedList<Member_user>();  
-        q.add(member_user);
-        hashMap.put(i,member_user);
-        while(!q.isEmpty()){  
-        	i++;
-        	Member_user temp =  q.poll();  
-            if(temp.getLeftid()!=null&&!"".equals(temp.getLeftid())){
-            	member_user = member_userDao.getUserByUserId(temp.getLeftid());
-            	if(member_user!=null){
-            		hashMap.put(i,member_user);
-                	q.add(member_user); 
-            	}
-            }
-            i++;
-            if(temp.getRightid()!=null&&!"".equals(temp.getRightid())){
-            	member_user = member_userDao.getUserByUserId(temp.getRightid());
-            	if(member_user!=null){
-            		hashMap.put(i,member_user);
-                	q.add(member_user); 
-            	}
-            }
-            if(i>=15){
-            	break;
-            }
-        } 
-		return hashMap;
+		Map<Integer, Member_user> map = new HashMap<Integer, Member_user>();
+		if(member_user!=null){
+			map.put(1, member_user);
+			if(member_user.getLeftid()!=null){
+				member_user = member_userDao.getUserByUserId(member_user.getLeftid());
+				if(member_user.getLeftid()!=null){
+					map.put(2, member_user);
+				}
+			}
+			if(member_user.getRightid()!=null){
+				member_user = member_userDao.getUserByUserId(member_user.getLeftid());
+				if(member_user.getLeftid()!=null){
+					map.put(3, member_user);
+				}
+			}
+		}
+		return map;
 	}
 	
 	private void preOrderTraverse(String userid){
-		System.out.println("userid："+userid);  
 		Member_user member_user = member_userDao.getUserByUserId(userid);
 		if(member_user!=null&&member_user.getLeftid()!=null&&!"".equals(member_user.getLeftid())){
 			preOrderTraverse(member_user.getLeftid());
@@ -120,6 +116,14 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
 			count = count*2;
 		}
 		return count-1;
+	}
+	@Override
+	public List<Member_user> queryMember_Dsp(int state, int pagesize, int from) {
+		return member_userDao.queryMember_Dsp(state,pagesize ,from);
+	}
+	@Override
+	public int countMember_Dsp(int state) {
+		return member_userDao.countMember_Dsp(state);
 	}
 	 
 }  

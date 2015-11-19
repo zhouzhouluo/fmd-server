@@ -98,6 +98,7 @@
 							<table width="100%" border="0" class="tab2">
 								<tbody>
 									<tr>
+										<th><strong>序号</strong></th>
 										<th><strong>姓名</strong></th>
 										<th><strong>用户名</strong></th>
 										<th><strong>推荐人</strong></th>
@@ -106,9 +107,11 @@
 										<th><strong>操作</strong></th>
 									</tr>
 									<%if(member_user_lsit!=null){
+										int i=1;
 										for(Member_user user:member_user_lsit) {%>
 									
 									<tr>
+										<td><%=i++%></td>
 										<td><%=user.getAccount_name() %></td>
 										<td><%=user.getUserid() %></td>
 										<td><%=user.getReferee_id() %></td>

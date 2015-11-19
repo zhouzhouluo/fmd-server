@@ -32,19 +32,11 @@ public class Member_userController {
 	@RequestMapping(value="/save",method=RequestMethod.POST)
 	public String save(Member_user member_user){
 		member_user.setCjsj(new Date());
-		member_user.setCapital("960");
 		member_user.setState(0);
 		member_userService.save(member_user);
 		return "/business/member_user/my_member";
 	}
-	@RequestMapping("/member/update")
-	public String update(){
-		return null;
-	}
-	@RequestMapping("/grid")
-	public String grid(){
-		return null;
-	}
+	
 	@RequestMapping("/login")
 	@ResponseBody
 	public String login(HttpServletRequest request,HttpServletResponse response,String userid,String pwd,String idcode){
@@ -137,6 +129,20 @@ public class Member_userController {
 			return "/business/login";
 		}
 	}
+	
+	@RequestMapping(value="/sp",method=RequestMethod.POST)
+	@ResponseBody
+	public String sp(String userid,int state){
+		Member_user member_user = member_userService.getUserByUserId(userid);
+		if(99==state){
+			member_userService.delete(member_user.getId());
+		}else{
+			member_user.setState(state);
+			member_userService.update(member_user);
+		}
+		return "1";
+	}
+	
 	
 }
 

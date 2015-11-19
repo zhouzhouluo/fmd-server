@@ -13,16 +13,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 	String path = request.getContextPath();
-	int pagesize = 10;
-	int pageNum = request.getParameter("pageNum") == null
-			? 1
-			: Integer.parseInt(request.getParameter("pageNum"));
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path;
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()+ path;
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
 	Member_userService member_userService = (Member_userService) wac.getBean("member_userService");
-	Map<Integer,Member_user> map = member_userService.getTree("000001");
+	String []tree = new String[15];
+	String userid = request.getParameter("userid");
+	tree[0]=userid;
 %>
 <c:set var="basePath" value="<%=basePath%>" />
 <c:set var="base" value="<%=base%>" />
@@ -338,36 +335,28 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table width="100" cellspacing="0" cellpadding="0"
 																					border="0" class="tablefilter">
 																					<tbody>
+																						<%if(tree[0]!=null&&!"".equals(tree[0])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[0]);
+																									tree[1]=member_user.getLeftid();
+																									tree[2]=member_user.getRightid();
+																						%>																							
 																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel5"><a
-																								href="User_treeview.jsp?userid="><%=map.get(1)!=null?map.get(1).getUserid(): ""%></a>
-																							</td>
+																							<td colspan="2" class="tdfilter ulevel1"><%=tree[0]%></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2"  class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">5</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">5</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">5</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
+																						<%}else{ %>
+																							<tr align="center">
+																								<td class="kongwei"><a
+																									href=""
+																									title="推荐">[空位]<br>推荐
+																								</a></td>
+																							</tr>
+																						<%}%>
 																					</tbody>
 																				</table></td>
 																		</tr>
@@ -397,34 +386,20 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table width="100" cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(2)!=null) { Member_user m = map.get(2);%>																							
+																						<%if(tree[1]!=null&&!"".equals(tree[1])){
+																									System.out.println("tree[1]:"+tree[1]);
+																									Member_user member_user= member_userService.getUserByUserId(tree[1]);
+																									tree[3]=member_user.getLeftid();
+																									tree[4]=member_user.getRightid();
+																						%>																							
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[1]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%="1".equals(member_user.getState())?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -442,34 +417,19 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table width="100" cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(3)!=null) {Member_user m = map.get(3);%>																							
+																						<%if(tree[2]!=null&&!"".equals(tree[2])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[2]);
+																									tree[5]=member_user.getLeftid();
+																									tree[6]=member_user.getRightid();
+																						%>																					
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[2]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -518,34 +478,19 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table width="100" cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(4)!=null) { Member_user m = map.get(4);%>																							
+																						<%if(tree[3]!=null&&!"".equals(tree[3])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[3]);
+																									tree[7]=member_user.getLeftid();
+																									tree[8]=member_user.getRightid();
+																						%>																							
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[3]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -563,34 +508,19 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(5)!=null) { Member_user m = map.get(5);%>																							
+																						<%if(tree[4]!=null&&!"".equals(tree[4])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[4]);
+																									tree[9]=member_user.getLeftid();
+																									tree[10]=member_user.getRightid();
+																						%>																						
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[4]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -608,34 +538,19 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(6)!=null) { Member_user m = map.get(6);%>																							
+																						<%if(tree[5]!=null&&!"".equals(tree[5])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[5]);
+																									tree[11]=member_user.getLeftid();
+																									tree[12]=member_user.getRightid();
+																						%>																						
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[5]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -653,34 +568,19 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(7)!=null) { Member_user m = map.get(7);%>																							
+																						<%if(tree[6]!=null&&!"".equals(tree[6])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[6]);
+																									tree[13]=member_user.getLeftid();
+																									tree[14]=member_user.getRightid();
+																						%>																						
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[6]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -751,34 +651,17 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table width="100" cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(8)!=null) { Member_user m = map.get(8);%>																							
+																						<%if(tree[7]!=null&&!"".equals(tree[7])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[7]);
+																						%>																						
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[7]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -796,34 +679,17 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(9)!=null) { Member_user m = map.get(9);%>																							
+																						<%if(tree[8]!=null&&!"".equals(tree[8])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[8]);
+																						%>																						
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[8]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -841,34 +707,17 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table width="100" cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(10)!=null) {Member_user m = map.get(10);%>																							
+																						<%if(tree[9]!=null&&!"".equals(tree[9])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[9]);
+																						%>																					
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[9]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -886,34 +735,17 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table width="100" cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(11)!=null) { Member_user m = map.get(11);%>																							
+																						<%if(tree[10]!=null&&!"".equals(tree[10])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[10]);
+																						%>																							
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[10]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -931,34 +763,17 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table width="100" cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(12)!=null) { Member_user m = map.get(12);%>																							
+																						<%if(tree[11]!=null&&!"".equals(tree[11])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[11]);
+																						%>																						
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[11]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -976,34 +791,17 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table width="100" cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(13)!=null) { Member_user m = map.get(13);%>																							
+																						<%if(tree[12]!=null&&!"".equals(tree[12])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[12]);
+																						%>																						
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[12]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -1021,34 +819,17 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table width="100" cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(14)!=null) { Member_user m = map.get(14);%>																							
+																						<%if(tree[13]!=null&&!"".equals(tree[13])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[13]);
+																						%>																						
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[13]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
@@ -1066,34 +847,17 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																				<table width="100" cellspacing="0" cellpadding="0"
 																					class="tablefilter">
 																					<tbody>
-																						<%if(map.get(15)!=null) {Member_user m = map.get(15);%>																							
+																						<%if(tree[14]!=null&&!"".equals(tree[14])){
+																									Member_user member_user= member_userService.getUserByUserId(tree[14]);
+																						%>																						
 																						<tr align="center">
 																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="http://xz20141114.dflvip.com/Member/User_treeview.aspx?UserID=617"><%=m.getUserid() %></a></td>
+																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[14]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="tdfilter"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
-																								<table border="0" cellspacing="1"
-																									cellpadding="2" width="100%" class="zshy">
-																									<tbody>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">总</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">余</td>
-																											<td class="r">0</td>
-																										</tr>
-																										<tr>
-																											<td class="l">4</td>
-																											<td class="m">新</td>
-																											<td class="r">0</td>
-																										</tr>
-																									</tbody>
-																								</table>
+																								<%=member_user.getAccount_name() %>
 																							</td>
 																						</tr>
 																						<%}else{ %>
