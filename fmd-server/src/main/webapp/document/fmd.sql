@@ -1,5 +1,5 @@
 ﻿# Host: 203.88.171.28  (Version: 5.1.73)
-# Date: 2015-10-14 17:53:32
+# Date: 2015-11-20 17:39:01
 # Generator: MySQL-Front 5.3  (Build 4.214)
 
 /*!40101 SET NAMES utf8 */;
@@ -12,18 +12,18 @@ DROP TABLE IF EXISTS `capital_log`;
 CREATE TABLE `capital_log` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `number` varchar(255) DEFAULT NULL COMMENT '编号',
-  `member` varchar(50) DEFAULT NULL COMMENT '会员',
+  `member` varchar(100) DEFAULT NULL COMMENT '会员',
   `member_id` int(11) DEFAULT NULL COMMENT '会员id',
   `time` datetime DEFAULT NULL COMMENT '时间',
-  `operation` int(3) DEFAULT NULL COMMENT '操作',
+  `operation` int(3) DEFAULT NULL COMMENT '操作(1推荐，2管理，3见点)',
   `detail` varchar(255) DEFAULT NULL COMMENT '明细',
-  `payout` float DEFAULT NULL COMMENT '支出',
-  `income` float DEFAULT NULL COMMENT '入账',
-  `remain` float DEFAULT NULL COMMENT '余额',
+  `payout` varchar(50) DEFAULT NULL COMMENT '支出',
+  `income` varchar(50) DEFAULT NULL COMMENT '入账',
+  `remain` varchar(50) DEFAULT NULL COMMENT '余额',
   `touch_pay` int(11) DEFAULT NULL COMMENT '对碰奖',
   `recommend_pay` int(11) DEFAULT NULL COMMENT '推荐奖',
   `see_paypoint_pay` int(4) DEFAULT NULL COMMENT '见点奖',
-  `state` int(2) DEFAULT NULL COMMENT '状态',
+  `state` int(2) DEFAULT NULL COMMENT '状态(0无效，1收入，2支出)',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='个人资金记录表';
 
@@ -60,23 +60,23 @@ CREATE TABLE `log` (
 DROP TABLE IF EXISTS `member_user`;
 CREATE TABLE `member_user` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `userid` int(11) NOT NULL DEFAULT '0' COMMENT '用户id',
+  `userid` varchar(11) NOT NULL DEFAULT '0' COMMENT '用户id',
   `pwd1` varchar(50) DEFAULT NULL COMMENT '密码1',
   `pwd2` varchar(50) DEFAULT NULL COMMENT '密码2',
   `pwd3` varchar(50) DEFAULT NULL COMMENT '密码3',
   `referee` varchar(50) DEFAULT NULL COMMENT '推荐人',
-  `referee_id` int(11) DEFAULT NULL COMMENT '推荐人id',
+  `referee_id` varchar(11) DEFAULT NULL COMMENT '推荐人id',
   `node` varchar(50) DEFAULT NULL COMMENT '接点人',
-  `node_id` int(11) DEFAULT NULL COMMENT '接点人id',
-  `area` int(2) DEFAULT NULL COMMENT '业务区域',
-  `receiv_address` varchar(255) DEFAULT NULL COMMENT '收件地址',
+  `node_id` varchar(11) DEFAULT NULL COMMENT '接点人id',
+  `area` int(2) DEFAULT NULL COMMENT '业务区域：1左区，2右区',
+  `receiv_address` varchar(500) DEFAULT NULL COMMENT '收件地址',
   `zip_code` varchar(50) DEFAULT NULL COMMENT '邮编',
-  `qq` int(11) DEFAULT NULL COMMENT 'qq',
-  `phone_number` int(11) DEFAULT NULL COMMENT '手机电话',
+  `qq` varchar(20) DEFAULT NULL COMMENT 'qq',
+  `phone_number` varchar(20) DEFAULT NULL COMMENT '手机电话',
   `email` varchar(50) DEFAULT NULL COMMENT 'EMAIL',
   `bank_name` varchar(50) DEFAULT NULL COMMENT '开户银行',
   `account_name` varchar(50) DEFAULT NULL COMMENT '银行户口姓名',
-  `account_address` varchar(255) DEFAULT NULL COMMENT '开户地址',
+  `account_address` varchar(500) DEFAULT NULL COMMENT '开户地址',
   `account_node` varchar(50) DEFAULT NULL COMMENT '银行点',
   `account` varchar(50) DEFAULT NULL COMMENT '银行卡号',
   `capital` varchar(50) DEFAULT NULL COMMENT '资金',
@@ -86,13 +86,17 @@ CREATE TABLE `member_user` (
   `cjr` int(11) DEFAULT NULL COMMENT '创建人',
   `xgr` int(11) DEFAULT NULL COMMENT '修改人',
   `state` int(2) DEFAULT NULL COMMENT '状态',
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='会员表';
+  `leftid` varchar(50) DEFAULT NULL COMMENT '左区人ID',
+  `rightid` varchar(50) DEFAULT NULL COMMENT '右区人id',
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `user_userid` (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='会员表';
 
 #
 # Data for table "member_user"
 #
 
+INSERT INTO `member_user` VALUES (1,'000001','111111','222222','333333','0','0','0','0',0,'吃大餐vdcd1111','111111','111111111','13800000000','luoyz@163.com','中国农业银行','zhou',NULL,'广州农商行','zhou','960',NULL,'2015-10-27 16:28:35',NULL,0,0,1,'000002',''),(12,'000002','111111','222222','333333','zhou','000001','zhou','000001',0,'吃大餐vdcd','111111','11111111111','11111111','luoyz@163.com','中国农业银行','啊啊啊','东城','中国农业银行北京东城分行','1111111111111111111','960','441283198602012019','2015-11-10 15:49:29',NULL,0,0,1,'000003',''),(13,'000003','111111','222222','333333','zhou','000001','zhou','000001',0,'罗亦洲','111111','111111111111 ','111111111111','1111111@163.com','中国农业银行','罗亦洲','东城','中国农业银行北京东城分行','1111111111111111111','960','111111111111111111','2015-11-11 10:29:42',NULL,0,0,1,'000004',''),(14,'000004',NULL,NULL,NULL,NULL,'000001',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-11-11 10:29:42',NULL,0,0,1,'000005',''),(15,'000005',NULL,NULL,NULL,NULL,'000001',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-11-11 10:29:42',NULL,0,0,0,'000006',''),(16,'000006',NULL,NULL,NULL,NULL,'000001',NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-10-27 16:28:35',NULL,0,0,1,'000007','');
 
 #
 # Structure for table "teams"
@@ -124,7 +128,7 @@ CREATE TABLE `user` (
   `login` varchar(255) DEFAULT NULL COMMENT '登陆名',
   `pwd` varchar(255) DEFAULT NULL COMMENT '密码',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='user';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='user';
 
 #
 # Data for table "user"
