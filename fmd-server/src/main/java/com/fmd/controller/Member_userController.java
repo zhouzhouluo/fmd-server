@@ -33,6 +33,7 @@ public class Member_userController {
 	public String save(Member_user member_user){
 		member_user.setCjsj(new Date());
 		member_user.setState(0);
+		member_user.setCapital("0");
 		member_userService.save(member_user);
 		return "/business/member_user/my_member";
 	}

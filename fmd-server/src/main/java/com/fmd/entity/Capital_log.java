@@ -24,9 +24,9 @@ public class Capital_log {
 	private Date time;
 	private int operation;
 	private String detail;
-	private Float payout;
-	private Float income;
-	private Float temain;
+	private String payout;
+	private String income;
+	private String remain;
 	private int touch_pay;
 	private int recommend_pay;
 	private int see_paypoint_pay;
@@ -73,23 +73,23 @@ public class Capital_log {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-	public Float getPayout() {
+	public String getPayout() {
 		return payout;
 	}
-	public void setPayout(Float payout) {
+	public void setPayout(String payout) {
 		this.payout = payout;
 	}
-	public Float getIncome() {
+	public String getIncome() {
 		return income;
 	}
-	public void setIncome(Float income) {
+	public void setIncome(String income) {
 		this.income = income;
 	}
-	public Float getTemain() {
-		return temain;
+	public String getRemain() {
+		return remain;
 	}
-	public void setTemain(Float temain) {
-		this.temain = temain;
+	public void setRemain(String remain) {
+		this.remain = remain;
 	}
 	public int getTouch_pay() {
 		return touch_pay;
