@@ -45,9 +45,9 @@
 			<!-- <div class="toptab">欢迎您进入会员管理系统！<a href="#">请登录</a> | <a href="#">免费注册</a></div>-->
 		</div>
 		<div class="header_pag">
-			<div class="logo">
+			<%-- <div class="logo">
 				<img src="${path}/business/_files/logo.png" width="400" height="60">
-			</div>
+			</div> --%>
 			<div class="top_right">
 				<div class="top_title" style="color: #048CC5">
 					<div id="nihao">
@@ -83,7 +83,7 @@
                       mytime += "&nbsp;";
                   }
               }
-              /* document.getElementById("nihao").innerHTML = "<img src=../templets/XZ20141114/Images/top_time.gif  style=float:left;padding-top:2px />" + "&nbsp;" + "" + mytime; */
+              document.getElementById("nihao").innerHTML = "<img src='${path}/business/_files/top_time.gif'  style='float:left;padding-top:2px' />" + "&nbsp;" + "" + mytime;
               setTimeout('settime()', 1000);
           }
           settime();
@@ -107,32 +107,42 @@
 				<li><a
 					href="#">会员管理</a>
 				<ul>
-						<li><a 
+						<%-- <li><a 
 							href="${path}/business/member_user/reg.jsp" 
-							target="content3">会员注册</a></li>
+							target="content3">会员注册</a></li> --%>
 						<li><a
 							href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid() %>"
 							target="content3">团队网络</a></li>
 						<li><a
 							href="${path}/business/member_user/my_member.jsp"
 							target="content3">我的会员</a></li>
+						<%if(member_user!=null&&"000001".equals(member_user.getUserid())) {%>	
 						<li><a
 							href="${path}/business/manager/Admin_Member1.jsp"
 							target="content3">会员审核</a></li>
+						<%} %>	
 					</ul></li>
 				<li></li>
 				<li><a
 					href="#">奖金管理</a>
 				<ul>
 						<li><a
-							href="${path}/business/bonus/BonusHis.html"
+							href="${path}/business/bonus/BonusHis.jsp"
 							target="content3">奖金记录</a></li>
-						<li><a
+						<%-- <li><a
 							href="${path}/business/bonus/User_BonusList.html"
-							target="content3">总奖金明细</a></li>
+							target="content3">总奖金明细</a></li> --%>
+						<li><a
+							href="${path}/business/currency/User_DistillCurrencies.jsp"
+							target="content3">奖金提现</a></li>
+						<%if(member_user!=null&&"000001".equals(member_user.getUserid())) {%>
+						<li><a
+							href="${path}/business/manager/Admin_Member1.jsp"
+							target="content3">提现审核</a></li>	
+							<%}%>
 					</ul></li>
 				<li></li>
-				<li><a
+				<%-- <li><a
 					href="#">货币管理</a>
 				<ul>
 						<li><a
@@ -144,8 +154,9 @@
 						<li><a
 							href="${path}/business/currency/User_LoanCurrencies.html"
 							target="content3">金币转账</a></li>
-					</ul></li>
+					</ul></li> --%>
 				<li></li>
+				<%if(member_user!=null&&"000001".equals(member_user.getUserid())) {%>
 				<li><a
 					href="#"
 					class="">系统管理</a>
@@ -154,7 +165,7 @@
 							href="${path}/business/manager/AdminLog.html"
 							target="content3">系统日志</a></li>
 					</ul></li>
-
+					<%} %>
 				<li><a id="ctl00_lbtc"
 					href="${path}/member/logout.action"
 					target="content3">退出</a>

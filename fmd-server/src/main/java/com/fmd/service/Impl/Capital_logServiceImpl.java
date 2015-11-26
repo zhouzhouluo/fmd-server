@@ -1,11 +1,16 @@
 package com.fmd.service.Impl;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import org.omg.CORBA.INTERNAL;
 import org.springframework.stereotype.Service;
 
 import com.fmd.dao.BaseDao;
+import com.fmd.dao.Capital_logDao;
 import com.fmd.dao.Member_userDao;
 import com.fmd.entity.Capital_log;
 import com.fmd.entity.Member_user;
@@ -16,7 +21,9 @@ import com.fmd.service.UserService;
 @Service("capital_logService")  
 @Transactional  
 public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> implements Capital_logService {  
-  
+	private final static int TOUCH_PAY = 150;
+	private final static int RECOMMEND_PAY= 200;
+	private final static int SEE_PAYPOINT_PAY= 2;
     /** 
      * 注入DAO 
      */  
@@ -26,57 +33,140 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
     }
     @Resource(name = "member_userDao")  
     private Member_userDao member_userDao;
+    
+    @Resource(name = "capital_logDao")
+    private Capital_logDao capital_logDao;
     /** 
      * 若CustomerService 定义了BaseService没有的方法，则可以在这里实现 
-     */  
+     */
     
+    
+    /**
+     *管理奖 
+     */
     @Override
 	public void managerCapital(Member_user member_user) {
-		// TODO Auto-generated method stub
-		
+    	Member_user p_user = member_user;
+    	if(p_user.getNode_id()!=null){
+			
+		}
+    	for(;;){
+    		p_user = member_userDao.getUserByUserId(p_user.getNode_id());
+    		if(p_user==null||p_user.getNode_id()==null||"".equals(p_user.getNode_id())){
+    			break;
+    		}
+        	String nodes = member_userDao.getNodeList(p_user.getUserid());
+        	String nodelist[] = nodes.split(",");
+        	if(nCF2(nodelist.length)){
+        		String capital = (p_user.getCapital()!=null||!"".equals(p_user.getCapital()))?p_user.getCapital():"0";
+        		capital = String.valueOf(Integer.parseInt(capital)+150);
+        		p_user.setCapital(capital);
+        		Capital_log capital_log = new Capital_log();
+        		capital_log.setNumber(p_user.getId());
+        		capital_log.setIncome(""+TOUCH_PAY);
+        		capital_log.setTouch_pay(TOUCH_PAY);
+        		capital_log.setDetail("管理奖收入"+TOUCH_PAY+"元");
+        		capital_log.setMember(p_user.getAccount_name());
+        		capital_log.setMember_id(""+p_user.getUserid());
+        		capital_log.setOperation(2);
+        		capital_log.setState(1);
+        		capital_log.setRemain(capital);
+        		capital_log.setTime(new Date());
+        		save(capital_log);
+        		member_userDao.update(p_user);
+        	}else{
+        		break;
+        	}
+    	}
 	}
 
+    /**
+     * 推荐奖
+     */
 	@Override
 	public void refereeCapital(Member_user member_user) {
 		Member_user referee_user = member_userDao.getUserByUserId(member_user.getReferee_id());
 		String capital = (referee_user.getCapital()!=null||!"".equals(referee_user.getCapital()))?referee_user.getCapital():"0";
 		capital = String.valueOf(Integer.parseInt(capital)+200);
 		referee_user.setCapital(capital);
-		member_userDao.update(referee_user);
 		Capital_log capital_log = new Capital_log();
-		capital_log.setIncome(""+200);
-		capital_log.setRecommend_pay(200);
-		capital_log.setDetail("直接推荐奖收入200元");
+		capital_log.setNumber(referee_user.getId());
+		capital_log.setIncome(""+RECOMMEND_PAY);
+		capital_log.setRecommend_pay(RECOMMEND_PAY);
+		capital_log.setDetail("直接推荐奖收入"+RECOMMEND_PAY+"元");
 		capital_log.setMember(referee_user.getAccount_name());
-		capital_log.setMember_id(referee_user.getUserid());
+		capital_log.setMember_id(""+referee_user.getUserid());
 		capital_log.setOperation(1);
 		capital_log.setState(1);
 		capital_log.setRemain(capital);
+		capital_log.setTime(new Date());
 		save(capital_log);
+		member_userDao.update(referee_user);
 	}
 
+	/**
+	 * 见点奖
+	 */
 	@Override
 	public void codeCaptital(Member_user member_user) {
 		for(int i=0;i<15;i++){
-			if(member_user.getReferee_id()==null||"".equals(member_user.getReferee_id())){
+			if(member_user.getNode_id()==null||"".equals(member_user.getNode_id())){
 				break;
 			}
-			member_user = member_userDao.getUserByUserId(member_user.getReferee_id());
+			member_user = member_userDao.getUserByUserId(member_user.getNode_id());
+			if(member_user==null){
+				break;
+			}
 			String capital = (member_user.getCapital()!=null||!"".equals(member_user.getCapital()))?member_user.getCapital():"0";
-			capital = String.valueOf(Integer.parseInt(capital)+200);
+			capital = String.valueOf(Integer.parseInt(capital)+2);
 			member_user.setCapital(capital);
-			member_userDao.update(member_user);
 			Capital_log capital_log = new Capital_log();
-			capital_log.setIncome(""+2);
-			capital_log.setRecommend_pay(2);
-			capital_log.setDetail("见点奖收入2元");
+			capital_log.setNumber(member_user.getId());
+			capital_log.setIncome(""+SEE_PAYPOINT_PAY);
+			capital_log.setSee_paypoint_pay(SEE_PAYPOINT_PAY);
+			capital_log.setDetail("见点奖收入"+SEE_PAYPOINT_PAY+"元");
 			capital_log.setMember(member_user.getAccount_name());
-			capital_log.setMember_id(member_user.getUserid());
+			capital_log.setMember_id(""+member_user.getUserid());
 			capital_log.setOperation(3);
 			capital_log.setState(1);
 			capital_log.setRemain(capital);
+			capital_log.setTime(new Date());
 			save(capital_log);
+			member_userDao.update(member_user);
 		}
-		
-	} 
+	}
+	
+	/**
+	 * 判断是否2的那次方
+	 * @param n
+	 * @return
+	 */
+	public boolean nCF2(int n){  
+	    boolean b = false;  
+	    int x = 2;  
+	    while(true){  
+	        if(x==n){  
+	            b=true;  
+	            break;  
+	        }if(x<n){  
+	            x=2*x;  
+	        }else{  
+	            b=false;  
+	            break;  
+	        }  
+	    }  
+	    return b;  
+	}
+
+	@Override
+	public List<Capital_log> queryCapital_log(String userid, int pagesize, int from) {
+		return capital_logDao.queryCapital_log(userid, pagesize, from);
+	}
+
+	@Override
+	public int countCapital_log(String userid) {
+		return capital_logDao.countCapital_log(userid);
+	}
+	
+	
 }  

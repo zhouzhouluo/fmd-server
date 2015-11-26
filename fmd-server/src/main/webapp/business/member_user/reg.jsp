@@ -212,10 +212,11 @@
 								<tbody>
 									<tr>
 										<td><input id="TreePlace_0" type="radio"
-											name="TreePlace_0" value="0" checked="checked"><label
-											for="TreePlace_0">左区</label></td>
+											name="TreePlace" value="0" checked="checked" onclick="changeArea('0');">
+											<label for="TreePlace_0" >左区</label></td>
 										<td><input id="TreePlace_1" type="radio"
-											name="TreePlace_1" value="1"><label for="TreePlace_1">右区</label></td>
+											name="TreePlace" value="1" onclick="changeArea('1');">
+											<label for="TreePlace_1">右区</label></td>
 										<input id="area" type="hidden" name="area" value="0">
 									</tr>
 								</tbody>

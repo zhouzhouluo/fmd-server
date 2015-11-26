@@ -14,7 +14,7 @@ public class Withdraw_log {
     private int Id;
 	private int number;
 	private String member;
-	private int member_id;
+	private String member_id;
 	private Date apply_time;
 	private int operation;
 	private String detail;
@@ -43,10 +43,10 @@ public class Withdraw_log {
 	public void setMember(String member) {
 		this.member = member;
 	}
-	public int getMember_id() {
+	public String getMember_id() {
 		return member_id;
 	}
-	public void setMember_id(int member_id) {
+	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
 	public Date getApply_time() {

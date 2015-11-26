@@ -62,8 +62,11 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 	public int countMember_Dsp(int state) {
 		Query query = getSession().createQuery("select count(0) from Member_user where state = "+state);
 		return Integer.parseInt(query.uniqueResult().toString());
+	}
+
+	@Override
+	public String getNodeList(String userid) {
+		Query query = getSession().createSQLQuery("select  getChildList('"+userid+"')");
+		return query.uniqueResult().toString();
 	}  
-	
-	
-	
 }  	

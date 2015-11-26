@@ -838,3 +838,8 @@ function SaveInfo_callback(response)
 		}
 	}
 }
+function changeArea(areaValue){
+	alert(areaValue);
+	document.Form1.area.value = areaValue;
+	alert(document.Form1.area.value );
+}

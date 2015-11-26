@@ -302,7 +302,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 			</div>
 
 			<table class="tab2">
-				<tbody>
+				<!-- <tbody>
 					<tr>
 						<td class="head" background="login_08z.gif" style="height: 30px"><strong>&nbsp;<span
 								class="style3">会员系谱图<input name="UserName" type="text"
@@ -311,7 +311,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 							id="action" class="buttonCN" value="跳转"> <span
 							id="FatherUrl"></span></td>
 					</tr>
-				</tbody>
+				</tbody> -->
 			</table>
 			<table class="tab2">
 				<tbody>
@@ -397,7 +397,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[1]%></a></td>
 																						</tr>
 																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%="1".equals(member_user.getState())?"zshy":"lshy"%>"
+																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
 																								bgcolor="#eeeeee">
 																								<%=member_user.getAccount_name() %>
 																							</td>

@@ -40,6 +40,7 @@ public class Member_user {
 	private int state;
 	private String leftid;
 	private String rightid;
+	private String withdraw;
 	public int getId() {
 		return Id;
 	}
@@ -213,6 +214,12 @@ public class Member_user {
 	}
 	public void setRightid(String rightid) {
 		this.rightid = rightid;
+	}
+	public String getWithdraw() {
+		return withdraw;
+	}
+	public void setWithdraw(String withdraw) {
+		this.withdraw = withdraw;
 	}
 	
 	

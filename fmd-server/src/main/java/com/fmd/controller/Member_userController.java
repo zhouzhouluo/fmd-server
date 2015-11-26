@@ -7,14 +7,13 @@ import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.fmd.entity.Member_user;
+import com.fmd.service.Capital_logService;
 import com.fmd.service.Member_userService;
 /**
  * 
@@ -28,13 +27,31 @@ public class Member_userController {
 	@Resource(name = "member_userService")  
     private Member_userService member_userService;
 	
+	@Resource(name = "capital_logService")  
+    private Capital_logService capital_logService;
 	
 	@RequestMapping(value="/save",method=RequestMethod.POST)
 	public String save(Member_user member_user){
+		Member_user p_user = member_userService.getUserByUserId(member_user.getNode_id());
+		System.out.println("member_user.getArea():"+member_user.getArea());
+		if(member_user.getArea()==0){
+			if(p_user.getLeftid()==null||"".equals(p_user.getLeftid())){
+				p_user.setLeftid(member_user.getUserid());
+			}else{
+				return "/business/member_user/my_member";
+			}
+		}else{
+			if(p_user.getRightid()==null||"".equals(p_user.getRightid())){
+				p_user.setRightid(member_user.getUserid());
+			}else{
+				return "/business/member_user/my_member";
+			}
+		}
 		member_user.setCjsj(new Date());
 		member_user.setState(0);
 		member_user.setCapital("0");
 		member_userService.save(member_user);
+		member_userService.update(p_user);
 		return "/business/member_user/my_member";
 	}
 	
@@ -133,13 +150,31 @@ public class Member_userController {
 	
 	@RequestMapping(value="/sp",method=RequestMethod.POST)
 	@ResponseBody
-	public String sp(String userid,int state){
-		Member_user member_user = member_userService.getUserByUserId(userid);
-		if(99==state){
-			member_userService.delete(member_user.getId());
-		}else{
-			member_user.setState(state);
-			member_userService.update(member_user);
+	public String sp(HttpServletRequest request,String userid,int state){
+		Object obj = request.getSession().getAttribute("loginedUser");
+		if(obj!=null){
+			Member_user loginedUser = (Member_user)obj;
+			if("000001".equals(loginedUser.getUserid())){
+				Member_user member_user = member_userService.getUserByUserId(userid);
+				if(99==state){
+					member_userService.delete(member_user.getId());
+				}else{
+					member_user.setState(state);
+					member_userService.update(member_user);
+					capital_logService.refereeCapital(member_user);
+					capital_logService.codeCaptital(member_user);
+					capital_logService.managerCapital(member_user);
+//					new Thread(new Runnable() {
+//						
+//						@Override
+//						public void run() {
+//							capital_logService.refereeCapital(member_user);
+//							capital_logService.codeCaptital(member_user);
+//							capital_logService.managerCapital(member_user);
+//						}
+//					}).start();
+				}
+			}
 		}
 		return "1";
 	}
