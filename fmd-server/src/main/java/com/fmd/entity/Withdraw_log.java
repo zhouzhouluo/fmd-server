@@ -23,7 +23,7 @@ public class Withdraw_log {
 	private float take;
 	private Date approve_time;
 	private String approve;
-	private int approve_id;
+	private String approve_id;
 	private int state;
 	public int getId() {
 		return Id;
@@ -97,10 +97,10 @@ public class Withdraw_log {
 	public void setApprove(String approve) {
 		this.approve = approve;
 	}
-	public int getApprove_id() {
+	public String getApprove_id() {
 		return approve_id;
 	}
-	public void setApprove_id(int approve_id) {
+	public void setApprove_id(String approve_id) {
 		this.approve_id = approve_id;
 	}
 	public int getState() {

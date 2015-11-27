@@ -32,6 +32,7 @@ public class Withdraw_logController {
     private Member_userService member_userService;
 	
 	@RequestMapping(value="/take",method=RequestMethod.POST)
+	@ResponseBody
 	public String take(HttpServletRequest request,String pwd3){
 		Object obj = request.getSession().getAttribute("loginedUser");
 		Member_user member_user = null;
@@ -58,12 +59,58 @@ public class Withdraw_logController {
         		withdraw = String.valueOf(Integer.parseInt(withdraw)+1000);
         		member_user.setWithdraw(withdraw);
         		member_userService.update(member_user);
-			}else{
-				return "/business/currency/User_DistillCurrencies";
 			}
-		}else{
-			return "/business/currency/User_DistillCurrencies";
 		}
-		return "/business/currency/User_DistillCurrencies";
+		return "1";
+	}
+	
+	@RequestMapping(value="/sp",method=RequestMethod.POST)
+	@ResponseBody
+	public String sp(HttpServletRequest request,int id,int state){
+		Object obj = request.getSession().getAttribute("loginedUser");
+		if(obj!=null){
+			Member_user loginedUser = (Member_user)obj;
+			if("000001".equals(loginedUser.getUserid())){
+				Withdraw_log withdraw_log = withdraw_logService.getById(id);
+				withdraw_log.setState(state);
+				withdraw_log.setApprove(loginedUser.getAccount_name());
+				withdraw_log.setApprove_id(loginedUser.getUserid());
+				withdraw_log.setApprove_time(new Date());
+				withdraw_logService.update(withdraw_log);
+				if(state==2){
+					Member_user member_user = member_userService.getUserByUserId(withdraw_log.getMember_id());
+					String capital = (member_user.getCapital()!=null||!"".equals(member_user.getCapital()))?member_user.getCapital():"0";
+		    		capital = String.valueOf(Integer.parseInt(capital)+1000);
+		    		String withdraw = (member_user.getWithdraw()!=null||!"".equals(member_user.getWithdraw()))?member_user.getWithdraw():"0";
+		    		withdraw = String.valueOf(Integer.parseInt(withdraw)-1000);
+		    		member_user.setCapital(capital);
+		    		member_user.setWithdraw(withdraw);
+		    		member_userService.update(member_user);
+				}
+			}
+		}
+		return "1";
+	}
+	@RequestMapping(value="/cancel",method=RequestMethod.POST)
+	@ResponseBody
+	public String cancel(HttpServletRequest request,int id,int state){
+		Object obj = request.getSession().getAttribute("loginedUser");
+		if(obj!=null){
+			Member_user loginedUser = (Member_user)obj;
+			Withdraw_log withdraw_log = withdraw_logService.getById(id);
+			withdraw_log.setState(state);
+			withdraw_log.setApprove(loginedUser.getAccount_name());
+			withdraw_log.setApprove_id(loginedUser.getUserid());
+			withdraw_log.setApprove_time(new Date());
+			withdraw_logService.update(withdraw_log);
+			String capital = (loginedUser.getCapital()!=null||!"".equals(loginedUser.getCapital()))?loginedUser.getCapital():"0";
+    		capital = String.valueOf(Integer.parseInt(capital)+1000);
+    		String withdraw = (loginedUser.getWithdraw()!=null||!"".equals(loginedUser.getWithdraw()))?loginedUser.getWithdraw():"0";
+    		withdraw = String.valueOf(Integer.parseInt(withdraw)-1000);
+			loginedUser.setCapital(capital);
+			loginedUser.setWithdraw(withdraw);
+			member_userService.update(loginedUser);
+		}
+		return "1";
 	}
 }

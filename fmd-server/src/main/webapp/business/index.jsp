@@ -137,7 +137,7 @@
 							target="content3">奖金提现</a></li>
 						<%if(member_user!=null&&"000001".equals(member_user.getUserid())) {%>
 						<li><a
-							href="${path}/business/manager/Admin_Member1.jsp"
+							href="${path}/business/manager/User_DistillCurrenciesSp.jsp"
 							target="content3">提现审核</a></li>	
 							<%}%>
 					</ul></li>
@@ -204,7 +204,7 @@
 			<div>
 				<%if(member_user!=null){ %>
 				<iframe id="content3" style="z-index: 1; width: 100%"
-					name="content3" src="${path}/business/member_user/my_member.jsp" frameborder="0"
+					name="content3" src="${path}/business/member_user/User_treeview.jsp" frameborder="0"
 					height="1966"></iframe>
 				<%}else{ %>
 				<iframe id="content3" style="z-index: 1; width: 100%"

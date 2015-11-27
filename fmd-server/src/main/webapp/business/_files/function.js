@@ -187,6 +187,78 @@ function sp(userid,state){
 		// 成功返回之后调用的函数
 		success : function(data) {
 			if(data=="1"){
+//				window.location.reload();
+				history.go(0);
+			}
+		},
+		// 调用执行后调用的函数
+		complete : function(XMLHttpRequest, textStatus) {
+			
+		},
+		// 调用出错执行的函数
+		error : function() {
+			// 请求出错处理
+		}
+	});
+}
+
+function take(){
+	if(capital<1000){
+		alert("余额不够1000，未能提现！");
+		return false;
+	}
+	if(confirm('确定申请提现吗！')){
+		var pwd3 = document.Form1.pwd3.value;
+		$.ajax({
+			// 提交数据的类型 POST GET
+			type : "POST",
+			// 提交的网址
+			url : contextPath + "/withdraw/take.action",
+			// 提交的数据
+			data : {
+				pwd3 : pwd3,
+			},
+			// 返回数据的格式
+			datatype : "text",// "xml", "html", "script", "json", "jsonp", "text".
+			// 在请求之前调用的函数
+			// beforeSend:function(){$("#msg").html("logining");},
+			// 成功返回之后调用的函数
+			success : function(data) {
+				if(data=="1"){
+					window.location.reload();
+				}
+			},
+			// 调用执行后调用的函数
+			complete : function(XMLHttpRequest, textStatus) {
+				
+			},
+			// 调用出错执行的函数
+			error : function() {
+				// 请求出错处理
+			}
+		});
+	}
+}
+
+
+function txsp(id,state){
+	$.ajax({
+		// 提交数据的类型 POST GET
+		type : "POST",
+		// 提交的网址
+		url : contextPath + "/withdraw/sp.action",
+		// 提交的数据
+		data : {
+			id : id,
+			state : state,
+		},
+		// 返回数据的格式
+		datatype : "text",// "xml", "html", "script", "json", "jsonp", "text".
+		// 在请求之前调用的函数
+		// beforeSend:function(){$("#msg").html("logining");},
+		// 成功返回之后调用的函数
+		success : function(data) {
+			if(data=="1"){
 				window.location.reload();
 			}
 		},
@@ -201,3 +273,36 @@ function sp(userid,state){
 	});
 }
 
+function cancel(id,state){
+	if(confirm('请确定是否取消提现申请！')){
+		$.ajax({
+			// 提交数据的类型 POST GET
+			type : "POST",
+			// 提交的网址
+			url : contextPath + "/withdraw/cancel.action",
+			// 提交的数据
+			data : {
+				id : id,
+				state : state,
+			},
+			// 返回数据的格式
+			datatype : "text",// "xml", "html", "script", "json", "jsonp", "text".
+			// 在请求之前调用的函数
+			// beforeSend:function(){$("#msg").html("logining");},
+			// 成功返回之后调用的函数
+			success : function(data) {
+				if(data=="1"){
+					window.location.reload();
+				}
+			},
+			// 调用执行后调用的函数
+			complete : function(XMLHttpRequest, textStatus) {
+				
+			},
+			// 调用出错执行的函数
+			error : function() {
+				// 请求出错处理
+			}
+		});
+	}
+}

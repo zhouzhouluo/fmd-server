@@ -21,6 +21,9 @@
 	if(obj!=null){
 		member_user = (Member_user)obj;
 	}
+	String nodeuserid = request.getParameter("nodeuserid");
+	String nodename =  member_userService.getUserByUserId(nodeuserid).getAccount_name();
+	String aere = request.getParameter("aere");
 %>
 <c:set var="path" value="<%=path%>" />
 <c:set var="ctx" value="<%=basePath%>" />
@@ -165,10 +168,10 @@
 						<td style="width: 90px; text-align: right">推荐人：</td>
 						<td colspan="2" align="left"><input name="referee_id"
 							type="text" value="<%=member_user.getUserid() %>" maxlength="18"
-							id="referee_id"
+							id="referee_id" readOnly="true"
 							style="border-width: 1px; border-style: Solid; width: 160px;">
 							姓名：<input name="referee" type="text"
-							value="<%=member_user.getAccount_name()%>" maxlength="10"
+							value="<%=member_user.getAccount_name()%>" maxlength="10" readOnly="true"
 							id="referee"
 							style="border-width: 1px; border-style: Solid; width: 80px; display:">
 							<span id="chkout_uRe_stat"></span> <input id="rebotton"
@@ -181,11 +184,11 @@
 					<tr style="display:">
 						<td style="width: 90px; text-align: right">接点人ID：</td>
 						<td colspan="2" align="left"><input name="node_id"
-							type="text" value="<%=member_user.getUserid()%>" maxlength="18"
+							type="text" value="<%=nodeuserid%>" maxlength="18" readOnly="true"
 							id="node_id"
 							style="border-width: 1px; border-style: Solid; width: 160px;">
-							姓名：<input name="node" type="text"
-							value="<%=member_user.getAccount_name()%>" maxlength="10"
+							姓名：<input name="node" type="text" readOnly="true"
+							value="<%=nodename%>" maxlength="10"
 							id="node"
 							style="border-width: 1px; border-style: Solid; width: 80px; display:">
 							<span id="chkout_uFather_stat"></span> <input id="Fatherbotton"
@@ -211,13 +214,13 @@
 							<table id="TreePlace" border="0" style="height: 15px;">
 								<tbody>
 									<tr>
-										<td><input id="TreePlace_0" type="radio"
-											name="TreePlace" value="0" checked="checked" onclick="changeArea('0');">
+										<td><input id="TreePlace_0" type="radio" disabled="disabled"
+											name="TreePlace" value="0" <%="0".equals(aere)?"checked='checked'":"" %> onclick="changeArea('0');">
 											<label for="TreePlace_0" >左区</label></td>
-										<td><input id="TreePlace_1" type="radio"
-											name="TreePlace" value="1" onclick="changeArea('1');">
+										<td><input id="TreePlace_1" type="radio" disabled="disabled"
+											name="TreePlace" value="1" <%="1".equals(aere)?"checked='checked'":"" %> onclick="changeArea('1');">
 											<label for="TreePlace_1">右区</label></td>
-										<input id="area" type="hidden" name="area" value="0">
+										<input id="area" type="hidden" name="area" value="<%=aere%>">
 									</tr>
 								</tbody>
 							</table>
@@ -279,11 +282,10 @@
 						<td style="width: 90px; text-align: right">开户银行：</td>
 						<td colspan="2" align="left"><select name="bank_name"
 							id="bank_name" onchange="Selected();" style="width: 163px;">
-								<option selected="selected" value="财付通">财付通</option>
+								<option selected="selected" value="中国工商银行">中国工商银行</option>
 								<option value="中国农业银行">中国农业银行</option>
 								<option value="中国建设银行">中国建设银行</option>
-								<option value="中国工商银行">中国工商银行</option>
-
+								<option value="中国银行">中国银行</option>
 						</select> &nbsp;</td>
 						<td style="display: none"></td>
 					</tr>

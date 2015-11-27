@@ -123,30 +123,25 @@
 						<td colspan="6">
 							<div id="AspNetPager1">
 								<div style="float: left; width: 45%;">
-									第<font color="red"><b><%=pageNum%></b></font>页，共有记录<%=count%>条，分<%=count / pagesize + 1%>页，每页显示<%=pagesize%>条记录
+									第<font color="red"><b><%=pageNum%></b></font>页，共有记录<%=count%>条，分<%=count/pagesize+1 %>页，每页显示<%=pagesize %>条记录
 								</div>
 								<div style="width: 55%; float: left;">
-									<a <%=pageNum == 1 ? "disabled" : ""%> style="margin-right: 5px;"
-										href="javascript:doPostBack(1);">第一页</a> <a
-										<%=pageNum <= 1 ? "disabled" : ""%> style="margin-right: 5px;"
-										href="javascript:doPostBack(<%=pageNum - 1%>);">前一页</a> <span
+									<a  style="margin-right: 5px;" 
+										href="<%=pageNum==1?"javascript:return false;":"javascript:doPostBack(1);"%>">第一页</a> 
+										<a style="margin-right: 5px;"
+										href="<%=pageNum<=1?"javascript:return false;":"javascript:doPostBack("+(pageNum-1)+");"%>">前一页</a> <span
 										style="margin-right: 5px; font-weight: Bold; color: red;"><%=pageNum%></span>
-									<a <%=pageNum >= (count / pagesize + 1) ? "disabled" : ""%>
+									<a 
 										style="margin-right: 5px;"
-										href="javascript:doPostBack(<%=pageNum + 1%>);">下一页</a> <a
-										<%=pageNum >= (count / pagesize + 1) ? "disabled" : ""%>
-										style="margin-right: 5px;"
-										href="javascript:doPostBack(<%=count / pagesize + 1%>);">最后一页</a>&nbsp;&nbsp;
+										href="<%=pageNum>=(count/pagesize+1)?"javascript:return false;":"javascript:doPostBack("+(pageNum+1)+");"%>">下一页</a> 
+										<a style="margin-right: 5px;"
+										href="<%=pageNum>=(count/pagesize+1)?"javascript:return false;":"javascript:doPostBack("+(count/pagesize+1)+");"%>">最后一页</a>&nbsp;&nbsp;
 									<select name="select" id="select"
 										onchange="javascript:doPostBack(this.value);">
-										<%
-											for (int i = 0; i <= count / pagesize; i++) {
-										%>
-										<option <%if (i == pageNum - 1) {%> selected <%}%>
-											value="<%=i + 1%>"><%=i + 1%></option>
-										<%
-											}
-										%>
+										<%for(int i=0;i<=count/pagesize;i++) {%>
+										<option <%if(i==pageNum-1){%> selected <%} %>
+											value="<%=i+1 %>"><%=i+1 %></option>
+										<%} %>
 									</select>
 								</div>
 							</div> <!-- AspNetPager V7.0 for VS2008 End -->

@@ -19,6 +19,14 @@
 	Member_userService member_userService = (Member_userService) wac.getBean("member_userService");
 	String []tree = new String[15];
 	String userid = request.getParameter("userid");
+	if(userid==null||"".equals(userid)){
+		Object obj = request.getSession().getAttribute("loginedUser");
+		Member_user member_user = null;
+		if(obj!=null){
+			member_user = (Member_user)obj;
+			userid = member_user.getUserid();
+		}
+	}
 	tree[0]=userid;
 %>
 <c:set var="basePath" value="<%=basePath%>" />
@@ -351,10 +359,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei"></td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -405,7 +410,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						<%}else{ %>
 																							<tr align="center">
 																								<td class="kongwei"><a
-																									href=""
+																									href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=0"
 																									title="推荐">[空位]<br>推荐
 																								</a></td>
 																							</tr>
@@ -435,7 +440,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						<%}else{ %>
 																							<tr align="center">
 																								<td class="kongwei"><a
-																									href=""
+																									href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=1"
 																									title="推荐">[空位]<br>推荐
 																								</a></td>
 																							</tr>
@@ -495,10 +500,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[1]!=null&&!"".equals(tree[1])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[1]%>&aere=0" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -525,10 +533,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[1]!=null&&!"".equals(tree[1])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[1]%>&aere=1" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -555,10 +566,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[2]!=null&&!"".equals(tree[2])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[2]%>&aere=0" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -585,10 +599,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[2]!=null&&!"".equals(tree[2])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[2]%>&aere=1" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -666,10 +683,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[3]!=null&&!"".equals(tree[3])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[3]%>&aere=0" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -694,10 +714,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[3]!=null&&!"".equals(tree[3])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[3]%>&aere=1" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -722,10 +745,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[4]!=null&&!"".equals(tree[4])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[4]%>&aere=0" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -750,10 +776,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[4]!=null&&!"".equals(tree[4])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[4]%>&aere=1" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -778,10 +807,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[5]!=null&&!"".equals(tree[5])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[5]%>&aere=0" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -806,10 +838,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[5]!=null&&!"".equals(tree[5])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[5]%>&aere=1" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -834,10 +869,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[6]!=null&&!"".equals(tree[6])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[6]%>&aere=0" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>
@@ -862,10 +900,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																						</tr>
 																						<%}else{ %>
 																							<tr align="center">
-																								<td class="kongwei"><a
-																									href=""
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
+																								<td class="kongwei">
+																								<%if(tree[6]!=null&&!"".equals(tree[6])){ %>
+																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[6]%>&aere=1" title="推荐">[空位]<br>推荐</a>
+																								<%}else{ %>
+																									[空位]
+																								<%}%>
+																								</td>
 																							</tr>
 																						<%}%>
 																					</tbody>

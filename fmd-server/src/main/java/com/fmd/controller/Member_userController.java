@@ -32,8 +32,9 @@ public class Member_userController {
 	
 	@RequestMapping(value="/save",method=RequestMethod.POST)
 	public String save(Member_user member_user){
+		System.out.println("member_user.getNode_id():"+member_user.getNode_id());
 		Member_user p_user = member_userService.getUserByUserId(member_user.getNode_id());
-		System.out.println("member_user.getArea():"+member_user.getArea());
+		System.out.println("member_user.getArea():"+p_user.getArea());
 		if(member_user.getArea()==0){
 			if(p_user.getLeftid()==null||"".equals(p_user.getLeftid())){
 				p_user.setLeftid(member_user.getUserid());
@@ -76,7 +77,7 @@ public class Member_userController {
 			Member_user member_user = (Member_user)obj;
 			if (member_user.getPwd2().equals(password)) {
 				request.getSession().setAttribute("userPwd2", password);
-				return "/business/member_user/my_member";
+				return "/business/member_user/User_treeview";
 			}else{
 				return "/business/member_user/UserPassword";
 			}

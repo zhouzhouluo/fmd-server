@@ -1,4 +1,3 @@
-<%@page import="com.fmd.service.Member_userService"%>
 <%@page import="com.fmd.entity.Withdraw_log"%>
 <%@page import="java.util.List"%>
 <%@page import="com.fmd.service.Withdraw_logService"%>
@@ -18,7 +17,6 @@
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	WebApplicationContext wac=WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
 	Withdraw_logService withdraw_logService = (Withdraw_logService)wac.getBean("withdraw_logService");
-	Member_userService member_userService =(Member_userService)wac.getBean("member_userService");
 	Object obj = request.getSession().getAttribute("loginedUser");
 	Member_user member_user = null;
 	List<Withdraw_log> withdraw_log_list = null;
@@ -26,9 +24,8 @@
 	if(obj!=null){
 		member_user = (Member_user)obj;
 		int from = (pageNum-1)*pagesize;
-		withdraw_log_list = withdraw_logService.queryWithdraw_log(member_user.getUserid(),pagesize,from);
-		count = withdraw_logService.countWithdraw_log(member_user.getUserid());
-		member_user = member_userService.getById(member_user.getId());
+		withdraw_log_list = withdraw_logService.queryWithdraw_log_dsp(0,pagesize,from);
+		count = withdraw_logService.countWithdraw_log_dsp(0);
 	}
 %>
 <c:set var="basePath" value="<%=basePath%>" />
@@ -69,30 +66,6 @@
 			</div>
 			<table width="98%" border="0" class="tab2">
 				<tbody>
-					<tr>
-						<td>（<font color="red">提醒：姓名：<%=member_user.getAccount_name() %>&nbsp;&nbsp;
-								账号：<%=member_user.getUserid()%>&nbsp; </font> ）
-						</td>
-					</tr>
-					<tr>
-						<td>奖金余额： <span id="Label1"><%=member_user.getCapital() %></span>
-							&nbsp;&nbsp;提现总额：<%=member_user.getWithdraw()%>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" height="30">申请提现金额额: 1000&nbsp;&nbsp;&nbsp;
-							开户姓名：<%=member_user.getAccount_name() %>&nbsp;&nbsp;&nbsp;三级密码:<input name="pwd3" type="password" maxlength="18" id="pwd3" style="width: 100px;"> <input
-							type="button" name="btDistillCurrencies" value="确定申请"
-							onclick="take();" id="btDistillCurrencies"></td>
-					</tr>
-					<!-- <tr>
-						<td colspan="2" height="30">开始时间:<input name="StarTime"
-							type="text" id="StarTime" onclick="WdatePicker()"
-							style="width: 100px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							结束时间:<input name="EndTime" type="text" id="EndTime"
-							onclick="WdatePicker()" style="width: 100px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="submit" name="lbSeach" value="搜索" id="lbSeach"></td>
-					</tr> -->
 				</tbody>
 			</table>
 
@@ -101,6 +74,8 @@
 				<tbody>
 					<tr>
 						<td><strong>序号</strong></td>
+						<td><strong>姓名</strong></td>
+						<td><strong>会员编号</strong></td>
 						<td><strong>类型</strong></td>
 						<td align="center"><strong>金额</strong></td>
 						<td><strong>申请时间</strong></td>
@@ -118,6 +93,8 @@
 						<td><%=log.getOperation()==1?"提现":"其他" %></td>
 						<td align=center><span id="Repeater1__ctl1_IbCurrencyNum"><%=log.getCapital() %></span>
 						</td>
+						<td><%=log.getMember()%></td>
+						<td><%=log.getMember_id()%></td>
 						<td><%=log.getApply_time() %></td>
 						<td><%if(log.getState()==0)
 							out.println("未付款");
@@ -127,22 +104,16 @@
 								out.println("取消");%></td>
 						<td>
 						<%if(log.getState()==0) {%>
-						<a href="javascript:cancel(<%=log.getId() %>,2);">取消提现</a>
+						<a href="javascript:txsp(<%=log.getId() %>,1);">审批</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="javascript:txsp(<%=log.getId() %>,2);">取消</a>
 						<%}else{ %>
 							-
 						<%} %>	
 						</td>
 					</tr>
 					<% }}%>
-					<tr id="Tr1" align="center">
-						<td height="28" colspan="2">总计：</td>
-						<td><%=member_user.getWithdraw() %></td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-					</tr>
 					<tr>
-						<td colspan="6">
+						<td colspan="8">
 							<div id="AspNetPager1">
 								<div style="float: left; width: 45%;">
 									第<font color="red"><b><%=pageNum%></b></font>页，共有记录<%=count%>条，分<%=count/pagesize+1 %>页，每页显示<%=pagesize %>条记录

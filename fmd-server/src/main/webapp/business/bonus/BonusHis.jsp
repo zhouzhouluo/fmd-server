@@ -1,3 +1,4 @@
+<%@page import="com.fmd.service.Member_userService"%>
 <%@page import="java.util.List"%>
 <%@page import="com.fmd.entity.Member_user"%>
 <%@page import="org.springframework.web.context.WebApplicationContext"%>
@@ -17,6 +18,7 @@
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	WebApplicationContext wac=WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
 	Capital_logService capital_logService = (Capital_logService)wac.getBean("capital_logService");
+	Member_userService member_userService =(Member_userService)wac.getBean("member_userService");
 	Object obj = request.getSession().getAttribute("loginedUser");
 	Member_user member_user = null;
 	List<Capital_log> capital_log_lsit = null;
@@ -26,6 +28,7 @@
 		int from = (pageNum-1)*pagesize;
 		capital_log_lsit = capital_logService.queryCapital_log(member_user.getUserid(),pagesize,from);
 		count = capital_logService.countCapital_log(member_user.getUserid());
+		member_user = member_userService.getById(member_user.getId());
 	}
 %>
 <c:set var="basePath" value="<%=basePath%>" />
@@ -98,7 +101,6 @@
 				<tbody>
 					<tr>
 						<td><strong>序号</strong></td>
-						<td><strong>编号</strong></td>
 						<td><strong>会员</strong></td>
 						<td><strong>日期时间</strong></td>
 						<td><strong>操作</strong></td>
@@ -115,7 +117,6 @@
 					%>
 					<tr>
 						<td><%=i++%></td>
-						<td><%=log.getId()%></td>
 						<td><%=log.getMember_id()%></td>
 						<td><%=log.getTime()%></td>
 						<td><%if(log.getOperation()==1)
@@ -126,29 +127,28 @@
 								out.println("见点奖");
 							else out.println("支出");%></td>
 						<td><%=log.getDetail()%></td>
-						<td><%=log.getPayout()%></td>
+						<td><%=log.getPayout()==null?"0":log.getPayout()%></td>
 						<td><%=log.getIncome()%></td>
 						<td><%=log.getRemain()%></td>
 					</tr>
 					<%}}%>
 					<tr>
-						<td colspan="10">
+						<td colspan="9">
 							<div id="AspNetPager1">
 								<div style="float: left; width: 45%;">
 									第<font color="red"><b><%=pageNum%></b></font>页，共有记录<%=count%>条，分<%=count/pagesize+1 %>页，每页显示<%=pagesize %>条记录
 								</div>
 								<div style="width: 55%; float: left;">
-									<a <%=pageNum==1?"disabled":""%> style="margin-right: 5px;"
-										href="javascript:doPostBack(1);">第一页</a> <a
-										<%=pageNum<=1?"disabled":""%> style="margin-right: 5px;"
-										href="javascript:doPostBack(<%=pageNum-1%>);">前一页</a> <span
+									<a  style="margin-right: 5px;" 
+										href="<%=pageNum==1?"javascript:return false;":"javascript:doPostBack(1);"%>">第一页</a> 
+										<a style="margin-right: 5px;"
+										href="<%=pageNum<=1?"javascript:return false;":"javascript:doPostBack("+(pageNum-1)+");"%>">前一页</a> <span
 										style="margin-right: 5px; font-weight: Bold; color: red;"><%=pageNum%></span>
-									<a <%=pageNum>=(count/pagesize+1)?"disabled":""%>
+									<a 
 										style="margin-right: 5px;"
-										href="javascript:doPostBack(<%=pageNum+1%>);">下一页</a> <a
-										<%=pageNum>=(count/pagesize+1)?"disabled":""%>
-										style="margin-right: 5px;"
-										href="javascript:doPostBack(<%=count/pagesize+1%>);">最后一页</a>&nbsp;&nbsp;
+										href="<%=pageNum>=(count/pagesize+1)?"javascript:return false;":"javascript:doPostBack("+(pageNum+1)+");"%>">下一页</a> 
+										<a style="margin-right: 5px;"
+										href="<%=pageNum>=(count/pagesize+1)?"javascript:return false;":"javascript:doPostBack("+(count/pagesize+1)+");"%>">最后一页</a>&nbsp;&nbsp;
 									<select name="select" id="select"
 										onchange="javascript:doPostBack(this.value);">
 										<%for(int i=0;i<=count/pagesize;i++) {%>

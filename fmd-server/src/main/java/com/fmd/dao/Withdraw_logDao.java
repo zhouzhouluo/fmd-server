@@ -10,4 +10,7 @@ public interface Withdraw_logDao extends BaseDao<Withdraw_log> {
      */  
 	List<Withdraw_log> queryWithdraw_log(String userid,int pagesize ,int from);
 	int countWithdraw_log(String userid);
+	
+	List<Withdraw_log> queryWithdraw_log_dsp(int state, int pagesize, int from);
+	int countWithdraw_log_dsp(int state);
 }

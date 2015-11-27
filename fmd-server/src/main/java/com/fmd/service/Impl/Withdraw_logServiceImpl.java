@@ -32,12 +32,23 @@ public class Withdraw_logServiceImpl extends BaseServiceImpl<Withdraw_log> imple
      * 若CustomerService 定义了BaseService没有的方法，则可以在这里实现 
      */  
     @Override
-	public List<Withdraw_log> queryCapital_log(String userid, int pagesize, int from) {
+	public List<Withdraw_log> queryWithdraw_log(String userid, int pagesize, int from) {
 		return withdraw_logDao.queryWithdraw_log(userid, pagesize, from);
 	}
 
 	@Override
-	public int countCapital_log(String userid) {
+	public int countWithdraw_log(String userid) {
 		return withdraw_logDao.countWithdraw_log(userid);
 	}
+
+	@Override
+	public List<Withdraw_log> queryWithdraw_log_dsp(int state, int pagesize, int from) {
+		return withdraw_logDao.queryWithdraw_log_dsp(state, pagesize, from);
+	}
+
+	@Override
+	public int countWithdraw_log_dsp(int state) {
+		return withdraw_logDao.countWithdraw_log_dsp(state);
+	}
+	
 }  
