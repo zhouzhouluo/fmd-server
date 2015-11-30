@@ -57,6 +57,7 @@
 
 <body>
 	<form name="Form1" method="post" action="BonusHis.jsp" id="Form1">
+	<input type="hidden" name="pageNum" id="pageNum" value="<%=pageNum%>">
 		<div class="ncenter_box">
 			<div class="accounttitle">
 				<h1>总奖金明细</h1>
@@ -100,15 +101,15 @@
 
 				<tbody>
 					<tr>
-						<td><strong>序号</strong></td>
-						<td><strong>会员</strong></td>
-						<td><strong>日期时间</strong></td>
-						<td><strong>操作</strong></td>
-						<td><strong>详细信息</strong></td>
-						<td><strong>支出</strong></td>
-						<td><strong>入账</strong></td>
-						<td><strong>余额</strong></td>
-						<td style="display: none"><strong>实际</strong></td>
+						<th><strong>序号</strong></th>
+						<th><strong>会员</strong></th>
+						<th><strong>日期时间</strong></th>
+						<th><strong>操作</strong></th>
+						<th><strong>详细信息</strong></th>
+						<th><strong>支出</strong></th>
+						<th><strong>入账</strong></th>
+						<th><strong>余额</strong></th>
+						<th style="display: none"><strong>实际</strong></th>
 					</tr>
 					<%
 						if (capital_log_lsit != null) {
@@ -119,16 +120,18 @@
 						<td><%=i++%></td>
 						<td><%=log.getMember_id()%></td>
 						<td><%=log.getTime()%></td>
-						<td><%if(log.getOperation()==1)
-							out.println("推荐奖");
+						<td><%if(log.getOperation()==0)
+								out.println("收入");
+							else if(log.getOperation()==1)
+								out.println("推荐奖");
 							else if(log.getOperation()==2)
 								out.println("管理奖");
 							else if(log.getOperation()==3)
 								out.println("见点奖");
 							else out.println("支出");%></td>
 						<td><%=log.getDetail()%></td>
-						<td><%=log.getPayout()==null?"0":log.getPayout()%></td>
-						<td><%=log.getIncome()%></td>
+						<td><%=log.getPayout()==null?"0":"-"+log.getPayout()%></td>
+						<td><%=log.getIncome()==null?"0":"+"+log.getIncome()%></td>
 						<td><%=log.getRemain()%></td>
 					</tr>
 					<%}}%>

@@ -100,10 +100,15 @@
 										<th><strong>序号</strong></th>
 										<th><strong>姓名</strong></th>
 										<th><strong>用户名</strong></th>
-										<th><strong>推荐人</strong></th>
+										<th><strong>QQ</strong></th>
+										<th><strong>联系电话</strong></th>
+										<th><strong>E-mail</strong></th>
 										<th><strong>推荐时间</strong></th>
+										<th><strong>推荐人</strong></th>
+										<th><strong>推荐人ID</strong></th>
+										<th><strong>节点人</strong></th>
+										<th><strong>节点人ID</strong></th>
 										<th><strong>状态</strong></th>
-										<th><strong>操作</strong></th>
 									</tr>
 									<%if(member_user_lsit!=null){
 										int i=1;
@@ -113,15 +118,20 @@
 										<td><%=i++%></td>
 										<td><%=user.getAccount_name() %></td>
 										<td><%=user.getUserid() %></td>
-										<td><%=user.getReferee_id() %></td>
+										<td><%=user.getQq()%></td>
+										<td><%=user.getPhone_number()%></td>
+										<td><%=user.getEmail()%></td>
 										<td><%=user.getCjsj() %></td>
+										<td><%=user.getReferee()%></td>
+										<td><%=user.getReferee_id() %></td>
+										<td><%=user.getNode()%></td>
+										<td><%=user.getNode_id() %></td>
 										<td><font color="red"><%=user.getState()==0?"非正式":"正式"%></font></td>
-										<td></td>
 									</tr>
 									
 									<%}}%>
 									<tr>
-										<td colspan="7">
+										<td colspan="12">
 											<!-- AspNetPager V7.0 for VS2008  Copyright:2003-2007 Webdiyer (www.webdiyer.com) -->
 											<div id="AspNetPager1">
 												<div style="float: left; width: 45%;">

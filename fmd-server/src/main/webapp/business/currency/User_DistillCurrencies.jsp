@@ -100,12 +100,12 @@
 
 				<tbody>
 					<tr>
-						<td><strong>序号</strong></td>
-						<td><strong>类型</strong></td>
-						<td align="center"><strong>金额</strong></td>
-						<td><strong>申请时间</strong></td>
-						<td><strong>状态</strong></td>
-						<td><strong>操作</strong></td>
+						<th><strong>序号</strong></th>
+						<th><strong>类型</strong></th>
+						<th align="center"><strong>金额</strong></th>
+						<th><strong>申请时间</strong></th>
+						<th><strong>状态</strong></th>
+						<th><strong>操作</strong></th>
 					</tr>
 					<%
 						if (withdraw_log_list != null) {
@@ -116,7 +116,7 @@
 						onMouseOut="over(this)">
 						<td><span id="Repeater1__ctl1_lbId"><%=i++ %></span></td>
 						<td><%=log.getOperation()==1?"提现":"其他" %></td>
-						<td align=center><span id="Repeater1__ctl1_IbCurrencyNum"><%=log.getCapital() %></span>
+						<td align=center><span id="Repeater1__ctl1_IbCurrencyNum"><%=log.getState()==2?"-"+log.getCapital():"+"+log.getCapital() %></span>
 						</td>
 						<td><%=log.getApply_time() %></td>
 						<td><%if(log.getState()==0)
@@ -134,13 +134,13 @@
 						</td>
 					</tr>
 					<% }}%>
-					<tr id="Tr1" align="center">
+					<%-- <tr id="Tr1" align="center">
 						<td height="28" colspan="2">总计：</td>
 						<td><%=member_user.getWithdraw() %></td>
 						<td>-</td>
 						<td>-</td>
 						<td>-</td>
-					</tr>
+					</tr> --%>
 					<tr>
 						<td colspan="6">
 							<div id="AspNetPager1">

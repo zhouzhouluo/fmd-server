@@ -11,12 +11,16 @@ import org.springframework.stereotype.Service;
 
 import com.fmd.dao.BaseDao;
 import com.fmd.dao.Capital_logDao;
+import com.fmd.dao.LogDao;
 import com.fmd.dao.Member_userDao;
 import com.fmd.entity.Capital_log;
+import com.fmd.entity.Log;
 import com.fmd.entity.Member_user;
 import com.fmd.entity.User;
 import com.fmd.service.Capital_logService;
 import com.fmd.service.UserService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Service("capital_logService")  
 @Transactional  
@@ -24,6 +28,7 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 	private final static int TOUCH_PAY = 150;
 	private final static int RECOMMEND_PAY= 200;
 	private final static int SEE_PAYPOINT_PAY= 2;
+	private Gson gson = new GsonBuilder().create();
     /** 
      * 注入DAO 
      */  
@@ -36,6 +41,10 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
     
     @Resource(name = "capital_logDao")
     private Capital_logDao capital_logDao;
+    
+    @Resource(name = "logDao")
+    private LogDao logDao;
+    
     /** 
      * 若CustomerService 定义了BaseService没有的方法，则可以在这里实现 
      */
@@ -45,7 +54,7 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
      *管理奖 
      */
     @Override
-	public void managerCapital(Member_user member_user) {
+	public void managerCapital(Log log,Member_user member_user) {
     	Member_user p_user = member_user;
     	if(p_user.getNode_id()!=null){
 			
@@ -73,7 +82,20 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
         		capital_log.setRemain(capital);
         		capital_log.setTime(new Date());
         		save(capital_log);
+        		Log _log = log.clone();
+        		_log.setOperation_time(new Date());
+        		_log.setType(LogServiceImpl.TYPE_CREATE);
+        		_log.setDetail(gson.toJson(capital_log));
+        		_log.setTablename("capital_log");
+        		_log.setOperation(p_user.getUserid()+"管理奖收入"+TOUCH_PAY+"元");
+        		logDao.save(_log);
         		member_userDao.update(p_user);
+        		_log = log.clone();
+        		_log.setType(LogServiceImpl.TYPE_UPDATE);
+        		_log.setDetail(gson.toJson(p_user));
+        		_log.setTablename("member_user");
+        		_log.setOperation(p_user.getUserid()+"更新余额为"+p_user.getCapital());
+        		logDao.save(_log);
         	}else{
         		break;
         	}
@@ -84,7 +106,7 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
      * 推荐奖
      */
 	@Override
-	public void refereeCapital(Member_user member_user) {
+	public void refereeCapital(Log log,Member_user member_user) {
 		Member_user referee_user = member_userDao.getUserByUserId(member_user.getReferee_id());
 		String capital = (referee_user.getCapital()!=null||!"".equals(referee_user.getCapital()))?referee_user.getCapital():"0";
 		capital = String.valueOf(Integer.parseInt(capital)+200);
@@ -101,14 +123,27 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 		capital_log.setRemain(capital);
 		capital_log.setTime(new Date());
 		save(capital_log);
+		Log _log = log.clone();
+		_log.setOperation_time(new Date());
+		_log.setType(LogServiceImpl.TYPE_CREATE);
+		_log.setDetail(gson.toJson(capital_log));
+		_log.setTablename("capital_log");
+		_log.setOperation(referee_user.getUserid()+"直接推荐奖收入"+RECOMMEND_PAY+"元");
+		logDao.save(_log);
 		member_userDao.update(referee_user);
+		_log = log.clone();
+		_log.setType(LogServiceImpl.TYPE_UPDATE);
+		_log.setDetail(gson.toJson(referee_user));
+		_log.setTablename("member_user");
+		_log.setOperation(referee_user.getUserid()+"更新余额为"+referee_user.getCapital());
+		logDao.save(_log);
 	}
 
 	/**
 	 * 见点奖
 	 */
 	@Override
-	public void codeCaptital(Member_user member_user) {
+	public void codeCaptital(Log log,Member_user member_user) {
 		for(int i=0;i<15;i++){
 			if(member_user.getNode_id()==null||"".equals(member_user.getNode_id())){
 				break;
@@ -132,7 +167,20 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 			capital_log.setRemain(capital);
 			capital_log.setTime(new Date());
 			save(capital_log);
+			Log _log = log.clone();
+			_log.setOperation_time(new Date());
+			_log.setType(LogServiceImpl.TYPE_CREATE);
+			_log.setDetail(gson.toJson(capital_log));
+			_log.setTablename("capital_log");
+			_log.setOperation(member_user.getUserid()+"见点奖收入"+SEE_PAYPOINT_PAY+"元");
+			logDao.save(_log);
 			member_userDao.update(member_user);
+			_log = log.clone();
+			_log.setType(LogServiceImpl.TYPE_UPDATE);
+			_log.setDetail(gson.toJson(member_user));
+			_log.setTablename("member_user");
+			_log.setOperation(member_user.getUserid()+"更新余额为"+member_user.getCapital());
+			logDao.save(_log);
 		}
 	}
 	

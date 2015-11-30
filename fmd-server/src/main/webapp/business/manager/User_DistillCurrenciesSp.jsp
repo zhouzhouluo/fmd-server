@@ -73,14 +73,14 @@
 
 				<tbody>
 					<tr>
-						<td><strong>序号</strong></td>
-						<td><strong>姓名</strong></td>
-						<td><strong>会员编号</strong></td>
-						<td><strong>类型</strong></td>
-						<td align="center"><strong>金额</strong></td>
-						<td><strong>申请时间</strong></td>
-						<td><strong>状态</strong></td>
-						<td><strong>操作</strong></td>
+						<th><strong>序号</strong></th>
+						<th><strong>姓名</strong></th>
+						<th><strong>会员编号</strong></th>
+						<th><strong>类型</strong></th>
+						<th align="center"><strong>金额</strong></th>
+						<th><strong>申请时间</strong></th>
+						<th><strong>状态</strong></th>
+						<th><strong>操作</strong></th>
 					</tr>
 					<%
 						if (withdraw_log_list != null) {

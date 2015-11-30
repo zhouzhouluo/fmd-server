@@ -1,20 +1,25 @@
 package com.fmd.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.fmd.entity.Log;
 import com.fmd.entity.Member_user;
 import com.fmd.service.Capital_logService;
+import com.fmd.service.LogService;
 import com.fmd.service.Member_userService;
+import com.fmd.util.utils;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import jdk.nashorn.api.scripting.JSObject;
+
 /**
  * 
  * @author Administrator
@@ -23,92 +28,113 @@ import com.fmd.service.Member_userService;
 @RequestMapping("member")
 @Controller
 public class Member_userController {
-	
-	@Resource(name = "member_userService")  
-    private Member_userService member_userService;
-	
-	@Resource(name = "capital_logService")  
-    private Capital_logService capital_logService;
-	
-	@RequestMapping(value="/save",method=RequestMethod.POST)
-	public String save(Member_user member_user){
-		System.out.println("member_user.getNode_id():"+member_user.getNode_id());
-		Member_user p_user = member_userService.getUserByUserId(member_user.getNode_id());
-		System.out.println("member_user.getArea():"+p_user.getArea());
-		if(member_user.getArea()==0){
-			if(p_user.getLeftid()==null||"".equals(p_user.getLeftid())){
-				p_user.setLeftid(member_user.getUserid());
-			}else{
-				return "/business/member_user/my_member";
+
+	@Resource(name = "member_userService")
+	private Member_userService member_userService;
+
+	@Resource(name = "capital_logService")
+	private Capital_logService capital_logService;
+
+	@Resource(name = "logService")
+	private LogService logService;
+
+	private Gson gson = new GsonBuilder().create();
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String save(HttpServletRequest request, Member_user member_user) {
+		Object obj = request.getSession().getAttribute("loginedUser");
+		if (obj != null) {
+			Member_user loginedUser = (Member_user) obj;
+			Member_user p_user = member_userService.getUserByUserId(member_user.getNode_id());
+			if (member_user.getArea() == 0) {
+				if (p_user.getLeftid() == null || "".equals(p_user.getLeftid())) {
+					p_user.setLeftid(member_user.getUserid());
+				} else {
+					return "/business/member_user/my_member";
+				}
+			} else {
+				if (p_user.getRightid() == null || "".equals(p_user.getRightid())) {
+					p_user.setRightid(member_user.getUserid());
+				} else {
+					return "/business/member_user/my_member";
+				}
 			}
-		}else{
-			if(p_user.getRightid()==null||"".equals(p_user.getRightid())){
-				p_user.setRightid(member_user.getUserid());
-			}else{
-				return "/business/member_user/my_member";
-			}
+			member_user.setCjsj(new Date());
+			member_user.setState(0);
+			member_user.setCapital("0");
+			member_userService.save(member_user);
+			logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_CREATE,
+					gson.toJson(member_user), utils.getIpAddrByRequest(request), "member_user",
+					loginedUser.getUserid() + "注册新用户" + member_user.getUserid());
+			member_userService.update(p_user);
+			logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_UPDATE,
+					gson.toJson(p_user), utils.getIpAddrByRequest(request), "member_user", loginedUser.getUserid() + "更新用户"+p_user.getUserid());
 		}
-		member_user.setCjsj(new Date());
-		member_user.setState(0);
-		member_user.setCapital("0");
-		member_userService.save(member_user);
-		member_userService.update(p_user);
 		return "/business/member_user/my_member";
 	}
-	
+
 	@RequestMapping("/login")
 	@ResponseBody
-	public String login(HttpServletRequest request,HttpServletResponse response,String userid,String pwd,String idcode){
-		String imgVcode = (String)request.getSession().getAttribute("imgVcode");
-		if(!imgVcode.equalsIgnoreCase(idcode)){
+	public String login(HttpServletRequest request, HttpServletResponse response, String userid, String pwd,
+			String idcode) {
+		String imgVcode = (String) request.getSession().getAttribute("imgVcode");
+		logService.saveLog(userid, userid, LogService.TYPE_LOGIN, "userid:" + userid + "//pwd:" + pwd + "//" + "登录",
+				utils.getIpAddrByRequest(request), "member_user", userid + "登录系统");
+		if (!imgVcode.equalsIgnoreCase(idcode)) {
 			return "2";
 		}
-		Member_user member_user= member_userService.getUserByUserId(userid);
-		if (member_user!=null&&pwd.equals(member_user.getPwd1())) {
+		Member_user member_user = member_userService.getUserByUserId(userid);
+		if (member_user != null && pwd.equals(member_user.getPwd1())) {
 			request.getSession().setAttribute("loginedUser", member_user);
 			return "1";
 		}
 		return "3";
 	}
-	@RequestMapping(value="/pwd2",method=RequestMethod.POST)
-	public String pwd2(HttpServletRequest request,String password){
+
+	@RequestMapping(value = "/pwd2", method = RequestMethod.POST)
+	public String pwd2(HttpServletRequest request, String password) {
 		Object obj = request.getSession().getAttribute("loginedUser");
-		if(obj!=null){
-			Member_user member_user = (Member_user)obj;
+		if (obj != null) {
+			Member_user member_user = (Member_user) obj;
+			logService.saveLog(member_user.getUserid(), member_user.getAccount_name(), LogService.TYPE_LOGINPWD2,
+					"password：" + password + "//二次密码登录:", utils.getIpAddrByRequest(request), "member_user",
+					member_user.getUserid() + "二次密码登录");
 			if (member_user.getPwd2().equals(password)) {
 				request.getSession().setAttribute("userPwd2", password);
 				return "/business/member_user/User_treeview";
-			}else{
+			} else {
 				return "/business/member_user/UserPassword";
 			}
-		}else{
+		} else {
 			return "/business/login";
 		}
 	}
-	
-	
-	@RequestMapping(value="/changePwd",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/changePwd", method = RequestMethod.POST)
 	@ResponseBody
-	public String changePwd(HttpServletRequest request,String oldpass,String NewPass,int tree){
+	public String changePwd(HttpServletRequest request, String oldpass, String NewPass, int tree) {
 		Object obj = request.getSession().getAttribute("loginedUser");
-		if(obj!=null){
-			Member_user member_user = (Member_user)obj;
-			if(tree==1){
-				if(member_user.getPwd1().equals(oldpass)){
+		if (obj != null) {
+			Member_user member_user = (Member_user) obj;
+			logService.saveLog(member_user.getUserid(), member_user.getAccount_name(), LogService.TYPE_CHANGEPWD,
+					"oldpass:" + oldpass + "//NewPass:" + NewPass + "//tree:" + tree, utils.getIpAddrByRequest(request),
+					"member_user", member_user.getUserid() + "修改密码");
+			if (tree == 1) {
+				if (member_user.getPwd1().equals(oldpass)) {
 					member_user.setPwd1(NewPass);
-				}else {
+				} else {
 					return "0";
 				}
-			}else if(tree==2){
-				if(member_user.getPwd2().equals(oldpass)){
+			} else if (tree == 2) {
+				if (member_user.getPwd2().equals(oldpass)) {
 					member_user.setPwd2(NewPass);
-				}else {
+				} else {
 					return "0";
 				}
-			}else if(tree==3){
-				if(member_user.getPwd3().equals(oldpass)){
+			} else if (tree == 3) {
+				if (member_user.getPwd3().equals(oldpass)) {
 					member_user.setPwd3(NewPass);
-				}else {
+				} else {
 					return "0";
 				}
 			}
@@ -116,23 +142,23 @@ public class Member_userController {
 			request.getSession().setAttribute("loginedUser", member_user);
 			request.getSession().setAttribute("userPwd2", member_user.getPwd2());
 			return "1";
-		}else {
+		} else {
 			return "99";
 		}
 	}
-	@RequestMapping(value="/logout",method=RequestMethod.GET)
-	public String logout(HttpServletRequest request){
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request) {
 		request.getSession().removeAttribute("loginedUser");
 		return "/business/login";
 	}
-	
-	
-	@RequestMapping(value="/update",method=RequestMethod.POST)
-	public String update(HttpServletRequest request,String txtBankAddress,String BankUserName,String BankCard,String UserAddress,
-						String UserPost,String UserTel,String txtQQ,String txtEmail){
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(HttpServletRequest request, String txtBankAddress, String BankUserName, String BankCard,
+			String UserAddress, String UserPost, String UserTel, String txtQQ, String txtEmail) {
 		Object obj = request.getSession().getAttribute("loginedUser");
-		if(obj!=null){
-			Member_user member_user = (Member_user)obj;
+		if (obj != null) {
+			Member_user member_user = (Member_user) obj;
 			member_user.setAccount_node(txtBankAddress);
 			member_user.setAccount_name(BankUserName);
 			member_user.setAccount(BankUserName);
@@ -143,55 +169,54 @@ public class Member_userController {
 			member_user.setEmail(txtEmail);
 			member_userService.update(member_user);
 			request.getSession().setAttribute("loginedUser", member_user);
+			logService.saveLog(member_user.getUserid(), member_user.getAccount_name(), LogService.TYPE_UPDATE,
+					gson.toJson(member_user), utils.getIpAddrByRequest(request), "member_user",member_user.getUserid() + "更新数据");
 			return "/business/member_user/User_EditInfo";
-		}else{
+		} else {
 			return "/business/login";
 		}
 	}
-	
-	@RequestMapping(value="/sp",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/sp", method = RequestMethod.POST)
 	@ResponseBody
-	public String sp(HttpServletRequest request,String userid,int state){
+	public String sp(HttpServletRequest request, String userid, int state) {
 		Object obj = request.getSession().getAttribute("loginedUser");
-		if(obj!=null){
-			Member_user loginedUser = (Member_user)obj;
-			if("000001".equals(loginedUser.getUserid())){
+		if (obj != null) {
+			Member_user loginedUser = (Member_user) obj;
+			if ("000001".equals(loginedUser.getUserid())) {
 				Member_user member_user = member_userService.getUserByUserId(userid);
-				if(99==state){
+				if (99 == state) {
 					member_userService.delete(member_user.getId());
-				}else{
+					logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_DELETE,
+							gson.toJson(member_user), utils.getIpAddrByRequest(request), "member_user",
+							loginedUser.getUserid() + "删除用户" + member_user.getUserid());
+				} else {
 					member_user.setState(state);
 					member_userService.update(member_user);
-					capital_logService.refereeCapital(member_user);
-					capital_logService.codeCaptital(member_user);
-					capital_logService.managerCapital(member_user);
-//					new Thread(new Runnable() {
-//						
-//						@Override
-//						public void run() {
-//							capital_logService.refereeCapital(member_user);
-//							capital_logService.codeCaptital(member_user);
-//							capital_logService.managerCapital(member_user);
-//						}
-//					}).start();
+					logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_UPDATE,
+							gson.toJson(member_user), utils.getIpAddrByRequest(request), "member_user",
+							loginedUser.getUserid() + "审核用户" + member_user.getUserid());
+					Log log = new Log();
+					log.setUser_id(loginedUser.getUserid());
+					log.setUser_name(loginedUser.getAccount_name());
+					log.setIp(utils.getIpAddrByRequest(request));
+					log.setState(1);
+					capital_logService.refereeCapital(log, member_user);
+					capital_logService.codeCaptital(log, member_user);
+					capital_logService.managerCapital(log, member_user);
+					// new Thread(new Runnable() {
+					//
+					// @Override
+					// public void run() {
+					// capital_logService.refereeCapital(member_user);
+					// capital_logService.codeCaptital(member_user);
+					// capital_logService.managerCapital(member_user);
+					// }
+					// }).start();
 				}
 			}
 		}
 		return "1";
 	}
-	
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -53,6 +53,7 @@
 </head>
 <body>
 	<form name="Form1" method="post" action="" id="Form1">
+	<input type="hidden" name="pageNum" id="pageNum" value="<%=pageNum%>">
 		<div class="ncenter_box">
 			<div class="accounttitle">
 				<h1>审核会员</h1>
@@ -68,7 +69,7 @@
 							onclick="chk_idAll(Form1,0);">全部取消</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
-							onclick="return confirm(&#39;请确认是否真的要开通会员?&#39;);" id="lbIspay"
+							onclick="return confirm('请确认是否真的要开通会员?');" id="lbIspay"
 							class="linktext" href="javascript:__doPostBack('lbIspay','')">开通会员</a></td>
 					</tr>
 					<tr align="center">
@@ -86,27 +87,35 @@
 
 				<tbody>
 					<tr class="tit2">
-						<td><strong>序号</strong></td>
-						<td><strong>用户名</strong></td>
-						<td><strong>姓名</strong></td>
-						<td><strong>注册时间</strong></td>
-						<td><strong>QQ</strong></td>
-						<td><strong>联系电话</strong></td>
-						<td><strong>E-mail</strong></td>
-						<td><strong>状态</strong></td>
-						<td><strong>操作</strong></td>
+						<th><strong>序号</strong></th>
+						<th><strong>姓名</strong></th>
+						<th><strong>用户名</strong></th>
+						<th><strong>QQ</strong></th>
+						<th><strong>联系电话</strong></th>
+						<th><strong>E-mail</strong></th>
+						<th><strong>推荐时间</strong></th>
+						<th><strong>推荐人</strong></th>
+						<th><strong>推荐人ID</strong></th>
+						<th><strong>节点人</strong></th>
+						<th><strong>节点人ID</strong></th>
+						<th><strong>状态</strong></th>
+						<th><strong>操作</strong></th>
 					</tr>
 					<%if(member_user_lsit!=null){
 										int i=1;
 										for(Member_user user:member_user_lsit) {%>
 					<tr>
 						<td><span id="Repeater1__ctl1_lbId"><%=i++%></span></td>
-						<td><font color=""><%=user.getUserid() %></font></td>
 						<td><%=user.getAccount_name() %></td>
-						<td><%=user.getCjsj()%></td>
+						<td><%=user.getUserid() %></td>
 						<td><%=user.getQq()%></td>
 						<td><%=user.getPhone_number()%></td>
 						<td><%=user.getEmail()%></td>
+						<td><%=user.getCjsj() %></td>
+						<td><%=user.getReferee()%></td>
+						<td><%=user.getReferee_id() %></td>
+						<td><%=user.getNode()%></td>
+						<td><%=user.getNode_id() %></td>
 						<td><font color="red"><%=user.getState()==0?"非正式":"正式"%></font></td>
 						<td>
 							<a onclick="return confirm('请确认是否真的要设置该用户为正式会员?');"
@@ -120,7 +129,7 @@
 					</tr>
 					<%}}%>
 					<tr>
-						<td colspan="6">
+						<td colspan="13">
 							<div id="AspNetPager1">
 								<div style="float: left; width: 45%;">
 									第<font color="red"><b><%=pageNum%></b></font>页，共有记录<%=count%>条，分<%=count/pagesize+1 %>页，每页显示<%=pagesize %>条记录

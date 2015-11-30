@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fmd.dao.BaseDao;
 import com.fmd.service.BaseService;
+import com.fmd.service.LogService;
 
 
 /**
@@ -17,6 +18,8 @@ import com.fmd.service.BaseService;
 @Transactional
 public class BaseServiceImpl<T> implements BaseService<T> {
 	
+	@Resource(name = "logService")  
+    private LogService logService;
 	/**
 	 * 注入BaseDao
 	 */
