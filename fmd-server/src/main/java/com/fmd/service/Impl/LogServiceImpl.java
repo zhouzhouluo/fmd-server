@@ -1,6 +1,7 @@
 package com.fmd.service.Impl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -39,5 +40,13 @@ public class LogServiceImpl extends BaseServiceImpl<Log> implements LogService {
 		log.setTablename(table);
 		log.setOperation(operation);
 		logDao.save(log);
+	}
+	@Override
+	public List<Log> queryLog(String userid,String startTime, String endTime, int pagesize, int from) {
+		return logDao.queryLog(userid,startTime, endTime, pagesize, from);
+	}
+	@Override
+	public int countLog(String userid,String startTime, String endTime) {
+		return logDao.countLog(userid,startTime, endTime);
 	} 
 }  

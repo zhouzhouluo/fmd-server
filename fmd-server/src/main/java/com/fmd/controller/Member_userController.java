@@ -78,16 +78,18 @@ public class Member_userController {
 	public String login(HttpServletRequest request, HttpServletResponse response, String userid, String pwd,
 			String idcode) {
 		String imgVcode = (String) request.getSession().getAttribute("imgVcode");
-		logService.saveLog(userid, userid, LogService.TYPE_LOGIN, "userid:" + userid + "//pwd:" + pwd + "//" + "登录",
-				utils.getIpAddrByRequest(request), "member_user", userid + "登录系统");
 		if (!imgVcode.equalsIgnoreCase(idcode)) {
 			return "2";
 		}
 		Member_user member_user = member_userService.getUserByUserId(userid);
 		if (member_user != null && pwd.equals(member_user.getPwd1())) {
 			request.getSession().setAttribute("loginedUser", member_user);
+			logService.saveLog(userid, member_user.getAccount_name(), LogService.TYPE_LOGIN, "userid:" + userid + "//pwd:" + pwd + "//" + "登录",
+					utils.getIpAddrByRequest(request), "member_user", userid + "登录系统成功");
 			return "1";
 		}
+		logService.saveLog(userid, member_user!=null?member_user.getAccount_name():"", LogService.TYPE_LOGIN, "userid:" + userid + "//pwd:" + pwd + "//" + "登录",
+				utils.getIpAddrByRequest(request), "member_user", userid + "登录系统失败");
 		return "3";
 	}
 

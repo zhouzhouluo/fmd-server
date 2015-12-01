@@ -14,6 +14,7 @@ public class ImageServlet extends HttpServlet
 			throws ServletException, IOException {
 		MakePicture mp=new MakePicture() ;
 		String str=mp.drawPicture(60, 20,res.getOutputStream() ) ;
+		System.out.println("str------------------------------:"+str);
 		req.getSession().setAttribute("imgVcode", str) ;
 		res.getOutputStream().print(str) ;
 	}

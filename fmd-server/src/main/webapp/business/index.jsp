@@ -162,7 +162,7 @@
 					class="">系统管理</a>
 				<ul style="visibility: hidden;">
 						<li><a
-							href="${path}/business/manager/AdminLog.html"
+							href="${path}/business/manager/AdminLog.jsp"
 							target="content3">系统日志</a></li>
 					</ul></li>
 					<%} %>

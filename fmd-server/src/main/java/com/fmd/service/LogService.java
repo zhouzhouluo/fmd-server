@@ -1,5 +1,7 @@
 package com.fmd.service;
 
+import java.util.List;
+
 import javax.xml.soap.Detail;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -17,4 +19,6 @@ public interface LogService extends BaseService<Log> {
 	public final static int TYPE_CHANGEPWD = 6;
 	public final static int TYPE_LOGINPWD2 = 7;
 	void saveLog(String userid,String username,int type,String detail,String ip,String table,String operation);
+	List<Log> queryLog(String userid,String startTime,String endTime,int pagesize,int from);
+	int countLog(String userid,String startTime,String endTime);
 }  

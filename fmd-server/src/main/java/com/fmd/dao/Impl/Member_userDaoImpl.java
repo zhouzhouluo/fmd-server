@@ -19,7 +19,7 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 	@Override
 	public Member_user getUserByUserId(String userid) {
 		// TODO Auto-generated method stub
-		Query query = getSession().createQuery("from Member_user where userid = "+userid);
+		Query query = getSession().createQuery("from Member_user where userid = '"+userid+"'");
 		List<Member_user> member_users = query.list();      
         if(member_users!=null&&member_users.size()>0){
         	return member_users.get(0);
@@ -36,7 +36,7 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 
 	@Override
 	public List<Member_user> queryMember_users(String userid,int pagesize ,int from) {
-		Query query = getSession().createQuery("from Member_user where referee_id = "+userid);
+		Query query = getSession().createQuery("from Member_user where referee_id = '"+userid+"'");
 		query.setFirstResult(from); 
 		query.setMaxResults(pagesize); 
 		List<Member_user> member_users = query.list();      
@@ -45,7 +45,7 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 
 	@Override
 	public int countMember_users(String userid) {
-		Query query = getSession().createQuery("select count(0) from Member_user where referee_id = "+userid);
+		Query query = getSession().createQuery("select count(0) from Member_user where referee_id = '"+userid+"'");
 		return Integer.parseInt(query.uniqueResult().toString());
 	}
 
