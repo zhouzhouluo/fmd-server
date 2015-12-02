@@ -42,7 +42,7 @@
     }
 </style>
 </head>
-<body>
+<body onload="onlogin();">
 	<form name="Form1" method="post" action="${path}/member/login.action"
 		id="Form1" onsubmit="return frmchk(this);">
 		<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
@@ -75,7 +75,7 @@
 							验证码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<input name="idcode" type="text"
 							maxlength="16" id="idcode" class="text">
-							<img  src="${path}/imgVcode" id="imgVcode">
+							<img  src="" id="imgVcode">
 							<a href="javascript:;"
           						onclick="document.getElementById('imgVcode').src='${path}/imgVcode?'+new Date()">刷新</a>
 						</td>

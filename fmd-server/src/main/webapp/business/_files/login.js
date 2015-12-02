@@ -1,3 +1,6 @@
+function onlogin(){
+	document.getElementById('imgVcode').src=contextPath+'/imgVcode?'+new Date();
+}
 function createRequest() {
 	var t=$("#userid").val();
 	var z= /^[0-9]*$/;

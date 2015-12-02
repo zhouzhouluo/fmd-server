@@ -14,6 +14,7 @@ import com.fmd.entity.Member_user;
 import com.fmd.service.Capital_logService;
 import com.fmd.service.LogService;
 import com.fmd.service.Member_userService;
+import com.fmd.util.EncryptUtil;
 import com.fmd.util.utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -62,6 +63,14 @@ public class Member_userController {
 			member_user.setCjsj(new Date());
 			member_user.setState(0);
 			member_user.setCapital("0");
+			try {
+				member_user.setPwd1(EncryptUtil.encode(member_user.getPwd1()));
+				member_user.setPwd2(EncryptUtil.encode(member_user.getPwd2()));
+				member_user.setPwd3(EncryptUtil.encode(member_user.getPwd3()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			member_userService.save(member_user);
 			logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_CREATE,
 					gson.toJson(member_user), utils.getIpAddrByRequest(request), "member_user",
@@ -82,11 +91,18 @@ public class Member_userController {
 			return "2";
 		}
 		Member_user member_user = member_userService.getUserByUserId(userid);
-		if (member_user != null && pwd.equals(member_user.getPwd1())) {
-			request.getSession().setAttribute("loginedUser", member_user);
-			logService.saveLog(userid, member_user.getAccount_name(), LogService.TYPE_LOGIN, "userid:" + userid + "//pwd:" + pwd + "//" + "登录",
-					utils.getIpAddrByRequest(request), "member_user", userid + "登录系统成功");
-			return "1";
+		try {
+//			System.out.println("pwd-----------------:"+EncryptUtil.encode(pwd));
+//			System.out.println("member_user.getPwd1()-----------------:"+member_user.getPwd1());
+			if (member_user != null && EncryptUtil.encode(pwd).equals(member_user.getPwd1())) {
+				request.getSession().setAttribute("loginedUser", member_user);
+				logService.saveLog(userid, member_user.getAccount_name(), LogService.TYPE_LOGIN, "userid:" + userid + "//pwd:" + pwd + "//" + "登录",
+						utils.getIpAddrByRequest(request), "member_user", userid + "登录系统成功");
+				return "1";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		logService.saveLog(userid, member_user!=null?member_user.getAccount_name():"", LogService.TYPE_LOGIN, "userid:" + userid + "//pwd:" + pwd + "//" + "登录",
 				utils.getIpAddrByRequest(request), "member_user", userid + "登录系统失败");
@@ -101,10 +117,16 @@ public class Member_userController {
 			logService.saveLog(member_user.getUserid(), member_user.getAccount_name(), LogService.TYPE_LOGINPWD2,
 					"password：" + password + "//二次密码登录:", utils.getIpAddrByRequest(request), "member_user",
 					member_user.getUserid() + "二次密码登录");
-			if (member_user.getPwd2().equals(password)) {
-				request.getSession().setAttribute("userPwd2", password);
-				return "/business/member_user/User_treeview";
-			} else {
+			try {
+				if (member_user.getPwd2().equals(EncryptUtil.encode(password))) {
+					request.getSession().setAttribute("userPwd2", password);
+					return "/business/member_user/User_treeview";
+				} else {
+					return "/business/member_user/UserPassword";
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 				return "/business/member_user/UserPassword";
 			}
 		} else {
@@ -122,22 +144,37 @@ public class Member_userController {
 					"oldpass:" + oldpass + "//NewPass:" + NewPass + "//tree:" + tree, utils.getIpAddrByRequest(request),
 					"member_user", member_user.getUserid() + "修改密码");
 			if (tree == 1) {
-				if (member_user.getPwd1().equals(oldpass)) {
-					member_user.setPwd1(NewPass);
-				} else {
-					return "0";
+				try {
+					if (member_user.getPwd1().equals(EncryptUtil.encode(oldpass))) {
+						member_user.setPwd1(EncryptUtil.encode(NewPass));
+					} else {
+						return "0";
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			} else if (tree == 2) {
-				if (member_user.getPwd2().equals(oldpass)) {
-					member_user.setPwd2(NewPass);
-				} else {
-					return "0";
+				try {
+					if (member_user.getPwd2().equals(EncryptUtil.encode(oldpass))) {
+						member_user.setPwd2(EncryptUtil.encode(NewPass));
+					} else {
+						return "0";
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			} else if (tree == 3) {
-				if (member_user.getPwd3().equals(oldpass)) {
-					member_user.setPwd3(NewPass);
-				} else {
-					return "0";
+				try {
+					if (member_user.getPwd3().equals(EncryptUtil.encode(oldpass))) {
+						member_user.setPwd3(EncryptUtil.encode(NewPass));
+					} else {
+						return "0";
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 			member_userService.update(member_user);

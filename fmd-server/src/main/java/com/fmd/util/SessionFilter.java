@@ -38,12 +38,14 @@ public class SessionFilter extends OncePerRequestFilter {
     	String url = request.getRequestURL().toString();
 //    	System.out.println("url--------------------："+url);
         // 不过滤的uri
-        String[] notFilter = new String[] { "login.jsp", "index.jsp","login.action","index.html","pwd2.action"};
+        String[] notFilter = new String[] { "login.jsp", "index.jsp","login.action","index.html","pwd2.action","imgVcode"};
  
         // 请求的uri
         String uri = request.getRequestURI();
 //        System.out.println("uri--------------------："+uri);
         // uri中包含background时才进行过滤
+//        String imgVcode = (String)request.getSession().getAttribute("imgVcode") ;
+//        System.out.println("imgVcode------------------------------:"+imgVcode);
         if (true) {
             // 是否过滤
             boolean doFilter = true;

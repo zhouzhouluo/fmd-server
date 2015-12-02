@@ -1,8 +1,14 @@
 package com.fmd.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import javax.servlet.http.HttpServletRequest;
 
 public class utils {
+	private final static String format  = "yyyy-MM-dd HH:mm:ss";
 	/**
      * @param request IP
      * @return IP Address
@@ -48,5 +54,35 @@ public class utils {
 			break;
 		}
     	return _type;
+    }
+    
+    public static Date dateParse(String text){
+    	SimpleDateFormat sdf = new SimpleDateFormat(format);
+    	Date date=null;
+		try {
+			date = sdf.parse(text);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return date;
+    }
+    public static String dateFrom(Date date){
+    	SimpleDateFormat sdf = new SimpleDateFormat(format);
+    	String text=null;
+		try {
+			text = sdf.format(date);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return text;
+    }
+    public static String getLastMonth(Date date){
+    	date.setMonth(date.getMonth()-1);
+//    	GregorianCalendar calendar = new GregorianCalendar(date.getYear(), date.getMonth(), date.getDay());//灵活的输入年份，月份，日期，
+        SimpleDateFormat sdf = new SimpleDateFormat(format);//定义日期显示格式
+//        System.out.println(sdf.format(calendar.getTime()));//打印当前月份的下一个月份
+//        calendar.add(Calendar.MONTH, -1);//获取上个月月份
+//        System.out.println(sdf.format(calendar.getTime()));//输出结果
+        return sdf.format(date);
     }
 }

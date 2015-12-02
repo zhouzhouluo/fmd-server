@@ -76,7 +76,7 @@
 					</tr>
 					<tr>
 						<td>奖金余额： <span id="Label1"><%=member_user.getCapital() %></span>
-							&nbsp;&nbsp;提现总额：<%=member_user.getWithdraw()%>
+							&nbsp;&nbsp;提现总额：<%=member_user.getWithdraw()==null?"0":member_user.getWithdraw()%>
 						</td>
 					</tr>
 					<tr>
