@@ -42,7 +42,7 @@ public class SessionFilter extends OncePerRequestFilter {
  
         // 请求的uri
         String uri = request.getRequestURI();
-        System.out.println("uri--------------------eeeeeeeeeeeee："+uri);
+//        System.out.println("uri--------------------eeeeeeeeeeeee："+uri);
         // uri中包含background时才进行过滤
 //        String imgVcode = (String)request.getSession().getAttribute("imgVcode") ;
 //        System.out.println("imgVcode------------------------------:"+imgVcode);
