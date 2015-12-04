@@ -10,8 +10,8 @@ import java.io.IOException;
 public class MakePicture  //产生识别验证图像
 {   
 	private char charTable[]={
-		'a','A','b','B','c','C','d','D' ,'e','E' ,
-		'f','F','g','G','h','H','i','I','j','J' ,
+//		'a','A','b','B','c','C','d','D' ,'e','E' ,
+//		'f','F','g','G','h','H','i','I','j','J' ,
 		'0','1','2','3','4','5','6','7','8','9'
 	}; 
 	public String drawPicture(int width,int height,OutputStream os)

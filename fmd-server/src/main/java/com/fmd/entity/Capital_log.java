@@ -31,6 +31,7 @@ public class Capital_log {
 	private int recommend_pay;
 	private int see_paypoint_pay;
 	private int state;
+	private String total;
 	public int getId() {
 		return Id;
 	}
@@ -115,6 +116,10 @@ public class Capital_log {
 	public void setState(int state) {
 		this.state = state;
 	}
-	
-	
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
+	}
 }

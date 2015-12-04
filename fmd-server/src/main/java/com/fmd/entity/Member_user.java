@@ -41,6 +41,8 @@ public class Member_user {
 	private String leftid;
 	private String rightid;
 	private String withdraw;
+	private String total;
+	private int issend;
 	public int getId() {
 		return Id;
 	}
@@ -221,6 +223,17 @@ public class Member_user {
 	public void setWithdraw(String withdraw) {
 		this.withdraw = withdraw;
 	}
-	
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
+	}
+	public int getIssend() {
+		return issend;
+	}
+	public void setIssend(int issend) {
+		this.issend = issend;
+	}
 	
 }

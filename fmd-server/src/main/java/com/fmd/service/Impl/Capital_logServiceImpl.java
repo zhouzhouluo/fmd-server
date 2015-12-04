@@ -19,15 +19,13 @@ import com.fmd.entity.Member_user;
 import com.fmd.entity.User;
 import com.fmd.service.Capital_logService;
 import com.fmd.service.UserService;
+import com.fmd.util.utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 @Service("capital_logService")  
 @Transactional  
 public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> implements Capital_logService {  
-	private final static int TOUCH_PAY = 150;
-	private final static int RECOMMEND_PAY= 200;
-	private final static int SEE_PAYPOINT_PAY= 2;
 	private Gson gson = new GsonBuilder().create();
     /** 
      * 注入DAO 
@@ -67,19 +65,23 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
         	String nodes = member_userDao.getNodeList(p_user.getUserid());
         	String nodelist[] = nodes.split(",");
         	if(nCF2(nodelist.length)){
-        		String capital = (p_user.getCapital()!=null||!"".equals(p_user.getCapital()))?p_user.getCapital():"0";
-        		capital = String.valueOf(Integer.parseInt(capital)+150);
+        		String capital = (p_user.getCapital()!=null&&!"".equals(p_user.getCapital()))?p_user.getCapital():"0";
+        		capital = String.valueOf(Integer.parseInt(capital)+utils.TOUCH_PAY);
         		p_user.setCapital(capital);
+        		String total = (p_user.getTotal()!=null&&!"".equals(p_user.getTotal()))?p_user.getTotal():"0";
+        		total = String.valueOf(Integer.parseInt(total)+utils.TOUCH_PAY);
+        		p_user.setTotal(total);
         		Capital_log capital_log = new Capital_log();
         		capital_log.setNumber(p_user.getId());
-        		capital_log.setIncome(""+TOUCH_PAY);
-        		capital_log.setTouch_pay(TOUCH_PAY);
-        		capital_log.setDetail("管理奖收入"+TOUCH_PAY+"元");
+        		capital_log.setIncome(""+utils.TOUCH_PAY);
+        		capital_log.setTouch_pay(utils.TOUCH_PAY);
+        		capital_log.setDetail("管理奖收入"+utils.TOUCH_PAY+"元");
         		capital_log.setMember(p_user.getAccount_name());
         		capital_log.setMember_id(""+p_user.getUserid());
         		capital_log.setOperation(2);
         		capital_log.setState(1);
         		capital_log.setRemain(capital);
+        		capital_log.setTotal(total);
         		capital_log.setTime(new Date());
         		save(capital_log);
         		Log _log = log.clone();
@@ -87,7 +89,7 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
         		_log.setType(LogServiceImpl.TYPE_CREATE);
         		_log.setDetail(gson.toJson(capital_log));
         		_log.setTablename("capital_log");
-        		_log.setOperation(p_user.getUserid()+"管理奖收入"+TOUCH_PAY+"元");
+        		_log.setOperation(p_user.getUserid()+"管理奖收入"+utils.TOUCH_PAY+"元");
         		logDao.save(_log);
         		member_userDao.update(p_user);
         		_log = log.clone();
@@ -108,19 +110,23 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 	@Override
 	public void refereeCapital(Log log,Member_user member_user) {
 		Member_user referee_user = member_userDao.getUserByUserId(member_user.getReferee_id());
-		String capital = (referee_user.getCapital()!=null||!"".equals(referee_user.getCapital()))?referee_user.getCapital():"0";
-		capital = String.valueOf(Integer.parseInt(capital)+200);
+		String capital = (referee_user.getCapital()!=null&&!"".equals(referee_user.getCapital()))?referee_user.getCapital():"0";
+		capital = String.valueOf(Integer.parseInt(capital)+utils.RECOMMEND_PAY);
 		referee_user.setCapital(capital);
+		String total = (referee_user.getTotal()!=null&&!"".equals(referee_user.getTotal()))?referee_user.getTotal():"0";
+		total = String.valueOf(Integer.parseInt(total)+utils.RECOMMEND_PAY);
+		referee_user.setTotal(total);
 		Capital_log capital_log = new Capital_log();
 		capital_log.setNumber(referee_user.getId());
-		capital_log.setIncome(""+RECOMMEND_PAY);
-		capital_log.setRecommend_pay(RECOMMEND_PAY);
-		capital_log.setDetail("直接推荐奖收入"+RECOMMEND_PAY+"元");
+		capital_log.setIncome(""+utils.RECOMMEND_PAY);
+		capital_log.setRecommend_pay(utils.RECOMMEND_PAY);
+		capital_log.setDetail("直接推荐奖收入"+utils.RECOMMEND_PAY+"元");
 		capital_log.setMember(referee_user.getAccount_name());
 		capital_log.setMember_id(""+referee_user.getUserid());
 		capital_log.setOperation(1);
 		capital_log.setState(1);
 		capital_log.setRemain(capital);
+		capital_log.setTotal(total);
 		capital_log.setTime(new Date());
 		save(capital_log);
 		Log _log = log.clone();
@@ -128,7 +134,7 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 		_log.setType(LogServiceImpl.TYPE_CREATE);
 		_log.setDetail(gson.toJson(capital_log));
 		_log.setTablename("capital_log");
-		_log.setOperation(referee_user.getUserid()+"直接推荐奖收入"+RECOMMEND_PAY+"元");
+		_log.setOperation(referee_user.getUserid()+"直接推荐奖收入"+utils.RECOMMEND_PAY+"元");
 		logDao.save(_log);
 		member_userDao.update(referee_user);
 		_log = log.clone();
@@ -152,19 +158,23 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 			if(member_user==null){
 				break;
 			}
-			String capital = (member_user.getCapital()!=null||!"".equals(member_user.getCapital()))?member_user.getCapital():"0";
-			capital = String.valueOf(Integer.parseInt(capital)+2);
+			String capital = (member_user.getCapital()!=null&&!"".equals(member_user.getCapital()))?member_user.getCapital():"0";
+			capital = String.valueOf(Integer.parseInt(capital)+utils.SEE_PAYPOINT_PAY);
 			member_user.setCapital(capital);
+			String total = (member_user.getTotal()!=null&&!"".equals(member_user.getTotal()))?member_user.getTotal():"0";
+    		total = String.valueOf(Integer.parseInt(total)+utils.SEE_PAYPOINT_PAY);
+    		member_user.setTotal(total);
 			Capital_log capital_log = new Capital_log();
 			capital_log.setNumber(member_user.getId());
-			capital_log.setIncome(""+SEE_PAYPOINT_PAY);
-			capital_log.setSee_paypoint_pay(SEE_PAYPOINT_PAY);
-			capital_log.setDetail("见点奖收入"+SEE_PAYPOINT_PAY+"元");
+			capital_log.setIncome(""+utils.SEE_PAYPOINT_PAY);
+			capital_log.setSee_paypoint_pay(utils.SEE_PAYPOINT_PAY);
+			capital_log.setDetail("见点奖收入"+utils.SEE_PAYPOINT_PAY+"元");
 			capital_log.setMember(member_user.getAccount_name());
 			capital_log.setMember_id(""+member_user.getUserid());
 			capital_log.setOperation(3);
 			capital_log.setState(1);
 			capital_log.setRemain(capital);
+			capital_log.setTotal(total);
 			capital_log.setTime(new Date());
 			save(capital_log);
 			Log _log = log.clone();
@@ -172,7 +182,7 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 			_log.setType(LogServiceImpl.TYPE_CREATE);
 			_log.setDetail(gson.toJson(capital_log));
 			_log.setTablename("capital_log");
-			_log.setOperation(member_user.getUserid()+"见点奖收入"+SEE_PAYPOINT_PAY+"元");
+			_log.setOperation(member_user.getUserid()+"见点奖收入"+utils.SEE_PAYPOINT_PAY+"元");
 			logDao.save(_log);
 			member_userDao.update(member_user);
 			_log = log.clone();

@@ -25,6 +25,8 @@ public class Withdraw_log {
 	private String approve;
 	private String approve_id;
 	private int state;
+	private String account_node;
+	private String account;
 	public int getId() {
 		return Id;
 	}
@@ -109,6 +111,17 @@ public class Withdraw_log {
 	public void setState(int state) {
 		this.state = state;
 	}
-	
+	public String getAccount_node() {
+		return account_node;
+	}
+	public void setAccount_node(String account_node) {
+		this.account_node = account_node;
+	}
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
 	
 }

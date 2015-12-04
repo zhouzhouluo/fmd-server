@@ -48,12 +48,14 @@
 	<link href="${path}/business/_files/common.css" rel="stylesheet" media="screen" type="text/css">
 	<link href="${path}/business/_files/style.css" rel="stylesheet" media="screen" type="text/css">
 	<link href="${path}/business/_files/font.css" rel="stylesheet" media="all" type="text/css">
+	<script type="text/javascript" src="${path}/business/_files/jquery.js"></script>
+	<script type="text/javascript">
+		var contextPath = "<%=path%>";
+	</script>
 </head>
 <body onload="init_reg();">
 	<form name="Form1" method="post" action="${path}/member/save.action"
 		id="Form1">
-		<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
-			value="/wEPDwUKMTU1NjcyODM2MQ9kFgICAQ9kFhgCAg8PZBYCHgV2YWx1ZQUGMTExMTExZAIDDw9kFgIfAAUGMTExMTExZAIEDw9kFgIfAAUGMjIyMjIyZAIFDw9kFgIfAAUGMjIyMjIyZAIGDw9kFgIfAAUGMzMzMzMzZAIHDw9kFgIfAAUGMzMzMzMzZAIQDw8WAh4EVGV4dAUIODMxMTQyNTNkZAIRDxBkDxYCZgIBFgIQBQblt6bljLoFATBnEAUG5Y+z5Yy6BQExZ2RkAhIPEGQPFgZmAgECAgIDAgQCBRYGEAUP5raI6LS55Y2hKDEwMDApBQExZxAFD3ZscOS8muWRmCgzMDAwKQUBMmcQBRPph5HljaHkvJrlkZgoMTAwMDApBQEzZxAFE+mSu+WNoeS8muWRmCgyMDAwMCkFATRnEAUQ56S+5Yy65bqXKDMwMDAwKQUBNWcQBRTluILnuqfku6PnkIYoMTAwMDAwKQUBNmdkZAIgDxAPZBYCHghvbmNoYW5nZQULU2VsZWN0ZWQoKTtkZGQCIg8QD2QWAh8CBRVzZXRjaXR5KCk7b3V0X2NpdHkoKTtkZGQCIw8QD2QWAh8CBQtTZWxlY3RlZCgpO2RkZGTmy74PWaNS9tcVm1DpM5rrXQJTedO6gNiJnXdN2lMEAg==">
 		<div class="ncenter_box">
 			<div class="accounttitle">
 				<h1>会员注册</h1>
@@ -63,7 +65,7 @@
 				<tbody>
 					<tr bgcolor="#99CCFF" style="display:">
 						<td align="center" colspan="4" height="30">
-							账号信息（默认登录密码：111111 二级密码：222222 三级密码：333333）</td>
+							账号信息（默认登录密码：111111 二级密码：222222 三级密码：333333;）</td>
 					</tr>
 					<tr>
 						<td style="width: 90px; text-align: right">用户ID：</td>
@@ -81,7 +83,7 @@
 						<td colspan="2" align="left"><input name="pwd1"
 							type="password" maxlength="16" id="pwd1"
 							onkeyup="EvalPwdStrength(this.value);" value="111111"
-							style="border-width: 1px; border-style: Solid;">
+							style="border-width: 1px; border-style: Solid;"><font color="red">*必须填写</font>
 							默认密码111111</td>
 						<td style="display: none"><div class="d_default" id="d_pwd1">请输入6位以上字符，不允许空格。</div></td>
 					</tr>
@@ -89,7 +91,7 @@
 						<td style="width: 90px; text-align: right">再次确认：</td>
 						<td align="left"><input name="_pwd1" type="password"
 							maxlength="16" id="_pwd1" value="111111"
-							style="border-width: 1px; border-style: Solid;"></td>
+							style="border-width: 1px; border-style: Solid;"><font color="red">*必须填写</font></td>
 						<td><nobr>
 								<div class="ob_pws" id="pws">
 									<div class="ob_pws0" id="idSM1" style="display: none">
@@ -113,7 +115,7 @@
 						<td colspan="2" align="left"><input name="pwd2"
 							type="password" maxlength="16" id="pwd2"
 							onkeyup="EvalPwdStrength(this.value);" value="222222"
-							style="border-width: 1px; border-style: Solid;">
+							style="border-width: 1px; border-style: Solid;"><font color="red">*必须填写</font>
 							默认密码222222,一级密码和二级密码（二级密码）不能输入相同</td>
 						<td style="display: none"><div class="d_default" id="d_pwd2">请输入6位以上字符，不允许空格。</div></td>
 					</tr>
@@ -121,7 +123,7 @@
 						<td style="width: 90px; text-align: right">再次确认：</td>
 						<td colspan="2" align="left"><input name="_pwd2"
 							type="password" maxlength="16" id="_pwd2" value="222222"
-							style="border-width: 1px; border-style: Solid;"></td>
+							style="border-width: 1px; border-style: Solid;"><font color="red">*必须填写</font></td>
 						<td style="display: none"><div class="d_default" id="d__pwd2">请重复输入上面的密码。</div></td>
 					</tr>
 
@@ -130,7 +132,7 @@
 						<td colspan="2" align="left"><div>
 								<input name="pwd3" type="password" maxlength="16" id="pwd3"
 									onkeyup="EvalPwdStrength(this.value);" value="333333"
-									style="border-width: 1px; border-style: Solid;">
+									style="border-width: 1px; border-style: Solid;"><font color="red">*必须填写</font>
 								默认密码333333,一级密码和二级密码（二级密码）不能输入相同
 							</div></td>
 						<td style="display: none"><div class="d_default" id="DIV2"></div></td>
@@ -139,7 +141,7 @@
 						<td style="width: 90px; text-align: right">再次确认：</td>
 						<td colspan="2" align="left"><input name="_pwd3"
 							type="password" maxlength="16" id="_pwd3" value="333333"
-							style="border-width: 1px; border-style: Solid;"></td>
+							style="border-width: 1px; border-style: Solid;"><font color="red">*必须填写</font></td>
 						<td style="display: none"><div class="d_default" id="DIV3"></div></td>
 					</tr>
 
@@ -166,13 +168,13 @@
 					<tr style="display:">
 						<td style="width: 90px; text-align: right">推荐人ID：</td>
 						<td colspan="2" align="left"><input name="referee_id"
-							type="text" value="<%=member_user.getUserid() %>" maxlength="18"
-							id="referee_id" readOnly="true"
-							style="border-width: 1px; border-style: Solid; width: 160px;">
+							type="text" value="<%=member_user.getUserid() %>" maxlength="6"
+							id="referee_id"
+							style="border-width: 1px; border-style: Solid; width: 160px;" onchange="getRefree();"><font color="red">*必须填写</font>&nbsp;&nbsp;
 							姓名：<input name="referee" type="text"
 							value="<%=member_user.getAccount_name()%>" maxlength="10" readOnly="true"
 							id="referee"
-							style="border-width: 1px; border-style: Solid; width: 80px; display:">
+							style="border-width: 1px; border-style: Solid; width: 80px; display:"><font color="red">*必须填写</font>&nbsp;&nbsp;
 							<span id="chkout_uRe_stat"></span></td>
 						<td style="display: none"><div class="d_default"
 								id="d_referee">请输入4-18位字符，英文、数字的组合。</div></td>
@@ -181,13 +183,13 @@
 					<tr style="display:">
 						<td style="width: 90px; text-align: right">接点人ID：</td>
 						<td colspan="2" align="left"><input name="node_id"
-							type="text" value="<%=nodeuserid%>" maxlength="18" readOnly="true"
+							type="text" value="<%=nodeuserid%>" maxlength="6"
 							id="node_id"
-							style="border-width: 1px; border-style: Solid; width: 160px;">
+							style="border-width: 1px; border-style: Solid; width: 160px;" onchange="getNode();"><font color="red">*必须填写</font>&nbsp;&nbsp;
 							姓名：<input name="node" type="text" readOnly="true"
 							value="<%=nodename%>" maxlength="10"
 							id="node"
-							style="border-width: 1px; border-style: Solid; width: 80px; display:">
+							style="border-width: 1px; border-style: Solid; width: 80px; display:"><font color="red">*必须填写</font>&nbsp;&nbsp;
 							<span id="chkout_uFather_stat"></span></td>
 						<td style="display: none"><span>
 								<table border="0" cellpadding="0" cellspacing="0"
@@ -225,8 +227,8 @@
 					<tr style="display:">
 						<td style="width: 90px; text-align: right">姓名：</td>
 						<td colspan="2" align="left"><input name="account_name"
-							type="text" maxlength="14" id="account_name"
-							style="border-width: 1px; border-style: Solid;"></td>
+							type="text" maxlength="18" id="account_name"
+							style="border-width: 1px; border-style: Solid; width: 246px;"><font color="red">*必须填写</font>&nbsp;&nbsp;</td>
 						<td style="display: none"><div class="d_default"
 								id="d_account_name">请输入开户姓名。</div></td>
 					</tr>
@@ -244,24 +246,24 @@
 						<td colspan="2" style="height: 32px" align="left"><input
 							name="receiv_address" type="text" value="" maxlength="50"
 							id="receiv_address"
-							style="border-width: 1px; border-style: Solid; width: 246px;"></td>
+							style="border-width: 1px; border-style: Solid; width: 246px;"><font color="red">*必须填写</font>&nbsp;&nbsp;</td>
 						<td style="display: none"><div class="d_default"
 								id="d_receiv_address">请输入4-50位字符地址。</div></td>
 					</tr>
 
 					<tr style="display:">
 						<td style="width: 90px; text-align: right; height: 32px;">
-							QQ：</td>
+							微信：</td>
 						<td colspan="2" style="height: 32px" align="left"><input
 							name="qq" type="text" maxlength="20" id="qq"
-							style="border-width: 1px; border-style: Solid; width: 246px;"></td>
+							style="border-width: 1px; border-style: Solid; width: 246px;"><font color="red">*必须填写</font>&nbsp;&nbsp;</td>
 						<td style="display: none"><div class="d_default" id="DIV1"></div></td>
 					</tr>
 					<tr style="display: none">
 						<td style="width: 90px; text-align: right">邮编：</td>
 						<td colspan="2" align="left"><input name="zip_code"
 							type="text" value="111111" maxlength="6" id="zip_code"
-							style="border-width: 1px; border-style: Solid;"></td>
+							style="border-width: 1px; border-style: Solid;"><font color="red">*必须填写</font>&nbsp;&nbsp;</td>
 						<td style="display: none"><div class="d_default"
 								id="d_zip_code">请输入6位邮编。</div></td>
 					</tr>
@@ -269,7 +271,7 @@
 						<td style="width: 90px; text-align: right">联系电话：</td>
 						<td colspan="2" align="left"><input name="phone_number"
 							type="text" maxlength="12" id="phone_number"
-							style="border-width: 1px; border-style: Solid;"></td>
+							style="border-width: 1px; border-style: Solid; width: 246px;"><font color="red">*必须填写</font>&nbsp;&nbsp;</td>
 						<td style="display: none"><div class="d_default"
 								id="d_phone_number">请输入您的11或12位联系电话。</div></td>
 					</tr>
@@ -277,7 +279,7 @@
 						<td style="width: 90px; text-align: right">Email：</td>
 						<td colspan="2" align="left"><input name="email" type="text"
 							maxlength="30" id="email"
-							style="border-width: 1px; border-style: Solid; width: 246px;"></td>
+							style="border-width: 1px; border-style: Solid; width: 246px;"><font color="red">*必须填写</font>&nbsp;&nbsp;</td>
 						<td style="display: none"></td>
 					</tr>
 					<tr style="display:">
@@ -288,7 +290,7 @@
 								<option value="中国农业银行">中国农业银行</option>
 								<option value="中国建设银行">中国建设银行</option>
 								<option value="中国银行">中国银行</option>
-						</select> &nbsp;</td>
+						</select> &nbsp;<font color="red">*必须填写</font>&nbsp;&nbsp;</td>
 						<td style="display: none"></td>
 					</tr>
 					<tr style="display:">
@@ -338,7 +340,7 @@
 
 						</select> <span style="display:"> 银行点 <input name="account_node"
 								type="text" value="11" maxlength="50" id="account_node"
-								style="border-width: 1px; border-style: Solid; width: 150px;"></span>
+								style="border-width: 1px; border-style: Solid; width: 150px;" readonly="readonly"></span>
 						</td>
 						<td style="display: none"><div class="d_default"
 								id="d_account_address">请选择开户城市。</div></td>
@@ -348,7 +350,7 @@
 						<td style="width: 90px; text-align: right">银行卡号：</td>
 						<td colspan="2" align="left"><input name="account"
 							type="text" value="" maxlength="19" id="account"
-							style="border-width: 1px; border-style: Solid; width: 246px;"></td>
+							style="border-width: 1px; border-style: Solid; width: 246px;" ></td>
 						<td style="display: none"><div class="d_default"
 								id="d_account">请输入19位银行卡号。</div></td>
 					</tr>

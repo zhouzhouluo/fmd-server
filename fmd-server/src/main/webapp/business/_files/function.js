@@ -314,3 +314,73 @@ function cancel(id,state){
 		});
 	}
 }
+
+function getNode(){
+	document.Form1.node.value = "";
+	$.ajax({
+		// 提交数据的类型 POST GET
+		type : "POST",
+		contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+		// 提交的网址
+		url : contextPath + "/member/getNode.action",
+		// 提交的数据
+		data : {
+			userid : $("#node_id").val(),
+			area :$("#area").val(),
+		},
+		// 返回数据的格式
+		datatype : "text",// "xml", "html", "script", "json", "jsonp", "text".
+		// 在请求之前调用的函数
+		// beforeSend:function(){$("#msg").html("logining");},
+		// 成功返回之后调用的函数
+		success : function(data) {
+			if(data== 0){
+				alert("输入帐号无效或该帐号子节点已存在");
+			}else{
+				document.Form1.node.value = data;
+			}
+		},
+		// 调用执行后调用的函数
+		complete : function(XMLHttpRequest, textStatus) {
+			
+		},
+		// 调用出错执行的函数
+		error : function() {
+			// 请求出错处理
+		}
+	});
+}
+function getRefree(){
+	document.Form1.referee.value = "";
+	$.ajax({
+		// 提交数据的类型 POST GET
+		type : "POST",
+		contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+		// 提交的网址
+		url : contextPath + "/member/getRefree.action",
+		// 提交的数据
+		data : {
+			userid : $("#referee_id").val(),
+		},
+		// 返回数据的格式
+		datatype : "text",// "xml", "html", "script", "json", "jsonp", "text".
+		// 在请求之前调用的函数
+		// beforeSend:function(){$("#msg").html("logining");},
+		// 成功返回之后调用的函数
+		success : function(data) {
+			if(data== 0){
+				alert("输入帐号无效");
+			}else{
+				document.Form1.referee.value = data;
+			}
+		},
+		// 调用执行后调用的函数
+		complete : function(XMLHttpRequest, textStatus) {
+			
+		},
+		// 调用出错执行的函数
+		error : function() {
+			// 请求出错处理
+		}
+	});
+}

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 
 public class utils {
 	private final static String format  = "yyyy-MM-dd HH:mm:ss";
+	public final static int TOUCH_PAY = 100;
+	public final static int RECOMMEND_PAY= 200;
+	public final static int SEE_PAYPOINT_PAY= 2;
 	/**
      * @param request IP
      * @return IP Address

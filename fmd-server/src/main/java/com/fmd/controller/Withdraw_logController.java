@@ -49,7 +49,7 @@ public class Withdraw_logController {
 
 	@RequestMapping(value = "/take", method = RequestMethod.POST)
 	@ResponseBody
-	public String take(HttpServletRequest request, String pwd3) {
+	public String take(HttpServletRequest request, String pwd3,int take) {
 		Object obj = request.getSession().getAttribute("loginedUser");
 		Member_user member_user = null;
 		try {
@@ -59,7 +59,7 @@ public class Withdraw_logController {
 					return "2";
 				}
 				member_user = member_userService.getById(member_user.getId());
-				if (Integer.valueOf(member_user.getCapital()) >= 1000) {
+				if (Integer.valueOf(member_user.getCapital()) >= take&&take%100==0) {
 					Withdraw_log withdraw_log = new Withdraw_log();
 					withdraw_log.setCapital(1000);
 					withdraw_log.setNumber(member_user.getId());
@@ -67,22 +67,24 @@ public class Withdraw_logController {
 					withdraw_log.setMember_id(member_user.getUserid());
 					withdraw_log.setApply_time(new Date());
 					withdraw_log.setOperation(1);
-					withdraw_log.setDetail("奖金提现1000");
+					withdraw_log.setDetail("奖金提现"+take);
 					withdraw_log.setTax(0);
-					withdraw_log.setCapital(1000);
-					withdraw_log.setTake(1000);
+					withdraw_log.setCapital(take);
+					withdraw_log.setTake(take);
 					withdraw_log.setState(0);
+					withdraw_log.setAccount(member_user.getAccount());
+					withdraw_log.setAccount_node(member_user.getAccount_node());
 					withdraw_logService.save(withdraw_log);
 					logService.saveLog(member_user.getUserid(), member_user.getAccount_name(), LogService.TYPE_CREATE,
 							gson.toJson(withdraw_log), utils.getIpAddrByRequest(request), "withdraw_log",
-							member_user.getUserid() + "奖金提现1000");
+							member_user.getUserid() + "奖金提现"+take);
 					String capital = (member_user.getCapital() != null && !"".equals(member_user.getCapital()))
 							? member_user.getCapital() : "0";
-					capital = String.valueOf(Integer.parseInt(capital) - 1000);
+					capital = String.valueOf(Integer.parseInt(capital) - take);
 					member_user.setCapital(capital);
 					String withdraw = (member_user.getWithdraw() != null && !"".equals(member_user.getWithdraw()))
 							? member_user.getWithdraw() : "0";
-					withdraw = String.valueOf(Integer.parseInt(withdraw) + 1000);
+					withdraw = String.valueOf(Integer.parseInt(withdraw) + take);
 					member_user.setWithdraw(withdraw);
 					member_userService.update(member_user);
 					logService.saveLog(member_user.getUserid(), member_user.getAccount_name(), LogService.TYPE_UPDATE,
@@ -93,8 +95,8 @@ public class Withdraw_logController {
 					capital_log.setMember(member_user.getAccount_name());
 					capital_log.setNumber(member_user.getId());
 					capital_log.setOperation(4);
-					capital_log.setPayout("" + 1000);
-					capital_log.setDetail("奖金提现1000");
+					capital_log.setPayout("" + take);
+					capital_log.setDetail("奖金提现"+take);
 					capital_log.setState(2);
 					capital_log.setRemain(capital);
 					capital_log.setTime(new Date());
@@ -136,10 +138,10 @@ public class Withdraw_logController {
 					Member_user member_user = member_userService.getUserByUserId(withdraw_log.getMember_id());
 					String capital = (member_user.getCapital() != null && !"".equals(member_user.getCapital()))
 							? member_user.getCapital() : "0";
-					capital = String.valueOf(Integer.parseInt(capital) + 1000);
+					capital = String.valueOf(Integer.parseInt(capital) + withdraw_log.getCapital());
 					String withdraw = (member_user.getWithdraw() != null && !"".equals(member_user.getWithdraw()))
 							? member_user.getWithdraw() : "0";
-					withdraw = String.valueOf(Integer.parseInt(withdraw) - 1000);
+					withdraw = String.valueOf(Integer.parseInt(withdraw) - withdraw_log.getCapital());
 					member_user.setCapital(capital);
 					member_user.setWithdraw(withdraw);
 					member_userService.update(member_user);
@@ -150,14 +152,14 @@ public class Withdraw_logController {
 					capital_log.setMember(member_user.getAccount_name());
 					capital_log.setNumber(member_user.getId());
 					capital_log.setOperation(0);
-					capital_log.setIncome("" + 1000);
-					capital_log.setDetail("奖金提现1000--审批不通过");
+					capital_log.setIncome("" + withdraw_log.getCapital());
+					capital_log.setDetail("奖金提现"+withdraw_log.getCapital()+"--审批不通过");
 					capital_log.setState(1);
 					capital_log.setRemain(capital);
 					capital_log.setTime(new Date());
 					capital_logService.save(capital_log);
 					logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_CREATE,
-							gson.toJson(capital_log), utils.getIpAddrByRequest(request), "capital_log",loginedUser.getUserid() + "审批"+member_user.getUserid()+withdraw_log.getMember()+"提现不通过，奖金收入记录+1000");
+							gson.toJson(capital_log), utils.getIpAddrByRequest(request), "capital_log",loginedUser.getUserid() + "审批"+member_user.getUserid()+withdraw_log.getMember()+"提现不通过，奖金收入记录+"+withdraw_log.getCapital());
 				}
 			}
 		}
@@ -181,10 +183,10 @@ public class Withdraw_logController {
 					gson.toJson(withdraw_log), utils.getIpAddrByRequest(request), "withdraw_log",loginedUser.getUserid() + "提现取消");
 			String capital = (loginedUser.getCapital() != null || !"".equals(loginedUser.getCapital()))
 					? loginedUser.getCapital() : "0";
-			capital = String.valueOf(Integer.parseInt(capital) + 1000);
+			capital = String.valueOf(Integer.parseInt(capital) + withdraw_log.getCapital());
 			String withdraw = (loginedUser.getWithdraw() != null || !"".equals(loginedUser.getWithdraw()))
 					? loginedUser.getWithdraw() : "0";
-			withdraw = String.valueOf(Integer.parseInt(withdraw) - 1000);
+			withdraw = String.valueOf(Integer.parseInt(withdraw) - withdraw_log.getCapital());
 			loginedUser.setCapital(capital);
 			loginedUser.setWithdraw(withdraw);
 			member_userService.update(loginedUser);
@@ -195,14 +197,14 @@ public class Withdraw_logController {
 			capital_log.setMember(loginedUser.getAccount_name());
 			capital_log.setNumber(loginedUser.getId());
 			capital_log.setOperation(0);
-			capital_log.setIncome("" + 1000);
-			capital_log.setDetail("奖金提现1000--取消");
+			capital_log.setIncome("" + withdraw_log.getCapital());
+			capital_log.setDetail("奖金提现"+withdraw_log.getCapital()+"--取消");
 			capital_log.setState(1);
 			capital_log.setRemain(capital);
 			capital_log.setTime(new Date());
 			capital_logService.save(capital_log);
 			logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_CREATE,
-					gson.toJson(capital_log), utils.getIpAddrByRequest(request), "capital_log",loginedUser.getUserid() + "提现取消，奖金收入记录+1000");
+					gson.toJson(capital_log), utils.getIpAddrByRequest(request), "capital_log",loginedUser.getUserid() + "提现取消，奖金收入记录+"+withdraw_log.getCapital());
 		}
 		return "1";
 	}

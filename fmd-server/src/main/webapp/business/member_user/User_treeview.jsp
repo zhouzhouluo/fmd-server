@@ -282,10 +282,6 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 <body>
 	<noscript>&lt;iframe src=*.html&gt;&lt;/iframe&gt;</noscript>
 	<form name="Form1" method="post" action="User_treeview.html" id="Form1">
-		<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
-		<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT"
-			value="">
-
 		<script type="text/javascript">
 		<!--
 			var theForm = document.forms['Form1'];
@@ -301,16 +297,12 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 			}
 		// -->
 		</script>
-		<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
-			value="/wEWAwKe7rj8CwKvruq2CALS9pLoCB2H0SVU9AgPsKw4lYN/WY/t+PHHb/KrX9VUbyfdp7qy">
-
 		<div class="ncenter_box">
 			<div class="accounttitle">
 				<h1>团队网络</h1>
 			</div>
-
 			<table class="tab2">
-				<!-- <tbody>
+				<tbody>
 					<tr>
 						<td class="head" background="login_08z.gif" style="height: 30px"><strong>&nbsp;<span
 								class="style3">会员系谱图<input name="UserName" type="text"
@@ -319,643 +311,742 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 							id="action" class="buttonCN" value="跳转"> <span
 							id="FatherUrl"></span></td>
 					</tr>
-				</tbody> -->
+				</tbody>
 			</table>
 			<table class="tab2">
 				<tbody>
-					<tr>
-						<td><span id="lbTree"><table width="100%" border="0"
-									align="center" cellpadding="0" cellspacing="0"
-									class="tb_border">
-									<tbody>
-										<tr>
-											<td bgcolor="#f6f6ec">
-												<table width="100%" border="0" cellspacing="1"
-													cellpadding="4">
-													<tbody>
-														<tr class="text">
-															<td><table width="100%" border="0" cellpadding="1"
-																	cellspacing="1">
-																	<tbody>
-																		<tr align="center">
-																			<td class="borderlrt" width="100%" valign="top"
-																				title="第1层"><img width="12" height="0"><br>
-																				<table width="100" cellspacing="0" cellpadding="0"
-																					border="0" class="tablefilter">
-																					<tbody>
-																						<%if(tree[0]!=null&&!"".equals(tree[0])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[0]);
-																									tree[1]=member_user.getLeftid();
-																									tree[2]=member_user.getRightid();
-																						%>																							
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><%=tree[0]%></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2"  class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei"></td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																		</tr>
-																		<tr align="center">
-																			<td class="borderno" width="100%" valign="top">
-																				<img
-																				src="${path}/business/_files/t_tree_bottom_l.gif"
-																				alt="height=30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_top.gif"
-																				alt="父节点" height="30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_bottom_r.gif"
-																				alt="height=30">
-																			</td>
-																		</tr>
-																	</tbody>
-																</table>
-																<table width="100%" border="0" cellpadding="1"
-																	cellspacing="1">
-																	<tbody>
-																		<tr align="center">
-																			<td class="borderlrt" width="50%" valign="top"
-																				title="第2层"><img width="12" height="0"><br>
-																				<table width="100" cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[1]!=null&&!"".equals(tree[1])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[1]);
-																									tree[3]=member_user.getLeftid();
-																									tree[4]=member_user.getRightid();
-																						%>																							
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[1]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei"><a
-																									href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=0"
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																			<td class="borderlrt" width="50%" valign="top"
-																				title="第2层"><img width="12" height="0"><br>
-																				<table width="100" cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[2]!=null&&!"".equals(tree[2])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[2]);
-																									tree[5]=member_user.getLeftid();
-																									tree[6]=member_user.getRightid();
-																						%>																					
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[2]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei"><a
-																									href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=1"
-																									title="推荐">[空位]<br>推荐
-																								</a></td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																		</tr>
-																		<tr align="center">
-																			<td class="borderno" width="50%" valign="top"><img
-																				src="${path}/business/_files/t_tree_bottom_l.gif"
-																				alt="height=30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_top.gif"
-																				alt="父节点" height="30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_bottom_r.gif"
-																				alt="height=30"></td>
-																			<td class="borderno" width="50%" valign="top"><img
-																				src="${path}/business/_files/t_tree_bottom_l.gif"
-																				alt="height=30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_top.gif"
-																				alt="父节点" height="30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_bottom_r.gif"
-																				alt="height=30"></td>
-																		</tr>
-																	</tbody>
-																</table>
-																<table width="100%" border="0" cellpadding="1"
-																	cellspacing="1">
-																	<tbody>
-																		<tr align="center">
-																			<td class="borderlrt" width="25%" valign="top"
-																				title="第3层"><img width="12" height="0"><br>
-																				<table width="100" cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[3]!=null&&!"".equals(tree[3])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[3]);
-																									tree[7]=member_user.getLeftid();
-																									tree[8]=member_user.getRightid();
-																						%>																							
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[3]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[1]%>&aere=0" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																			<td class="borderlrt" width="25%" valign="top"
-																				title="第3层"><img width="12" height="0"><br>
-																				<table cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[4]!=null&&!"".equals(tree[4])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[4]);
-																									tree[9]=member_user.getLeftid();
-																									tree[10]=member_user.getRightid();
-																						%>																						
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[4]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[1]%>&aere=1" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																			<td class="borderlrt" width="25%" valign="top"
-																				title="第3层"><img width="12" height="0"><br>
-																				<table cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[5]!=null&&!"".equals(tree[5])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[5]);
-																									tree[11]=member_user.getLeftid();
-																									tree[12]=member_user.getRightid();
-																						%>																						
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[5]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[2]%>&aere=0" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																			<td class="borderlrt" width="25%" valign="top"
-																				title="第3层"><img width="12" height="0"><br>
-																				<table cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[6]!=null&&!"".equals(tree[6])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[6]);
-																									tree[13]=member_user.getLeftid();
-																									tree[14]=member_user.getRightid();
-																						%>																						
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[6]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[2]%>&aere=1" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																		</tr>
-																		<tr align="center">
-																			<td class="borderno" width="25%" valign="top"><img
-																				src="${path}/business/_files/t_tree_bottom_l.gif"
-																				alt="height=30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_top.gif"
-																				alt="父节点" height="30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_bottom_r.gif"
-																				alt="height=30"></td>
-																			<td class="borderno" width="25%" valign="top"><img
-																				src="${path}/business/_files/t_tree_bottom_l.gif"
-																				alt="height=30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_top.gif"
-																				alt="父节点" height="30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_bottom_r.gif"
-																				alt="height=30"></td>
-																			<td class="borderno" width="25%" valign="top"><img
-																				src="${path}/business/_files/t_tree_bottom_l.gif"
-																				alt="height=30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_top.gif"
-																				alt="父节点" height="30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_bottom_r.gif"
-																				alt="height=30"></td>
-																			<td class="borderno" width="25%" valign="top"><img
-																				src="${path}/business/_files/t_tree_bottom_l.gif"
-																				alt="height=30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_top.gif"
-																				alt="父节点" height="30"><img
-																				src="${path}/business/_files/t_tree_line.gif"
-																				width="25%" height="30"><img
-																				src="${path}/business/_files/t_tree_bottom_r.gif"
-																				alt="height=30"></td>
-																		</tr>
-																	</tbody>
-																</table>
-																<table width="100%" border="0" cellpadding="1"
-																	cellspacing="1">
-																	<tbody>
-																		<tr align="center">
-																			<td class="borderlrt" width="12%" valign="top"
-																				title="第4层"><img width="12" height="0"><br>
-																				<table width="100" cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[7]!=null&&!"".equals(tree[7])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[7]);
-																						%>																						
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[7]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																										&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[3]%>&aere=0" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																			<td class="borderlrt" width="12%" valign="top"
-																				title="第4层"><img width="12" height="0"><br>
-																				<table cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[8]!=null&&!"".equals(tree[8])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[8]);
-																						%>																						
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[8]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																										&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[3]%>&aere=1" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																			<td class="borderlrt" width="12%" valign="top"
-																				title="第4层"><img width="12" height="0"><br>
-																				<table width="100" cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[9]!=null&&!"".equals(tree[9])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[9]);
-																						%>																					
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[9]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																										&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[4]%>&aere=0" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																			<td class="borderlrt" width="12%" valign="top"
-																				title="第4层"><img width="12" height="0"><br>
-																				<table width="100" cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[10]!=null&&!"".equals(tree[10])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[10]);
-																						%>																							
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[10]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																										&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[4]%>&aere=1" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																			<td class="borderlrt" width="12%" valign="top"
-																				title="第4层"><img width="12" height="0"><br>
-																				<table width="100" cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[11]!=null&&!"".equals(tree[11])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[11]);
-																						%>																						
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[11]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																										&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[5]%>&aere=0" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																			<td class="borderlrt" width="12%" valign="top"
-																				title="第4层"><img width="12" height="0"><br>
-																				<table width="100" cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[12]!=null&&!"".equals(tree[12])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[12]);
-																						%>																						
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[12]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																										&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[5]%>&aere=1" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																			<td class="borderlrt" width="12%" valign="top"
-																				title="第4层"><img width="12" height="0"><br>
-																				<table width="100" cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[13]!=null&&!"".equals(tree[13])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[13]);
-																						%>																						
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[13]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																										&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[6]%>&aere=0" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																			<td class="borderlrt" width="12%" valign="top"
-																				title="第4层"><img width="12" height="0"><br>
-																				<table width="100" cellspacing="0" cellpadding="0"
-																					class="tablefilter">
-																					<tbody>
-																						<%if(tree[14]!=null&&!"".equals(tree[14])){
-																									Member_user member_user= member_userService.getUserByUserId(tree[14]);
-																						%>																						
-																						<tr align="center">
-																							<td colspan="2" class="tdfilter ulevel1"><a
-																								href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[14]%></a></td>
-																						</tr>
-																						<tr align="center" bgcolor="#006600">
-																							<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
-																								bgcolor="#eeeeee">
-																								<%=member_user.getAccount_name() %>
-																							</td>
-																						</tr>
-																						<%}else{ %>
-																							<tr align="center">
-																								<td class="kongwei">
-																								<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																										&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
-																									<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[6]%>&aere=1" title="推荐">[空位]<br>推荐</a>
-																								<%}else{ %>
-																									[空位]
-																								<%}%>
-																								</td>
-																							</tr>
-																						<%}%>
-																					</tbody>
-																				</table></td>
-																		</tr>
-																		<tr align="center">
-																		</tr>
-																	</tbody>
-																</table></td>
-														</tr>
-													</tbody>
-												</table>
-												<table width="100%" border="0" cellspacing="1"
-													cellpadding="4">
-													<tbody>
-														<tr align="center" class="head">
-															<td>
-																<table width="300" border="0" cellspacing="1"
-																	cellpadding="4"
-																	style="background-color: #FFFFFF; border: solid" 1px=""
-																	#ffcccc="">
-																	<tbody>
-																		<tr class="head" align="center">
-																			<td width="80">下部底色</td>
-																			<td class="lshy">非正式会员</td>
-																			<td class="zshy">正式会员</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</td>
-										</tr>
-									</tbody>
-								</table></span></td>
+							<tr class="text">
+								<td><table width="100%" border="0" cellpadding="1"
+										cellspacing="1">
+										<tbody>
+											<tr align="center">
+												<td class="borderlrt" width="100%" valign="top"
+													title="第1层"><img width="12" height="0"><br>
+													<table cellspacing="0" cellpadding="0"
+														border="0" class="tablefilter">
+														<tbody>
+															<%if(tree[0]!=null&&!"".equals(tree[0])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[0]);
+																		tree[1]=member_user.getLeftid();
+																		tree[2]=member_user.getRightid();
+															%>																							
+															<tr align="center" >
+																<td colspan="2" class="tdfilter ulevel1"><%=tree[0]%></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2"  class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei"></td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr align="center">
+												<td class="borderno" width="100%" valign="top">
+													<img
+													src="${path}/business/_files/t_tree_bottom_l.gif"
+													alt="height=30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_top.gif"
+													alt="父节点" height="30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_bottom_r.gif"
+													alt="height=30">
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<table width="100%" border="0" cellpadding="1"
+										cellspacing="1">
+										<tbody>
+											<tr align="center">
+												<td class="borderlrt" width="50%" valign="top"
+													title="第2层"><img width="12" height="0"><br>
+													<table width="100" cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[1]!=null&&!"".equals(tree[1])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[1]);
+																		tree[3]=member_user.getLeftid();
+																		tree[4]=member_user.getRightid();
+															%>																							
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[1]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei"><a
+																		href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=0"
+																		title="产品订购"><br>产品订购
+																	</a></td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+												<td class="borderlrt" width="50%" valign="top"
+													title="第2层"><img width="12" height="0"><br>
+													<table width="100" cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[2]!=null&&!"".equals(tree[2])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[2]);
+																		tree[5]=member_user.getLeftid();
+																		tree[6]=member_user.getRightid();
+															%>																					
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[2]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei"><a
+																		href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=1"
+																		title="推荐"><br>产品订购
+																	</a></td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr align="center">
+												<td class="borderno" width="50%" valign="top"><img
+													src="${path}/business/_files/t_tree_bottom_l.gif"
+													alt="height=30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_top.gif"
+													alt="父节点" height="30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_bottom_r.gif"
+													alt="height=30"></td>
+												<td class="borderno" width="50%" valign="top"><img
+													src="${path}/business/_files/t_tree_bottom_l.gif"
+													alt="height=30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_top.gif"
+													alt="父节点" height="30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_bottom_r.gif"
+													alt="height=30"></td>
+											</tr>
+										</tbody>
+									</table>
+									<table width="100%" border="0" cellpadding="1"
+										cellspacing="1">
+										<tbody>
+											<tr align="center">
+												<td class="borderlrt" width="25%" valign="top"
+													title="第3层"><img width="12" height="0"><br>
+													<table width="100" cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[3]!=null&&!"".equals(tree[3])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[3]);
+																		tree[7]=member_user.getLeftid();
+																		tree[8]=member_user.getRightid();
+															%>																							
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[3]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[1]%>&aere=0" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+												<td class="borderlrt" width="25%" valign="top"
+													title="第3层"><img width="12" height="0"><br>
+													<table cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[4]!=null&&!"".equals(tree[4])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[4]);
+																		tree[9]=member_user.getLeftid();
+																		tree[10]=member_user.getRightid();
+															%>																						
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[4]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[1]%>&aere=1" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+												<td class="borderlrt" width="25%" valign="top"
+													title="第3层"><img width="12" height="0"><br>
+													<table cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[5]!=null&&!"".equals(tree[5])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[5]);
+																		tree[11]=member_user.getLeftid();
+																		tree[12]=member_user.getRightid();
+															%>																						
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[5]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[2]%>&aere=0" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+												<td class="borderlrt" width="25%" valign="top"
+													title="第3层"><img width="12" height="0"><br>
+													<table cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[6]!=null&&!"".equals(tree[6])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[6]);
+																		tree[13]=member_user.getLeftid();
+																		tree[14]=member_user.getRightid();
+															%>																						
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[6]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[2]%>&aere=1" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr align="center">
+												<td class="borderno" width="25%" valign="top"><img
+													src="${path}/business/_files/t_tree_bottom_l.gif"
+													alt="height=30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_top.gif"
+													alt="父节点" height="30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_bottom_r.gif"
+													alt="height=30"></td>
+												<td class="borderno" width="25%" valign="top"><img
+													src="${path}/business/_files/t_tree_bottom_l.gif"
+													alt="height=30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_top.gif"
+													alt="父节点" height="30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_bottom_r.gif"
+													alt="height=30"></td>
+												<td class="borderno" width="25%" valign="top"><img
+													src="${path}/business/_files/t_tree_bottom_l.gif"
+													alt="height=30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_top.gif"
+													alt="父节点" height="30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_bottom_r.gif"
+													alt="height=30"></td>
+												<td class="borderno" width="25%" valign="top"><img
+													src="${path}/business/_files/t_tree_bottom_l.gif"
+													alt="height=30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_top.gif"
+													alt="父节点" height="30"><img
+													src="${path}/business/_files/t_tree_line.gif"
+													width="25%" height="30"><img
+													src="${path}/business/_files/t_tree_bottom_r.gif"
+													alt="height=30"></td>
+											</tr>
+										</tbody>
+									</table>
+									<table width="100%" border="0" cellpadding="1"
+										cellspacing="1">
+										<tbody>
+											<tr align="center">
+												<td class="borderlrt" width="12%" valign="top"
+													title="第4层"><img width="12" height="0"><br>
+													<table width="100" cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[7]!=null&&!"".equals(tree[7])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[7]);
+															%>																						
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[7]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[3]%>&aere=0" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+												<td class="borderlrt" width="12%" valign="top"
+													title="第4层"><img width="12" height="0"><br>
+													<table cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[8]!=null&&!"".equals(tree[8])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[8]);
+															%>																						
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[8]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[3]%>&aere=1" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+												<td class="borderlrt" width="12%" valign="top"
+													title="第4层"><img width="12" height="0"><br>
+													<table width="100" cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[9]!=null&&!"".equals(tree[9])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[9]);
+															%>																					
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[9]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[4]%>&aere=0" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+												<td class="borderlrt" width="12%" valign="top"
+													title="第4层"><img width="12" height="0"><br>
+													<table width="100" cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[10]!=null&&!"".equals(tree[10])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[10]);
+															%>																							
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[10]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[4]%>&aere=1" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+												<td class="borderlrt" width="12%" valign="top"
+													title="第4层"><img width="12" height="0"><br>
+													<table width="100" cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[11]!=null&&!"".equals(tree[11])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[11]);
+															%>																						
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[11]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[5]%>&aere=0" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+												<td class="borderlrt" width="12%" valign="top"
+													title="第4层"><img width="12" height="0"><br>
+													<table width="100" cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[12]!=null&&!"".equals(tree[12])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[12]);
+															%>																						
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[12]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[5]%>&aere=1" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+												<td class="borderlrt" width="12%" valign="top"
+													title="第4层"><img width="12" height="0"><br>
+													<table width="100" cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[13]!=null&&!"".equals(tree[13])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[13]);
+															%>																						
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[13]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[6]%>&aere=0" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+												<td class="borderlrt" width="12%" valign="top"
+													title="第4层"><img width="12" height="0"><br>
+													<table width="100" cellspacing="0" cellpadding="0"
+														class="tablefilter">
+														<tbody>
+															<%if(tree[14]!=null&&!"".equals(tree[14])){
+																		Member_user member_user= member_userService.getUserByUserId(tree[14]);
+															%>																						
+															<tr align="center">
+																<td colspan="2" class="tdfilter ulevel1"><a
+																	href="${path}/business/member_user/User_treeview.jsp?userid=<%=member_user.getUserid()%>"><%=tree[14]%></a></td>
+															</tr>
+															<tr align="center" bgcolor="#006600">
+																<td colspan="2" class="<%=1==member_user.getState()?"zshy":"lshy"%>"
+																	bgcolor="#eeeeee">
+																	<%=member_user.getAccount_name() %>
+																</td>
+															</tr>
+															<tr bgcolor="#006600">
+																<td bgcolor="#eeeeee" style="">
+																	 <span style="font-size:10px">左&nbsp;<%=member_userService.countChildList(member_user.getLeftid())%></span>
+																</td>
+																<td bgcolor="#eeeeee">
+																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
+																</td>
+															</tr>
+															<%}else{ %>
+																<tr align="center">
+																	<td class="kongwei">
+																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[6]%>&aere=1" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
+																</tr>
+															<%}%>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr align="center">
+											</tr>
+										</tbody>
+									</table></td>
+							</tr>
+						</tbody>
+					</table>
+			<table width="100%" border="0" cellspacing="1" cellpadding="4">
+				<tbody>
+					<tr align="center" class="head">
+						<td>
+							<table width="300" border="0" cellspacing="1" cellpadding="4"
+								style="background-color: #FFFFFF; border: solid" 1px=""
+								#ffcccc="">
+								<tbody>
+									<tr class="head" align="center">
+										<td width="80">下部底色</td>
+										<td class="lshy">非正式会员</td>
+										<td class="zshy">正式会员</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
 					</tr>
 				</tbody>
 			</table>
-
-
 		</div>
 	</form>
 </body>

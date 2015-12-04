@@ -1,5 +1,7 @@
 package com.fmd.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -63,6 +65,8 @@ public class Member_userController {
 			member_user.setCjsj(new Date());
 			member_user.setState(0);
 			member_user.setCapital("0");
+			member_user.setTotal("0");
+			member_user.setIssend(0);
 			try {
 				member_user.setPwd1(EncryptUtil.encode(member_user.getPwd1()));
 				member_user.setPwd2(EncryptUtil.encode(member_user.getPwd2()));
@@ -229,7 +233,7 @@ public class Member_userController {
 					logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_DELETE,
 							gson.toJson(member_user), utils.getIpAddrByRequest(request), "member_user",
 							loginedUser.getUserid() + "删除用户" + member_user.getUserid());
-				} else {
+				} else if(1 == state){
 					member_user.setState(state);
 					member_userService.update(member_user);
 					logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_UPDATE,
@@ -257,5 +261,58 @@ public class Member_userController {
 		}
 		return "1";
 	}
-
+	
+	@RequestMapping(value = "/getNode", method = RequestMethod.POST)
+//	@ResponseBody
+	public void getNode(HttpServletResponse response,String userid,int area) {
+		response.setContentType("text/html;charset=UTF-8");  
+		System.out.println("userid:"+userid);
+		System.out.println("area:"+area);
+		Member_user member_user = member_userService.getUserByUserId(userid);
+		String name = "0";
+		if(area==0&&member_user!=null&&(member_user.getLeftid()==null||"".equals(member_user.getLeftid()))){
+			name =  member_user.getAccount_name();
+		}else if(area==1&&member_user!=null&&(member_user.getRightid()==null||"".equals(member_user.getRightid()))){
+			name =  member_user.getAccount_name();
+		}else {
+			name =  "0";
+		}
+		response.setContentType("text/html;charset=utf-8");
+        response.setHeader("Cache-Control", "no-cache");  
+        PrintWriter out;
+		try {
+			out = response.getWriter();//输出中文，这一句一定要放到response.setContentType("text/html;charset=utf-8"),  response.setHeader("Cache-Control", "no-cache")后面，否则中文返回到页面是乱码  
+			out.print(name);
+	        out.flush();
+	        out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	}
+	@RequestMapping(value = "/getRefree", method = RequestMethod.POST)
+//	@ResponseBody
+	public void getRefree(HttpServletResponse response,String userid) {
+		System.out.println("userid111111111111111:"+userid);
+		Member_user member_user = member_userService.getUserByUserId(userid);
+		String name = "0";
+		if(member_user!=null){
+			System.out.println("member_user.getAccount_name():"+member_user.getAccount_name());
+			name = member_user.getAccount_name();
+		}else {
+			name = "0";
+		}
+		response.setContentType("text/html;charset=utf-8");
+        response.setHeader("Cache-Control", "no-cache");  
+        PrintWriter out;
+		try {
+			out = response.getWriter();//输出中文，这一句一定要放到response.setContentType("text/html;charset=utf-8"),  response.setHeader("Cache-Control", "no-cache")后面，否则中文返回到页面是乱码  
+			out.print(name);
+	        out.flush();
+	        out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
 }

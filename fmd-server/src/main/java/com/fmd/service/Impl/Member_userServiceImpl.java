@@ -125,7 +125,17 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
 	public int countMember_Dsp(int state) {
 		return member_userDao.countMember_Dsp(state);
 	}
-	 
+	
+	
+	@Override
+	public int countChildList(String userid) {
+		if(userid==null||"".equals(userid)){
+			return 0;
+		}
+		String nodes = member_userDao.getNodeList(userid);
+		String nodelist[] = nodes.split(",");
+		return nodelist.length-1;
+	}
 }  
 
 

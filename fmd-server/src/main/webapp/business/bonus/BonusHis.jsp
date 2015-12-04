@@ -109,6 +109,7 @@
 						<th><strong>支出</strong></th>
 						<th><strong>入账</strong></th>
 						<th><strong>余额</strong></th>
+						<th><strong>总额</strong></th>
 						<th style="display: none"><strong>实际</strong></th>
 					</tr>
 					<%
@@ -133,6 +134,7 @@
 						<td><%=log.getPayout()==null?"0":"-"+log.getPayout()%></td>
 						<td><%=log.getIncome()==null?"0":"+"+log.getIncome()%></td>
 						<td><%=log.getRemain()%></td>
+						<td><%=log.getTotal()%></td>
 					</tr>
 					<%}}%>
 					<tr>

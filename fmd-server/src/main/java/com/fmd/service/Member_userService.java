@@ -16,4 +16,5 @@ public interface Member_userService extends BaseService<Member_user> {
 	int countTree(String userid);
 	List<Member_user> queryMember_Dsp(int state,int pagesize,int from);
 	int countMember_Dsp(int state);
+	int countChildList(String userid);
 }  

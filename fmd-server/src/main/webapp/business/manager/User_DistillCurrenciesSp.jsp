@@ -75,7 +75,9 @@
 					<tr>
 						<th><strong>序号</strong></th>
 						<th><strong>姓名</strong></th>
-						<th><strong>会员编号</strong></th>
+						<th><strong>会员号</strong></th>
+						<th><strong>银行卡号</strong></th>
+						<th><strong>开户行</strong></th>
 						<th><strong>类型</strong></th>
 						<th align="center"><strong>金额</strong></th>
 						<th><strong>申请时间</strong></th>
@@ -95,6 +97,8 @@
 						</td>
 						<td><%=log.getMember()%></td>
 						<td><%=log.getMember_id()%></td>
+						<td><%=log.getAccount()%></td>
+						<td><%=log.getAccount_node()%></td>
 						<td><%=log.getApply_time() %></td>
 						<td><%if(log.getState()==0)
 							out.println("未付款");

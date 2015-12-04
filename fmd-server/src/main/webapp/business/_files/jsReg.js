@@ -687,7 +687,24 @@ function ChkFatherName_callback(response)
 		document.getElementById('Fatherbotton').disabled='';
 	}
 }
-
+function out_refree(){
+	var str=document.getElementById("referee").value;
+	var chk=true;
+	if (str==''){chk=false;}
+	if (!chk){
+		alert('请输入正确的节点人');
+	}
+	return chk;
+}
+function out_node(){
+	var str=document.getElementById("node").value;
+	var chk=true;
+	if (str==''){chk=false;}
+	if (!chk){
+		alert('请输入正确的推荐人');
+	}
+	return chk;
+}
 function chk_reg()
 {
 	var chk=true
@@ -699,16 +716,18 @@ function chk_reg()
 	if (!out_upwd2()){chk=false}
 	if (!out_aupwd1()){chk=false}
 	if (!out_aupwd2()){chk=false}
-	if (!out_uUserCode()){chk=false}
+//	if (!out_uUserCode()){chk=false}
 	if (!out_uUserAddress()){chk=false}
 	if (!out_uUserPost()){chk=false}
 	//if (!out_uUserTel()){chk=false}
-	if (!out_uBankCard()){chk=false}
+//	if (!out_uBankCard()){chk=false}
 	if (!out_uBankUser()){chk=false}
 	if (!out_city()) { chk = false }
 	if (!out_Question()) { chk = false }
 	if (!out_Answer()) { chk = false }
 	if (!out_email()) { chk = false }
+	if (!out_refree()) { chk = false }
+	if (!out_node()) { chk = false }
 //	var obj = document.getElementById("d_uJl");
 //	var str = sl(document.getElementById("JlName").value);
 //	if (str > 0) {
@@ -787,7 +806,7 @@ function chk_reg()
 //		alert(Cash);
 //				return false;
 		//if (confirm("溫馨提示：請仔細核對資料，推荐人:" + ReName + ",接点人:" + FatherName + "接点人姓名：" + FaBankUserName + ",確定提交嗎？")) {
-		if (confirm("溫馨提示：請仔細核對資料，推荐人:" + referee + ",確定提交嗎？")) {
+		if (confirm("温馨提示：请仔细核对资料，推荐人:" + referee + ",确定提交吗？")) {
 //		    Member_Reg.SaveReg(TreePlace, uLevel, province, BankName, BankAddress, UserNo, FatherName, ReName, UserName, Password, UserPassword, UserPassword2, UserCode, UserAddress, UserPost, UserTel, BankCard, BankUserName, city, RegIP, Email, QQ, No99bill, StrID, strNum, strPrice, PayID, BdName, JlName, FaBankUserName, ReBankUserName, kd, Question, Answer, PV,Cash,TID, SaveInfo_callback);
 			document.Form1.submit();
 		}
