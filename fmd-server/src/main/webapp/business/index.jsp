@@ -25,7 +25,7 @@
 <link rel="shortcut icon" href="${path}/images/favicon.ico" /> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta charset="utf-8">
-<title></title>
+<title>凤美丹</title>
 <link href="${path}/business/_files/common.css" rel="stylesheet" media="screen"
 	type="text/css">
 <link href="${path}/business/_files/style.css" rel="stylesheet" media="screen"
