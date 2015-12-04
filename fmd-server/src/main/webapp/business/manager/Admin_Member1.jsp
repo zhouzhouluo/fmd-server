@@ -120,11 +120,11 @@
 						<td>
 							<a onclick="return confirm('请确认是否真的要设置该用户为正式会员?');"
 							id="Repeater1__ctl1_ModIspay"
-							href="javascript:sp('<%=user.getUserid() %>','1')"
+							href="javascript:sp('<%=user.getUserid() %>',1)"
 							style="color: Red;">开通会员</a> <a
 							onclick="return confirm('请确认是否真的要删除该用户?');"
 							id="Repeater1__ctl1_DelUser"
-							href="javascript:sp('<%=user.getUserid() %>','99')">删除</a>
+							href="javascript:sp('<%=user.getUserid() %>',99)">删除</a>
 						</td>
 					</tr>
 					<%}}%>

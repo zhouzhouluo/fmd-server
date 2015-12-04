@@ -67,11 +67,10 @@
 					</tr>
 					<tr>
 						<td style="width: 90px; text-align: right">用户ID：</td>
-						<td colspan="2" align="left"><input name="userid" type="text"
+						<td colspan="2" align="left"><input name="userid" type="text" readOnly="true"
 							value="<%=userid %>" maxlength="14" id="userid"
 							style="border-width: 1px; border-style: Solid;"><font
-							color="red">*必须填写</font> <span id="chkssn_stat"></span> <input
-							id="ssnbotton" onclick="checkssn();" type="button" value="查看是否可用">&nbsp;
+							color="red">*必须填写</font> <span id="chkssn_stat"></span>
 						</td>
 						<td style="display: none">
 							<div class="d_default" id="d_userid">请输入4-18位字符，英文、数字的组合。</div>
@@ -165,7 +164,7 @@
 					</tr>
 
 					<tr style="display:">
-						<td style="width: 90px; text-align: right">推荐人：</td>
+						<td style="width: 90px; text-align: right">推荐人ID：</td>
 						<td colspan="2" align="left"><input name="referee_id"
 							type="text" value="<%=member_user.getUserid() %>" maxlength="18"
 							id="referee_id" readOnly="true"
@@ -174,9 +173,7 @@
 							value="<%=member_user.getAccount_name()%>" maxlength="10" readOnly="true"
 							id="referee"
 							style="border-width: 1px; border-style: Solid; width: 80px; display:">
-							<span id="chkout_uRe_stat"></span> <input id="rebotton"
-							onclick="checkReName();" type="button" value="查看是否可用">
-							（注册成功后不可以更改）</td>
+							<span id="chkout_uRe_stat"></span></td>
 						<td style="display: none"><div class="d_default"
 								id="d_referee">请输入4-18位字符，英文、数字的组合。</div></td>
 					</tr>
@@ -191,9 +188,7 @@
 							value="<%=nodename%>" maxlength="10"
 							id="node"
 							style="border-width: 1px; border-style: Solid; width: 80px; display:">
-							<span id="chkout_uFather_stat"></span> <input id="Fatherbotton"
-							onclick="checkFatherName();" type="button" value="查看是否可用">
-							（注册成功后不可以更改）</td>
+							<span id="chkout_uFather_stat"></span></td>
 						<td style="display: none"><span>
 								<table border="0" cellpadding="0" cellspacing="0"
 									style="width: 100%; height: 100%">
@@ -227,7 +222,14 @@
 						</td>
 						<td style="display: none">&nbsp;</td>
 					</tr>
-
+					<tr style="display:">
+						<td style="width: 90px; text-align: right">姓名：</td>
+						<td colspan="2" align="left"><input name="account_name"
+							type="text" maxlength="14" id="account_name"
+							style="border-width: 1px; border-style: Solid;"></td>
+						<td style="display: none"><div class="d_default"
+								id="d_account_name">请输入开户姓名。</div></td>
+					</tr>
 					<tr style="display:">
 						<td style="width: 90px; text-align: right;">身份证号：</td>
 						<td colspan="2" align="left"><input name="identity"
@@ -289,15 +291,6 @@
 						</select> &nbsp;</td>
 						<td style="display: none"></td>
 					</tr>
-					<tr style="display:">
-						<td style="width: 90px; text-align: right">姓名：</td>
-						<td colspan="2" align="left"><input name="account_name"
-							type="text" maxlength="14" id="account_name"
-							style="border-width: 1px; border-style: Solid;"></td>
-						<td style="display: none"><div class="d_default"
-								id="d_account_name">请输入开户姓名。</div></td>
-					</tr>
-
 					<tr style="display:">
 						<td style="width: 90px; text-align: right">开户地址：</td>
 						<td colspan="2" align="left">省份 <select name="province"
