@@ -17,4 +17,7 @@ public interface Member_userService extends BaseService<Member_user> {
 	List<Member_user> queryMember_Dsp(int state,int pagesize,int from);
 	int countMember_Dsp(int state);
 	int countChildList(String userid);
+	List<Member_user> queryMember_Send(int isSend,int pagesize,int from);
+	int countMember_Send(int isSend);
+	
 }  

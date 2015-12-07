@@ -281,7 +281,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 </head>
 <body>
 	<noscript>&lt;iframe src=*.html&gt;&lt;/iframe&gt;</noscript>
-	<form name="Form1" method="post" action="User_treeview.html" id="Form1">
+	<form name="Form1" method="post" action="User_treeview.jsp" id="Form1">
 		<script type="text/javascript">
 		<!--
 			var theForm = document.forms['Form1'];
@@ -305,9 +305,9 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 				<tbody>
 					<tr>
 						<td class="head" background="login_08z.gif" style="height: 30px"><strong>&nbsp;<span
-								class="style3">会员系谱图<input name="UserName" type="text"
-									value="100000" id="UserName"></span></strong> <input
-							onclick="__doPostBack('action','')" name="action" type="button"
+								class="style3">会员系谱图&nbsp;<input name="UserName" type="text"
+									value="<%=userid %>" id="UserName"></span></strong> <input
+							onclick="doPostBack();" name="action" type="button"
 							id="action" class="buttonCN" value="跳转"> <span
 							id="FatherUrl"></span></td>
 					</tr>

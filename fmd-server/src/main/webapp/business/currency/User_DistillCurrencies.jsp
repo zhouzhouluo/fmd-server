@@ -57,11 +57,52 @@
 	<script type="text/javascript">
 		var contextPath = "<%=path%>";
 		var capital = <%=member_user.getCapital() %>;
+		
+		function takecash() {
+			var take = document.Form1.take.value;
+			if (take % 100 != 0) {
+				alert("只能提现100整数");
+				return false;
+			}
+			if (confirm('确定申请提现吗！')) {
+				var pwd3 = document.Form1.pwd3.value;
+				$.ajax({
+					// 提交数据的类型 POST GET
+					type : "POST",
+					// 提交的网址
+					url : contextPath + "/withdraw/take.action",
+					// 提交的数据
+					data : {
+						pwd3 : pwd3,
+						take : take,
+					},
+					// 返回数据的格式
+					datatype : "text",// "xml", "html", "script", "json", "jsonp", "text".
+					// 在请求之前调用的函数
+					// beforeSend:function(){$("#msg").html("logining");},
+					// 成功返回之后调用的函数
+					success : function(data) {
+						if (data == "1") {
+							window.location.reload();
+						} else if (data == "2") {
+							alert("密码错误");
+						}
+					},
+					// 调用执行后调用的函数
+					complete : function(XMLHttpRequest, textStatus) {
+
+					},
+					// 调用出错执行的函数
+					error : function() {
+						// 请求出错处理
+					}
+				});
+			}
+		}
 	</script>	
 </head>
 <body>
-	<form name="Form1" method="post" 
-		id="Form1">
+	<form name="Form1" method="post"  id="Form1">
 		<input type="hidden" name="pageNum" id="pageNum" value="<%=pageNum%>">
 		<div class="ncenter_box">
 			<div class="accounttitle">
@@ -80,10 +121,9 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2" height="30">申请提现金额额: 1000&nbsp;&nbsp;&nbsp;
-							开户姓名：<%=member_user.getAccount_name() %>&nbsp;&nbsp;&nbsp;三级密码:<input name="pwd3" type="password" maxlength="18" id="pwd3" style="width: 100px;"> <input
-							type="button" name="btDistillCurrencies" value="确定申请"
-							onclick="take();" id="btDistillCurrencies"></td>
+						<td colspan="2" height="30">申请提现金额: <input id="take" type="text" style="width: 70px;" value="100" onchange=""/>&nbsp;&nbsp;&nbsp;
+							开户姓名：<%=member_user.getAccount_name() %>&nbsp;&nbsp;&nbsp;三级密码:<input name="pwd3" type="password" maxlength="18" id="pwd3" style="width: 100px;"> 
+							&nbsp;&nbsp;&nbsp;<input type="button" name="btDistillCurrencies" value="确定申请" onclick="takecash();" id="btDistillCurrencies"></td>
 					</tr>
 					<!-- <tr>
 						<td colspan="2" height="30">开始时间:<input name="StarTime"

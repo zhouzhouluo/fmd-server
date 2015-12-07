@@ -66,10 +66,10 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
         	String nodelist[] = nodes.split(",");
         	if(nCF2(nodelist.length)){
         		String capital = (p_user.getCapital()!=null&&!"".equals(p_user.getCapital()))?p_user.getCapital():"0";
-        		capital = String.valueOf(Integer.parseInt(capital)+utils.TOUCH_PAY);
+        		capital = String.valueOf(Float.valueOf(capital)+utils.TOUCH_PAY);
         		p_user.setCapital(capital);
-        		String total = (p_user.getTotal()!=null&&!"".equals(p_user.getTotal()))?p_user.getTotal():"0";
-        		total = String.valueOf(Integer.parseInt(total)+utils.TOUCH_PAY);
+        		String withdraw = (p_user.getWithdraw()!=null&&!"".equals(p_user.getWithdraw()))?p_user.getWithdraw():"0";
+        		String total = String.valueOf(Float.valueOf(capital)+Float.valueOf(withdraw));
         		p_user.setTotal(total);
         		Capital_log capital_log = new Capital_log();
         		capital_log.setNumber(p_user.getId());
@@ -111,10 +111,10 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 	public void refereeCapital(Log log,Member_user member_user) {
 		Member_user referee_user = member_userDao.getUserByUserId(member_user.getReferee_id());
 		String capital = (referee_user.getCapital()!=null&&!"".equals(referee_user.getCapital()))?referee_user.getCapital():"0";
-		capital = String.valueOf(Integer.parseInt(capital)+utils.RECOMMEND_PAY);
+		capital = String.valueOf(Float.valueOf(capital)+utils.RECOMMEND_PAY);
 		referee_user.setCapital(capital);
-		String total = (referee_user.getTotal()!=null&&!"".equals(referee_user.getTotal()))?referee_user.getTotal():"0";
-		total = String.valueOf(Integer.parseInt(total)+utils.RECOMMEND_PAY);
+		String withdraw = (referee_user.getWithdraw()!=null&&!"".equals(referee_user.getWithdraw()))?referee_user.getWithdraw():"0";
+		String total = String.valueOf(Float.valueOf(capital)+Float.valueOf(withdraw));
 		referee_user.setTotal(total);
 		Capital_log capital_log = new Capital_log();
 		capital_log.setNumber(referee_user.getId());
@@ -159,10 +159,10 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 				break;
 			}
 			String capital = (member_user.getCapital()!=null&&!"".equals(member_user.getCapital()))?member_user.getCapital():"0";
-			capital = String.valueOf(Integer.parseInt(capital)+utils.SEE_PAYPOINT_PAY);
+			capital = String.valueOf(Float.valueOf(capital)+utils.SEE_PAYPOINT_PAY);
 			member_user.setCapital(capital);
-			String total = (member_user.getTotal()!=null&&!"".equals(member_user.getTotal()))?member_user.getTotal():"0";
-    		total = String.valueOf(Integer.parseInt(total)+utils.SEE_PAYPOINT_PAY);
+			String withdraw = (member_user.getWithdraw()!=null&&!"".equals(member_user.getWithdraw()))?member_user.getWithdraw():"0";
+			String total = String.valueOf(Float.valueOf(capital)+Float.valueOf(withdraw));
     		member_user.setTotal(total);
 			Capital_log capital_log = new Capital_log();
 			capital_log.setNumber(member_user.getId());

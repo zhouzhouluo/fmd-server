@@ -68,5 +68,29 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 	public String getNodeList(String userid) {
 		Query query = getSession().createSQLQuery("select  getChildList('"+userid+"')");
 		return query.uniqueResult().toString();
+	}
+
+	@Override
+	public List<Member_user> queryMember_Send(int isSend, int pagesize, int from) {
+		String sql= "from Member_user";
+		if(isSend != 99){
+			sql = sql+" where issend = "+isSend;
+		}
+		Query query = getSession().createQuery(sql);
+		query.setFirstResult(from); 
+		query.setMaxResults(pagesize); 
+		List<Member_user> member_users = query.list();      
+		return member_users;
+	}
+
+	@Override
+	public int countMember_Send(int isSend) {
+		String sql= "select count(0) from Member_user";
+		if(isSend != 99){
+			sql = sql+" where issend = "+isSend;
+		}
+		Query query = getSession().createSQLQuery("select count(0) from Member_user");
+		return Integer.parseInt(query.uniqueResult().toString());
 	}  
+	
 }  	

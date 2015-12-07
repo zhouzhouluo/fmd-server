@@ -136,6 +136,15 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
 		String nodelist[] = nodes.split(",");
 		return nodelist.length-1;
 	}
+	@Override
+	public List<Member_user> queryMember_Send(int isSend, int pagesize, int from) {
+		return member_userDao.queryMember_Send(isSend,pagesize ,from);
+	}
+	@Override
+	public int countMember_Send(int isSend) {
+		return member_userDao.countMember_Send(isSend);
+	}
+	
 }  
 
 

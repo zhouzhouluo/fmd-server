@@ -121,7 +121,7 @@
 							href="${path}/business/manager/Admin_Member1.jsp"
 							target="content3">会员审核</a></li>
 						<li><a
-							href="${path}/business/manager/Admin_Member1.jsp"
+							href="${path}/business/manager/Admin_Send.jsp"
 							target="content3">发货管理</a></li>
 						<%} %>	
 					</ul></li>

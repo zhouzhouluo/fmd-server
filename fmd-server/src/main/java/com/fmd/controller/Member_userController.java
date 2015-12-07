@@ -266,8 +266,6 @@ public class Member_userController {
 //	@ResponseBody
 	public void getNode(HttpServletResponse response,String userid,int area) {
 		response.setContentType("text/html;charset=UTF-8");  
-		System.out.println("userid:"+userid);
-		System.out.println("area:"+area);
 		Member_user member_user = member_userService.getUserByUserId(userid);
 		String name = "0";
 		if(area==0&&member_user!=null&&(member_user.getLeftid()==null||"".equals(member_user.getLeftid()))){
@@ -293,7 +291,6 @@ public class Member_userController {
 	@RequestMapping(value = "/getRefree", method = RequestMethod.POST)
 //	@ResponseBody
 	public void getRefree(HttpServletResponse response,String userid) {
-		System.out.println("userid111111111111111:"+userid);
 		Member_user member_user = member_userService.getUserByUserId(userid);
 		String name = "0";
 		if(member_user!=null){
@@ -314,5 +311,29 @@ public class Member_userController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+	}
+	@RequestMapping(value = "/fh", method = RequestMethod.POST)
+	@ResponseBody
+	public String fh(HttpServletRequest request, String userid, int send) {
+		Object obj = request.getSession().getAttribute("loginedUser");
+		if (obj != null) {
+			Member_user loginedUser = (Member_user) obj;
+			if ("000001".equals(loginedUser.getUserid())) {
+				Member_user member_user = member_userService.getUserByUserId(userid);
+				if(1 == send){
+					member_user.setIssend(send);
+					member_userService.update(member_user);
+					logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_UPDATE,
+							gson.toJson(member_user), utils.getIpAddrByRequest(request), "member_user",
+							loginedUser.getUserid() + "发货" + member_user.getUserid()+member_user.getAccount_name());
+					Log log = new Log();
+					log.setUser_id(loginedUser.getUserid());
+					log.setUser_name(loginedUser.getAccount_name());
+					log.setIp(utils.getIpAddrByRequest(request));
+					log.setState(1);
+				}
+			}
+		}
+		return "1";
 	}
 }
