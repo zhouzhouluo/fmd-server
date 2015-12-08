@@ -127,7 +127,7 @@
 					</tr>
 
 					<tr class="GridItem" style="display:">
-						<td style="width: 90px; text-align: right">QQ：</td>
+						<td style="width: 90px; text-align: right">微信：</td>
 						<td align="left"><input name="txtQQ" type="text"
 							value="<%=member_user.getQq()%>" maxlength="20" id="txtQQ"
 							style="border-width: 1px; border-style: Solid;"></td>

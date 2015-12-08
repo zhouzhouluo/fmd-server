@@ -1,3 +1,4 @@
+<%@page import="com.fmd.service.Member_userService"%>
 <%@page import="com.fmd.entity.Withdraw_log"%>
 <%@page import="java.util.List"%>
 <%@page import="com.fmd.service.Withdraw_logService"%>
@@ -17,6 +18,7 @@
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	WebApplicationContext wac=WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
 	Withdraw_logService withdraw_logService = (Withdraw_logService)wac.getBean("withdraw_logService");
+	Member_userService member_userService =(Member_userService)wac.getBean("member_userService");
 	Object obj = request.getSession().getAttribute("loginedUser");
 	Member_user member_user = null;
 	List<Withdraw_log> withdraw_log_list = null;
@@ -88,17 +90,18 @@
 						if (withdraw_log_list != null) {
 							int i = 1;
 							for (Withdraw_log log : withdraw_log_list) {
+							Member_user user0 = member_userService.getUserByUserId(log.getMember_id());
 					%>
 					<tr class="GridItem" onMouseOver="over(this)"
 						onMouseOut="over(this)">
 						<td><span id="Repeater1__ctl1_lbId"><%=i++ %></span></td>
+						<td><%=log.getMember()%></td>
+						<td><%=log.getMember_id()%></td>
+						<td><%=log.getAccount()==null?user0.getAccount():log.getAccount()%></td>
+						<td><%=log.getAccount_node()==null?user0.getAccount_node():log.getAccount_node()%></td>
 						<td><%=log.getOperation()==1?"提现":"其他" %></td>
 						<td align=center><span id="Repeater1__ctl1_IbCurrencyNum"><%=log.getCapital() %></span>
 						</td>
-						<td><%=log.getMember()%></td>
-						<td><%=log.getMember_id()%></td>
-						<td><%=log.getAccount()%></td>
-						<td><%=log.getAccount_node()%></td>
 						<td><%=log.getApply_time() %></td>
 						<td><%if(log.getState()==0)
 							out.println("未付款");

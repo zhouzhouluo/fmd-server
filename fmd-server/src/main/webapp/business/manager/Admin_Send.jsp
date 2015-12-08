@@ -85,7 +85,7 @@
 						<th><strong>序号</strong></th>
 						<th><strong>姓名</strong></th>
 						<th><strong>用户名</strong></th>
-						<th><strong>QQ</strong></th>
+						<th><strong>微信</strong></th>
 						<th><strong>联系电话</strong></th>
 						<th><strong>E-mail</strong></th>
 						<th><strong>推荐时间</strong></th>
