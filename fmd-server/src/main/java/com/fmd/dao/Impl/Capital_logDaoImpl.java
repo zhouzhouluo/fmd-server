@@ -16,7 +16,7 @@ public class Capital_logDaoImpl  extends BaseDaoImpl<Capital_log> implements Cap
      */  
 	@Override
 	public List<Capital_log> queryCapital_log(String userid,int pagesize ,int from) {
-		Query query = getSession().createQuery("from Capital_log where member_id = "+userid+" order by Id desc");
+		Query query = getSession().createQuery("from Capital_log where member_id = '"+userid+"' order by Id desc");
 		query.setFirstResult(from); 
 		query.setMaxResults(pagesize); 
 		List<Capital_log> capital_logs = query.list();      
@@ -25,7 +25,7 @@ public class Capital_logDaoImpl  extends BaseDaoImpl<Capital_log> implements Cap
 
 	@Override
 	public int countCapital_log(String userid) {
-		Query query = getSession().createQuery("select count(0) from Capital_log where member_id = "+userid);
+		Query query = getSession().createQuery("select count(0) from Capital_log where member_id = '"+userid+"'");
 		return Integer.parseInt(query.uniqueResult().toString());
 	}
 

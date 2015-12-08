@@ -16,7 +16,7 @@ public class Withdraw_logDaoImpl  extends BaseDaoImpl<Withdraw_log> implements W
 	
 	@Override
 	public List<Withdraw_log> queryWithdraw_log(String userid, int pagesize, int from) {
-		Query query = getSession().createQuery("from Withdraw_log where member_id = "+userid+" order by Id desc");
+		Query query = getSession().createQuery("from Withdraw_log where member_id = '"+userid+"' order by Id desc");
 		query.setFirstResult(from); 
 		query.setMaxResults(pagesize); 
 		List<Withdraw_log> withdraw_logs = query.list();      
@@ -25,7 +25,7 @@ public class Withdraw_logDaoImpl  extends BaseDaoImpl<Withdraw_log> implements W
 
 	@Override
 	public int countWithdraw_log(String userid) {
-		Query query = getSession().createQuery("select count(0) from Withdraw_log where member_id = "+userid);
+		Query query = getSession().createQuery("select count(0) from Withdraw_log where member_id = '"+userid+"'");
 		return Integer.parseInt(query.uniqueResult().toString());
 	}
 
