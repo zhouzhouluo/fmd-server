@@ -307,7 +307,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 						<td class="head" background="login_08z.gif" style="height: 30px"><strong>&nbsp;<span
 								class="style3">会员系谱图&nbsp;<input name="UserName" type="text"
 									value="<%=userid %>" id="UserName"></span></strong> <input
-							onclick="doPostBack();" name="action" type="button"
+							onclick="doPostJ();" name="action" type="button"
 							id="action" class="buttonCN" value="跳转"> <span
 							id="FatherUrl"></span></td>
 					</tr>

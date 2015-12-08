@@ -385,10 +385,10 @@ function getRefree(){
 	});
 }
 
-//function doPostBack(){
-//	var UserName = document.getElementById("UserName").value;
-//	window.location.href = "./User_treeview.jsp?userid="+UserName;
-//}
+function doPostJ(){
+	var UserName = document.getElementById("UserName").value;
+	window.location.href = "./User_treeview.jsp?userid="+UserName;
+}
 function fh(userid,send){
 	$.ajax({
 		// 提交数据的类型 POST GET
