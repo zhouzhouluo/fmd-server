@@ -60,8 +60,12 @@
 		
 		function takecash() {
 			var take = document.Form1.take.value;
+			if (take < 100) {
+				alert("只能提现大于100的整数");
+				return false;
+			}
 			if (take % 100 != 0) {
-				alert("只能提现100整数");
+				alert("只能提现100的倍数");
 				return false;
 			}
 			if (confirm('确定申请提现吗！')) {
