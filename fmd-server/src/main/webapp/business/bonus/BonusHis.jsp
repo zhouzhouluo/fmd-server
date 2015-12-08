@@ -116,6 +116,9 @@
 						if (capital_log_lsit != null) {
 							int i = 1;
 							for (Capital_log log : capital_log_lsit) {
+							Float payout = Float.valueOf(log.getPayout()==null?"0":log.getPayout());
+							Float income = Float.valueOf(log.getIncome()==null?"0":log.getIncome());
+							Float remain = Float.valueOf(log.getRemain()==null?"0":log.getRemain());
 					%>
 					<tr>
 						<td><%=i++%></td>
@@ -134,7 +137,7 @@
 						<td><%=log.getPayout()==null?"0":"-"+log.getPayout()%></td>
 						<td><%=log.getIncome()==null?"0":"+"+log.getIncome()%></td>
 						<td><%=log.getRemain()%></td>
-						<td><%=log.getTotal()%></td>
+						<td><%=payout+income+remain%></td>
 					</tr>
 					<%}}%>
 					<tr>

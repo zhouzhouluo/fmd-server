@@ -325,8 +325,9 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 													<table cellspacing="0" cellpadding="0"
 														border="0" class="tablefilter">
 														<tbody>
-															<%if(tree[0]!=null&&!"".equals(tree[0])){
-																		Member_user member_user= member_userService.getUserByUserId(tree[0]);
+															<%Member_user member_user0 = member_userService.getUserByUserId(tree[0]); 
+															if(tree[0]!=null&&!"".equals(tree[0])&&member_user0!=null){
+																		Member_user member_user= member_user0;
 																		tree[1]=member_user.getLeftid();
 																		tree[2]=member_user.getRightid();
 															%>																							
@@ -347,7 +348,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																	<span style="font-size:10px">右&nbsp;<%=member_userService.countChildList(member_user.getRightid())%></span>
 																</td>
 															</tr>
-															<%}else{ %>
+															<%}else{ tree[0]=null;%>
 																<tr align="center">
 																	<td class="kongwei"></td>
 																</tr>
@@ -406,10 +407,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 															</tr>
 															<%}else{ %>
 																<tr align="center">
-																	<td class="kongwei"><a
-																		href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=0"
-																		title="产品订购"><br>产品订购
-																	</a></td>
+																	<td class="kongwei">
+																	<%if(tree[0]!=null&&!"".equals(tree[0])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=0" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
 																</tr>
 															<%}%>
 														</tbody>
@@ -444,10 +448,13 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 															</tr>
 															<%}else{ %>
 																<tr align="center">
-																	<td class="kongwei"><a
-																		href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=1"
-																		title="推荐"><br>产品订购
-																	</a></td>
+																	<td class="kongwei">
+																	<%if(tree[0]!=null&&!"".equals(tree[0])){ %>
+																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=1" title="推荐"><br>产品订购</a>
+																	<%}else{ %>
+																		[空位]
+																	<%}%>
+																	</td>
 																</tr>
 															<%}%>
 														</tbody>

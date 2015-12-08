@@ -43,6 +43,9 @@ public class SessionFilter extends OncePerRequestFilter {
         // 请求的uri
         String uri = request.getRequestURI();
 //        System.out.println("uri--------------------eeeeeeeeeeeee："+uri);
+//        System.out.println("//.equals(uri))："+("//".equals(uri)));
+//        System.out.println("/.equals(uri))："+("/".equals(uri)));
+//        System.out.println("\\.equals(uri))："+("\\".equals(uri)));
         // uri中包含background时才进行过滤
 //        String imgVcode = (String)request.getSession().getAttribute("imgVcode") ;
 //        System.out.println("imgVcode------------------------------:"+imgVcode);
@@ -50,7 +53,8 @@ public class SessionFilter extends OncePerRequestFilter {
             // 是否过滤
             boolean doFilter = true;
             for (String s : notFilter) {
-                if (uri.indexOf(s) != -1||uri.endsWith("fmd/")||uri.endsWith("fmd-server/")||uri.endsWith("fmd")||uri.endsWith("fmd-server")) {
+                if (uri.indexOf(s) != -1||uri.endsWith("fmd/")||uri.endsWith("fmd-server/")||uri.endsWith("fmd")
+                		||uri.endsWith("fmd-server")||"//".equals(uri)||"\\".equals(uri)||"/".equals(uri)) {
                     // 如果uri中包含不过滤的uri，则不进行过滤
                     doFilter = false;
                     break;
