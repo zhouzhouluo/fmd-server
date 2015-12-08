@@ -89,7 +89,7 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 		if(isSend != 99){
 			sql = sql+" where issend = "+isSend;
 		}
-		Query query = getSession().createSQLQuery("select count(0) from Member_user");
+		Query query = getSession().createQuery(sql);
 		return Integer.parseInt(query.uniqueResult().toString());
 	}  
 	

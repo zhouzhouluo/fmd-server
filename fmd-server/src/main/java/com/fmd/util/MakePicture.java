@@ -32,9 +32,9 @@ public class MakePicture  //产生识别验证图像
 		{
 		  str+=charTable[(int) (Math.random()*charTable.length)];
 		}
-		
-		g.drawString(str.substring(0, 1), 0, 15);
-		g.drawString(str.substring(1, 2), 15, 17);
+		g.setFont(new Font("Tahoma", Font.BOLD, 12));
+		g.drawString(str.substring(0, 1), 5, 15);
+		g.drawString(str.substring(1, 2), 20, 17);
 		g.drawString(str.substring(2, 3), 35, 19);
 		g.drawString(str.substring(3, 4), 50, 16);
 		Random rand=new Random() ;
