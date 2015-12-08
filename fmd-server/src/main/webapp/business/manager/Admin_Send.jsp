@@ -93,6 +93,7 @@
 						<th><strong>推荐人ID</strong></th>
 						<th><strong>节点人</strong></th>
 						<th><strong>节点人ID</strong></th>
+						<th><strong>发货地址</strong></th>
 						<th><strong>是否发货</strong></th>
 						<th><strong>操作</strong></th>
 					</tr>
@@ -111,6 +112,7 @@
 						<td><%=user.getReferee_id() %></td>
 						<td><%=user.getNode()%></td>
 						<td><%=user.getNode_id() %></td>
+						<td><%=user.getReceiv_address()%></td>
 						<td><font color="red"><%=user.getIssend()==0?"未发货":"已发货"%></font></td>
 						<td>
 							<%if(user.getIssend()==0){ %>
