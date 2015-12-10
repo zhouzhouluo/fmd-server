@@ -36,7 +36,11 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 
 	@Override
 	public List<Member_user> queryMember_users(String userid,int pagesize ,int from) {
-		Query query = getSession().createQuery("from Member_user where referee_id = '"+userid+"'");
+		String hql = "from Member_user where referee_id = '"+userid+"' order by userid desc";
+		if("000001".equals(userid)){
+			hql = "from Member_user order by userid desc";
+		}
+		Query query = getSession().createQuery(hql);
 		query.setFirstResult(from); 
 		query.setMaxResults(pagesize); 
 		List<Member_user> member_users = query.list();      
@@ -65,11 +69,24 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 	}
 
 	@Override
-	public String getNodeList(String userid) {
+	public String getNodeList(String userid,int state) {
 		Query query = getSession().createSQLQuery("select  getChildList('"+userid+"')");
 		return query.uniqueResult().toString();
 	}
-
+	@Override
+	public int getNodeRealCont(String userid,int state) {
+		Query query = getSession().createSQLQuery("select  getChildList('"+userid+"')");
+		String nodes = query.uniqueResult().toString();
+		String nodelist[] = nodes.split(",");
+		if(nodelist.length==2){
+			Query query2 = getSession().createQuery("from Member_user where userid = '"+userid+"' and state = "+state);
+			List<Member_user> member_users = query2.list();      
+	        if(member_users==null||member_users.size()==0){
+	        	return 0;
+	        }
+		}
+		return nodelist.length-1;
+	}
 	@Override
 	public List<Member_user> queryMember_Send(int isSend, int pagesize, int from) {
 		String sql= "from Member_user";

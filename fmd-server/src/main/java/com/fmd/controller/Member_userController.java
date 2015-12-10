@@ -244,6 +244,7 @@ public class Member_userController {
 					log.setUser_name(loginedUser.getAccount_name());
 					log.setIp(utils.getIpAddrByRequest(request));
 					log.setState(1);
+					member_userService.updateChildCon(member_user);
 					capital_logService.refereeCapital(log, member_user);
 					capital_logService.codeCaptital(log, member_user);
 					capital_logService.managerCapital(log, member_user);
@@ -268,9 +269,9 @@ public class Member_userController {
 		response.setContentType("text/html;charset=UTF-8");  
 		Member_user member_user = member_userService.getUserByUserId(userid);
 		String name = "0";
-		if(area==0&&member_user!=null&&(member_user.getLeftid()==null||"".equals(member_user.getLeftid()))){
+		if(area==0&&member_user!=null&&member_user.getState()==1&&(member_user.getLeftid()==null||"".equals(member_user.getLeftid()))){
 			name =  member_user.getAccount_name();
-		}else if(area==1&&member_user!=null&&(member_user.getRightid()==null||"".equals(member_user.getRightid()))){
+		}else if(area==1&&member_user!=null&&member_user.getState()==1&&(member_user.getRightid()==null||"".equals(member_user.getRightid()))){
 			name =  member_user.getAccount_name();
 		}else {
 			name =  "0";
@@ -293,8 +294,7 @@ public class Member_userController {
 	public void getRefree(HttpServletResponse response,String userid) {
 		Member_user member_user = member_userService.getUserByUserId(userid);
 		String name = "0";
-		if(member_user!=null){
-			System.out.println("member_user.getAccount_name():"+member_user.getAccount_name());
+		if(member_user!=null&&member_user.getState()==1){
 			name = member_user.getAccount_name();
 		}else {
 			name = "0";

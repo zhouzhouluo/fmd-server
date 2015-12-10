@@ -54,52 +54,26 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
     @Override
 	public void managerCapital(Log log,Member_user member_user) {
     	Member_user p_user = member_user;
-    	if(p_user.getNode_id()!=null){
-			
-		}
     	for(;;){
     		p_user = member_userDao.getUserByUserId(p_user.getNode_id());
-    		if(p_user==null||p_user.getNode_id()==null||"".equals(p_user.getNode_id())){
+    		if(p_user==null||"000001".equals(p_user.getUserid())){
     			break;
     		}
-        	String nodes = member_userDao.getNodeList(p_user.getUserid());
-        	String nodelist[] = nodes.split(",");
-        	if(nCF2(nodelist.length)){
-        		String capital = (p_user.getCapital()!=null&&!"".equals(p_user.getCapital()))?p_user.getCapital():"0";
-        		capital = String.valueOf(Float.valueOf(capital)+utils.TOUCH_PAY);
-        		p_user.setCapital(capital);
-        		String withdraw = (p_user.getWithdraw()!=null&&!"".equals(p_user.getWithdraw()))?p_user.getWithdraw():"0";
-        		String total = String.valueOf(Float.valueOf(capital)+Float.valueOf(withdraw));
-        		p_user.setTotal(total);
-        		Capital_log capital_log = new Capital_log();
-        		capital_log.setNumber(p_user.getId());
-        		capital_log.setIncome(""+utils.TOUCH_PAY);
-        		capital_log.setTouch_pay(utils.TOUCH_PAY);
-        		capital_log.setDetail("管理奖收入"+utils.TOUCH_PAY+"元");
-        		capital_log.setMember(p_user.getAccount_name());
-        		capital_log.setMember_id(""+p_user.getUserid());
-        		capital_log.setOperation(2);
-        		capital_log.setState(1);
-        		capital_log.setRemain(capital);
-        		capital_log.setTotal(total);
-        		capital_log.setTime(new Date());
-        		save(capital_log);
-        		Log _log = log.clone();
-        		_log.setOperation_time(new Date());
-        		_log.setType(LogServiceImpl.TYPE_CREATE);
-        		_log.setDetail(gson.toJson(capital_log));
-        		_log.setTablename("capital_log");
-        		_log.setOperation(p_user.getUserid()+"管理奖收入"+utils.TOUCH_PAY+"元");
-        		logDao.save(_log);
-        		member_userDao.update(p_user);
-        		_log = log.clone();
-        		_log.setType(LogServiceImpl.TYPE_UPDATE);
-        		_log.setDetail(gson.toJson(p_user));
-        		_log.setTablename("member_user");
-        		_log.setOperation(p_user.getUserid()+"更新余额为"+p_user.getCapital());
-        		logDao.save(_log);
+    		if(p_user.getLastleftcon()==0&&p_user.getLastrightcon()==0){
+        		continue;
         	}else{
-        		break;
+        		int lastleftcon = p_user.getLastleftcon();
+        		int lastrigthcon = p_user.getLastrightcon();
+        		int leftcon = member_userDao.getNodeRealCont(p_user.getLeftid(), 1);
+        		int rightcon = member_userDao.getNodeRealCont(p_user.getRightid(), 1);
+        		if(lastleftcon>=lastrigthcon&&leftcon>=rightcon&&rightcon>lastrigthcon){
+        			p_user.setLastrightcon(rightcon);
+        			managerNewCaital(log,p_user);
+        		}
+        		if(lastrigthcon>=lastleftcon&&rightcon>=leftcon&&leftcon>lastleftcon){
+        			p_user.setLastleftcon(leftcon);
+        			managerNewCaital(log,p_user);
+        		}
         	}
     	}
 	}
@@ -226,5 +200,91 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 		return capital_logDao.countCapital_log(userid);
 	}
 	
+	public void managerNewCaital(Log log,Member_user p_user){
+		String capital = (p_user.getCapital()!=null&&!"".equals(p_user.getCapital()))?p_user.getCapital():"0";
+		capital = String.valueOf(Float.valueOf(capital)+utils.TOUCH_PAY);
+		p_user.setCapital(capital);
+		String withdraw = (p_user.getWithdraw()!=null&&!"".equals(p_user.getWithdraw()))?p_user.getWithdraw():"0";
+		String total = String.valueOf(Float.valueOf(capital)+Float.valueOf(withdraw));
+		p_user.setTotal(total);
+		Capital_log capital_log = new Capital_log();
+		capital_log.setNumber(p_user.getId());
+		capital_log.setIncome(""+utils.TOUCH_PAY);
+		capital_log.setTouch_pay(utils.TOUCH_PAY);
+		capital_log.setDetail("管理奖收入"+utils.TOUCH_PAY+"元");
+		capital_log.setMember(p_user.getAccount_name());
+		capital_log.setMember_id(""+p_user.getUserid());
+		capital_log.setOperation(2);
+		capital_log.setState(1);
+		capital_log.setRemain(capital);
+		capital_log.setTotal(total);
+		capital_log.setTime(new Date());
+		save(capital_log);
+		Log _log = log.clone();
+		_log.setOperation_time(new Date());
+		_log.setType(LogServiceImpl.TYPE_CREATE);
+		_log.setDetail(gson.toJson(capital_log));
+		_log.setTablename("capital_log");
+		_log.setOperation(p_user.getUserid()+"管理奖收入"+utils.TOUCH_PAY+"元");
+		logDao.save(_log);
+		member_userDao.update(p_user);
+		_log = log.clone();
+		_log.setType(LogServiceImpl.TYPE_UPDATE);
+		_log.setDetail(gson.toJson(p_user));
+		_log.setTablename("member_user");
+		_log.setOperation(p_user.getUserid()+"更新余额为"+p_user.getCapital());
+		logDao.save(_log);
+	}
+	public void managerCapitalbak(Log log,Member_user member_user) {
+    	Member_user p_user = member_user;
+    	if(p_user.getNode_id()!=null){
+			
+		}
+    	for(;;){
+    		p_user = member_userDao.getUserByUserId(p_user.getNode_id());
+    		if(p_user==null||p_user.getNode_id()==null||"".equals(p_user.getNode_id())){
+    			break;
+    		}
+        	String nodes = member_userDao.getNodeList(p_user.getUserid(),99);
+        	String nodelist[] = nodes.split(",");
+        	if(nCF2(nodelist.length)){
+        		String capital = (p_user.getCapital()!=null&&!"".equals(p_user.getCapital()))?p_user.getCapital():"0";
+        		capital = String.valueOf(Float.valueOf(capital)+utils.TOUCH_PAY);
+        		p_user.setCapital(capital);
+        		String withdraw = (p_user.getWithdraw()!=null&&!"".equals(p_user.getWithdraw()))?p_user.getWithdraw():"0";
+        		String total = String.valueOf(Float.valueOf(capital)+Float.valueOf(withdraw));
+        		p_user.setTotal(total);
+        		Capital_log capital_log = new Capital_log();
+        		capital_log.setNumber(p_user.getId());
+        		capital_log.setIncome(""+utils.TOUCH_PAY);
+        		capital_log.setTouch_pay(utils.TOUCH_PAY);
+        		capital_log.setDetail("管理奖收入"+utils.TOUCH_PAY+"元");
+        		capital_log.setMember(p_user.getAccount_name());
+        		capital_log.setMember_id(""+p_user.getUserid());
+        		capital_log.setOperation(2);
+        		capital_log.setState(1);
+        		capital_log.setRemain(capital);
+        		capital_log.setTotal(total);
+        		capital_log.setTime(new Date());
+        		save(capital_log);
+        		Log _log = log.clone();
+        		_log.setOperation_time(new Date());
+        		_log.setType(LogServiceImpl.TYPE_CREATE);
+        		_log.setDetail(gson.toJson(capital_log));
+        		_log.setTablename("capital_log");
+        		_log.setOperation(p_user.getUserid()+"管理奖收入"+utils.TOUCH_PAY+"元");
+        		logDao.save(_log);
+        		member_userDao.update(p_user);
+        		_log = log.clone();
+        		_log.setType(LogServiceImpl.TYPE_UPDATE);
+        		_log.setDetail(gson.toJson(p_user));
+        		_log.setTablename("member_user");
+        		_log.setOperation(p_user.getUserid()+"更新余额为"+p_user.getCapital());
+        		logDao.save(_log);
+        	}else{
+        		break;
+        	}
+    	}
+	}
 	
 }  

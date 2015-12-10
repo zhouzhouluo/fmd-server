@@ -43,6 +43,8 @@ public class Member_user {
 	private String withdraw;
 	private String total;
 	private int issend;
+	private int lastleftcon;
+	private int lastrightcon;
 	public int getId() {
 		return Id;
 	}
@@ -234,6 +236,18 @@ public class Member_user {
 	}
 	public void setIssend(int issend) {
 		this.issend = issend;
+	}
+	public int getLastleftcon() {
+		return lastleftcon;
+	}
+	public void setLastleftcon(int lastleftcon) {
+		this.lastleftcon = lastleftcon;
+	}
+	public int getLastrightcon() {
+		return lastrightcon;
+	}
+	public void setLastrightcon(int lastrightcon) {
+		this.lastrightcon = lastrightcon;
 	}
 	
 }

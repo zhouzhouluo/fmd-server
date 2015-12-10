@@ -64,7 +64,7 @@
 		<input type="hidden" name="pageNum" id="pageNum" value="<%=pageNum%>">
 		<div class="ncenter_box">
 			<div class="accounttitle">
-				<h1>金币提现</h1>
+				<h1>奖金提现</h1>
 			</div>
 			<table width="98%" border="0" class="tab2">
 				<tbody>
@@ -120,7 +120,7 @@
 					</tr>
 					<% }}%>
 					<tr>
-						<td colspan="8">
+						<td colspan="11">
 							<div id="AspNetPager1">
 								<div style="float: left; width: 45%;">
 									第<font color="red"><b><%=pageNum%></b></font>页，共有记录<%=count%>条，分<%=count/pagesize+1 %>页，每页显示<%=pagesize %>条记录

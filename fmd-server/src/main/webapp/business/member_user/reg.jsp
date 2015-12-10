@@ -250,13 +250,20 @@
 						<td style="display: none"><div class="d_default"
 								id="d_receiv_address">请输入4-50位字符地址。</div></td>
 					</tr>
-
+					<tr style="display:">
+						<td style="width: 90px; text-align: right">联系电话：</td>
+						<td colspan="2" align="left"><input name="phone_number"
+							type="text" maxlength="12" id="phone_number"
+							style="border-width: 1px; border-style: Solid; width: 246px;"><font color="red">*必须填写</font>&nbsp;&nbsp;</td>
+						<td style="display: none"><div class="d_default"
+								id="d_phone_number">请输入您的11或12位联系电话。</div></td>
+					</tr>
 					<tr style="display:">
 						<td style="width: 90px; text-align: right; height: 32px;">
 							微信：</td>
 						<td colspan="2" style="height: 32px" align="left"><input
 							name="qq" type="text" maxlength="20" id="qq"
-							style="border-width: 1px; border-style: Solid; width: 246px;"><font color="red">*必须填写</font>&nbsp;&nbsp;</td>
+							style="border-width: 1px; border-style: Solid; width: 246px;">
 						<td style="display: none"><div class="d_default" id="DIV1"></div></td>
 					</tr>
 					<tr style="display: none">
@@ -267,19 +274,11 @@
 						<td style="display: none"><div class="d_default"
 								id="d_zip_code">请输入6位邮编。</div></td>
 					</tr>
-					<tr style="display:">
-						<td style="width: 90px; text-align: right">联系电话：</td>
-						<td colspan="2" align="left"><input name="phone_number"
-							type="text" maxlength="12" id="phone_number"
-							style="border-width: 1px; border-style: Solid; width: 246px;"><font color="red">*必须填写</font>&nbsp;&nbsp;</td>
-						<td style="display: none"><div class="d_default"
-								id="d_phone_number">请输入您的11或12位联系电话。</div></td>
-					</tr>
 					<tr style="display:;">
 						<td style="width: 90px; text-align: right">Email：</td>
 						<td colspan="2" align="left"><input name="email" type="text"
 							maxlength="30" id="email"
-							style="border-width: 1px; border-style: Solid; width: 246px;"><font color="red">*必须填写</font>&nbsp;&nbsp;</td>
+							style="border-width: 1px; border-style: Solid; width: 246px;"></td>
 						<td style="display: none"></td>
 					</tr>
 					<tr style="display:">

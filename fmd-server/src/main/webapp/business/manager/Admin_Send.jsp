@@ -125,7 +125,7 @@
 					</tr>
 					<%}}%>
 					<tr>
-						<td colspan="13">
+						<td colspan="14">
 							<div id="AspNetPager1">
 								<div style="float: left; width: 45%;">
 									第<font color="red"><b><%=pageNum%></b></font>页，共有记录<%=count%>条，分<%=count/pagesize+1 %>页，每页显示<%=pagesize %>条记录

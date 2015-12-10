@@ -718,8 +718,8 @@ function chk_reg()
 	if (!out_aupwd2()){chk=false}
 //	if (!out_uUserCode()){chk=false}
 	if (!out_uUserAddress()){chk=false}
-	if (!out_uUserPost()){chk=false}
-	//if (!out_uUserTel()){chk=false}
+//	if (!out_uUserPost()){chk=false}
+	if (!out_uUserTel()){chk=false}
 //	if (!out_uBankCard()){chk=false}
 	if (!out_uBankUser()){chk=false}
 	if (!out_city()) { chk = false }

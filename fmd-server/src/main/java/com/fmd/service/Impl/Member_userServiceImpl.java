@@ -126,15 +126,18 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
 		return member_userDao.countMember_Dsp(state);
 	}
 	
-	
 	@Override
-	public int countChildList(String userid) {
+	public int countChildList(String userid,int state) {
 		if(userid==null||"".equals(userid)){
 			return 0;
 		}
-		String nodes = member_userDao.getNodeList(userid);
+		String nodes = member_userDao.getNodeList(userid,state);
 		String nodelist[] = nodes.split(",");
 		return nodelist.length-1;
+	}
+	@Override
+	public int countChildList(String userid) {
+		return countChildList(userid,99);
 	}
 	@Override
 	public List<Member_user> queryMember_Send(int isSend, int pagesize, int from) {
@@ -143,6 +146,46 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
 	@Override
 	public int countMember_Send(int isSend) {
 		return member_userDao.countMember_Send(isSend);
+	}
+	
+	@Override
+	public void updateChildCon(Member_user member_user) {
+		for(;;){
+			member_user = member_userDao.getUserByUserId(member_user.getNode_id());
+			boolean isupdate =false;
+			if(member_user.getLastleftcon()==0){
+				int leftcount = countChildList(member_user.getLeftid(),1);
+				if(leftcount==1){
+					 Member_user leftuser = member_userDao.getUserByUserId(member_user.getLeftid());
+					 if(leftuser==null||leftuser.getState()!=1){
+						 leftcount = 0;
+					 }
+				}
+				if(leftcount!=0){
+					member_user.setLastleftcon(leftcount);
+					isupdate=true;
+				}
+			}
+			if(member_user.getLastrightcon()==0){
+				int rightcount = countChildList(member_user.getRightid(),1);
+				if(rightcount==1){
+					 Member_user rightuser = member_userDao.getUserByUserId(member_user.getRightid());
+					 if(rightuser==null||rightuser.getState()!=1){
+						 rightcount = 0;
+					 }
+				}
+				if(rightcount!=0){
+					member_user.setLastrightcon(rightcount);
+					isupdate=true; 
+				}
+			}
+			if(isupdate){
+				member_userDao.update(member_user);
+			}
+			if(member_user.getNode_id()==null||"0".equals(member_user.getNode_id())){
+				break;
+			}
+		}
 	}
 	
 }  

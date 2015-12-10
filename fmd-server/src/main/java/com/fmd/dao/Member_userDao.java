@@ -16,7 +16,8 @@ public interface Member_userDao extends BaseDao<Member_user> {
 	int countMember_users(String userid);
 	List<Member_user> queryMember_Dsp(int state,int pagesize,int from);
 	int countMember_Dsp(int state);
-	String getNodeList(String userid);
+	String getNodeList(String userid,int state);
+	int getNodeRealCont(String userid,int state);
 	List<Member_user> queryMember_Send(int isSend,int pagesize,int from);
 	int countMember_Send(int isSend);
 }

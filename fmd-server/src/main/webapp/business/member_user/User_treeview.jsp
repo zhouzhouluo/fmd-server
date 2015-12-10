@@ -17,7 +17,8 @@
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
 	Member_userService member_userService = (Member_userService) wac.getBean("member_userService");
-	String []tree = new String[15];
+	String tree[] = new String[15];
+	Boolean stateArry[] = new Boolean[15]; 
 	String userid = request.getParameter("userid");
 	if(userid==null||"".equals(userid)){
 		Object obj = request.getSession().getAttribute("loginedUser");
@@ -330,6 +331,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																		Member_user member_user= member_user0;
 																		tree[1]=member_user.getLeftid();
 																		tree[2]=member_user.getRightid();
+																		stateArry[0] = member_user.getState()==1?true:false;
 															%>																							
 															<tr align="center" >
 																<td colspan="2" class="tdfilter ulevel1"><%=tree[0]%></td>
@@ -382,10 +384,14 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 													<table width="100" cellspacing="0" cellpadding="0"
 														class="tablefilter">
 														<tbody>
-															<%if(tree[1]!=null&&!"".equals(tree[1])){
+															<%
+															if(tree[1]!=null&&!"".equals(tree[1])){
 																		Member_user member_user= member_userService.getUserByUserId(tree[1]);
 																		tree[3]=member_user.getLeftid();
 																		tree[4]=member_user.getRightid();
+																		System.out.println("11111111");
+																		stateArry[1] = member_user.getState()==1?true:false;
+																		System.out.println("stateArry[1]:"+stateArry[1]);
 															%>																							
 															<tr align="center">
 																<td colspan="2" class="tdfilter ulevel1"><a
@@ -408,7 +414,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 															<%}else{ %>
 																<tr align="center">
 																	<td class="kongwei">
-																	<%if(tree[0]!=null&&!"".equals(tree[0])){ %>
+																	<%if(tree[0]!=null&&!"".equals(tree[0])&&stateArry[0]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=0" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -427,6 +433,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																		Member_user member_user= member_userService.getUserByUserId(tree[2]);
 																		tree[5]=member_user.getLeftid();
 																		tree[6]=member_user.getRightid();
+																		stateArry[2] = member_user.getState()==1?true:false;
 															%>																					
 															<tr align="center">
 																<td colspan="2" class="tdfilter ulevel1"><a
@@ -449,7 +456,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 															<%}else{ %>
 																<tr align="center">
 																	<td class="kongwei">
-																	<%if(tree[0]!=null&&!"".equals(tree[0])){ %>
+																	<%if(tree[0]!=null&&!"".equals(tree[0])&&stateArry[0]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[0]%>&aere=1" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -499,6 +506,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																		Member_user member_user= member_userService.getUserByUserId(tree[3]);
 																		tree[7]=member_user.getLeftid();
 																		tree[8]=member_user.getRightid();
+																		stateArry[3] = member_user.getState()==1?true:false;
 															%>																							
 															<tr align="center">
 																<td colspan="2" class="tdfilter ulevel1"><a
@@ -521,7 +529,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 															<%}else{ %>
 																<tr align="center">
 																	<td class="kongwei">
-																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
+																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])&&stateArry[1]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[1]%>&aere=0" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -540,6 +548,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																		Member_user member_user= member_userService.getUserByUserId(tree[4]);
 																		tree[9]=member_user.getLeftid();
 																		tree[10]=member_user.getRightid();
+																		stateArry[4] = member_user.getState()==1?true:false;
 															%>																						
 															<tr align="center">
 																<td colspan="2" class="tdfilter ulevel1"><a
@@ -562,7 +571,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 															<%}else{ %>
 																<tr align="center">
 																	<td class="kongwei">
-																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
+																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])&&stateArry[1]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[1]%>&aere=1" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -581,6 +590,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																		Member_user member_user= member_userService.getUserByUserId(tree[5]);
 																		tree[11]=member_user.getLeftid();
 																		tree[12]=member_user.getRightid();
+																		stateArry[5] = member_user.getState()==1?true:false;
 															%>																						
 															<tr align="center">
 																<td colspan="2" class="tdfilter ulevel1"><a
@@ -603,7 +613,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 															<%}else{ %>
 																<tr align="center">
 																	<td class="kongwei">
-																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
+																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])&&stateArry[2]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[2]%>&aere=0" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -622,6 +632,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																		Member_user member_user= member_userService.getUserByUserId(tree[6]);
 																		tree[13]=member_user.getLeftid();
 																		tree[14]=member_user.getRightid();
+																		stateArry[6] = member_user.getState()==1?true:false;
 															%>																						
 															<tr align="center">
 																<td colspan="2" class="tdfilter ulevel1"><a
@@ -644,7 +655,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 															<%}else{ %>
 																<tr align="center">
 																	<td class="kongwei">
-																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])){ %>
+																	<%if(tree[1]!=null&&!"".equals(tree[1])&&tree[2]!=null&&!"".equals(tree[2])&&stateArry[2]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[2]%>&aere=1" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -737,7 +748,8 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																<tr align="center">
 																	<td class="kongwei">
 																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])
+																				&&stateArry[3]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[3]%>&aere=0" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -777,7 +789,8 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																<tr align="center">
 																	<td class="kongwei">
 																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])
+																				&&stateArry[3]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[3]%>&aere=1" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -817,7 +830,8 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																<tr align="center">
 																	<td class="kongwei">
 																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])
+																				&&stateArry[4]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[4]%>&aere=0" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -857,7 +871,8 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																<tr align="center">
 																	<td class="kongwei">
 																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])
+																				&&stateArry[4]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[4]%>&aere=1" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -897,7 +912,8 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																<tr align="center">
 																	<td class="kongwei">
 																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])
+																				&&stateArry[5]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[5]%>&aere=0" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -937,7 +953,8 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																<tr align="center">
 																	<td class="kongwei">
 																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])
+																				&&stateArry[5]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[5]%>&aere=1" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -977,7 +994,8 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																<tr align="center">
 																	<td class="kongwei">
 																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])
+																				&&stateArry[6]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[6]%>&aere=0" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
@@ -1017,7 +1035,8 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																<tr align="center">
 																	<td class="kongwei">
 																	<%if(tree[3]!=null&&!"".equals(tree[3])&&tree[4]!=null&&!"".equals(tree[4])
-																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])){ %>
+																			&&tree[5]!=null&&!"".equals(tree[5])&&tree[6]!=null&&!"".equals(tree[6])
+																				&&stateArry[6]==true){ %>
 																		<a href="${path}/business/member_user/reg.jsp?nodeuserid=<%=tree[6]%>&aere=1" title="推荐"><br>产品订购</a>
 																	<%}else{ %>
 																		[空位]
