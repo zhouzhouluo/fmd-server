@@ -1,5 +1,5 @@
-﻿# Host: 203.88.171.28  (Version: 5.1.73)
-# Date: 2015-12-09 12:21:43
+﻿# Host: 127.0.0.1  (Version: 5.6.25)
+# Date: 2015-12-11 15:35:23
 # Generator: MySQL-Front 5.3  (Build 4.214)
 
 /*!40101 SET NAMES utf8 */;
@@ -26,7 +26,7 @@ CREATE TABLE `capital_log` (
   `state` int(2) DEFAULT NULL COMMENT '状态(0无效，1收入，2支出)',
   `total` varchar(50) DEFAULT NULL COMMENT '总额',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1292 DEFAULT CHARSET=utf8 COMMENT='个人资金记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8 COMMENT='个人资金记录表';
 
 #
 # Structure for table "log"
@@ -45,7 +45,7 @@ CREATE TABLE `log` (
   `tablename` varchar(50) DEFAULT NULL COMMENT '表名',
   `operation` varchar(255) DEFAULT NULL COMMENT '操作',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3295 DEFAULT CHARSET=utf8 COMMENT='log';
+) ENGINE=InnoDB AUTO_INCREMENT=587 DEFAULT CHARSET=utf8 COMMENT='log';
 
 #
 # Structure for table "member_user"
@@ -62,7 +62,7 @@ CREATE TABLE `member_user` (
   `referee_id` varchar(11) DEFAULT NULL COMMENT '推荐人id',
   `node` varchar(50) DEFAULT NULL COMMENT '接点人',
   `node_id` varchar(11) DEFAULT NULL COMMENT '接点人id',
-  `area` int(2) DEFAULT NULL COMMENT '业务区域：1左区，2右区',
+  `area` int(2) DEFAULT NULL COMMENT '业务区域：0左区，1右区',
   `receiv_address` varchar(500) DEFAULT NULL COMMENT '收件地址',
   `zip_code` varchar(50) DEFAULT NULL COMMENT '邮编',
   `qq` varchar(20) DEFAULT NULL COMMENT 'qq',
@@ -83,11 +83,13 @@ CREATE TABLE `member_user` (
   `leftid` varchar(11) DEFAULT NULL COMMENT '左区人ID',
   `rightid` varchar(11) DEFAULT NULL COMMENT '右区人id',
   `withdraw` varchar(50) DEFAULT NULL COMMENT '支出',
-  `total` varchar(50) DEFAULT '0' COMMENT '总额',
-  `issend` int(2) DEFAULT '0' COMMENT '是否发货',
+  `total` varchar(50) DEFAULT NULL COMMENT '总额',
+  `issend` int(2) DEFAULT '0' COMMENT '是否发货（0未发货，1已发货）',
+  `lastleftcon` int(11) DEFAULT '0' COMMENT '上次左子数',
+  `lastrightcon` int(11) DEFAULT '0' COMMENT '上次右子数',
   PRIMARY KEY (`Id`),
   UNIQUE KEY `user_userid` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8 COMMENT='会员表';
+) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=utf8 COMMENT='会员表';
 
 #
 # Structure for table "teams"
@@ -136,7 +138,7 @@ CREATE TABLE `withdraw_log` (
   `account_node` varchar(255) DEFAULT NULL COMMENT '银行点',
   `account` varchar(50) DEFAULT NULL COMMENT '银行卡号',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='个人资金提现记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='个人资金提现记录表';
 
 #
 # Function "getChildList"
@@ -154,6 +156,28 @@ BEGIN
        WHILE cTemp is not null DO  
          SET pTemp = concat(pTemp,',',cTemp); 
          SELECT group_concat(userid) INTO cTemp FROM member_user   
+         WHERE FIND_IN_SET(node_id,cTemp)>0 ; 
+                
+       END WHILE;  
+       RETURN pTemp;  
+     END;
+
+#
+# Function "getChildListReal"
+#
+
+DROP FUNCTION IF EXISTS `getChildListReal`;
+CREATE FUNCTION `getChildListReal`(rootId VARCHAR(1000)) RETURNS varchar(1000) CHARSET utf8
+BEGIN 
+       DECLARE pTemp VARCHAR(1000);  
+       DECLARE cTemp VARCHAR(1000); 
+      
+       SET pTemp = '$';  
+       SET cTemp =rootId;
+      
+       WHILE cTemp is not null DO  
+         SET pTemp = concat(pTemp,',',cTemp); 
+         SELECT group_concat(userid) INTO cTemp FROM member_user 
          WHERE FIND_IN_SET(node_id,cTemp)>0 and state = 1; 
                 
        END WHILE;  
