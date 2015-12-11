@@ -53,12 +53,15 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
      */
     @Override
 	public void managerCapital(Log log,Member_user member_user) {
+//    	System.out.println("member_user.getUserid():"+member_user.getUserid());
+//    	System.out.println("member_user.getNode_id():"+member_user.getNode_id());
     	Member_user p_user = member_user;
     	for(;;){
     		p_user = member_userDao.getUserByUserId(p_user.getNode_id());
-    		if(p_user==null||"000001".equals(p_user.getUserid())){
-    			break;
-    		}
+//    		System.out.println("p_user.getUserid():"+p_user.getUserid());
+//        	System.out.println("p_user.getNode_id():"+p_user.getNode_id());
+//        	System.out.println("p_user.getLastleftcon():"+p_user.getLastleftcon());
+//        	System.out.println("p_user.getLastrightcon():"+p_user.getLastrightcon());
     		if(p_user.getLastleftcon()==0&&p_user.getLastrightcon()==0){
         		continue;
         	}else{
@@ -66,15 +69,29 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
         		int lastrigthcon = p_user.getLastrightcon();
         		int leftcon = member_userDao.getNodeRealCont(p_user.getLeftid(), 1);
         		int rightcon = member_userDao.getNodeRealCont(p_user.getRightid(), 1);
+//        		System.out.println("p_user.getUserid():"+p_user.getUserid());
+//        		System.out.println("lastleftcon:"+lastleftcon);
+//        		System.out.println("lastrigthcon:"+lastrigthcon);
+//        		System.out.println("leftcon:"+leftcon);
+//        		System.out.println("rightcon:"+rightcon);
         		if(lastleftcon>=lastrigthcon&&leftcon>=rightcon&&rightcon>lastrigthcon){
+        			p_user.setLastrightcon(rightcon);
+//        			System.out.println("111111111111111111111111:"+p_user.getUserid());
+        			managerNewCaital(log,p_user);
+        		}else if(lastrigthcon>=lastleftcon&&rightcon>=leftcon&&leftcon>lastleftcon){
+        			p_user.setLastleftcon(leftcon);
+        			managerNewCaital(log,p_user);
+//        			System.out.println("222222222222222222222222:"+p_user.getUserid());
+        		}else if(leftcon==rightcon&&(leftcon>lastleftcon||rightcon>lastrigthcon)){
+        			p_user.setLastleftcon(leftcon);
         			p_user.setLastrightcon(rightcon);
         			managerNewCaital(log,p_user);
         		}
-        		if(lastrigthcon>=lastleftcon&&rightcon>=leftcon&&leftcon>lastleftcon){
-        			p_user.setLastleftcon(leftcon);
-        			managerNewCaital(log,p_user);
-        		}
         	}
+//    		System.out.println("---------------------------------");
+    		if(p_user.getNode_id()==null||"0".equals(p_user.getNode_id())){
+				break;
+			}
     	}
 	}
 
@@ -110,6 +127,7 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 		_log.setTablename("capital_log");
 		_log.setOperation(referee_user.getUserid()+"直接推荐奖收入"+utils.RECOMMEND_PAY+"元");
 		logDao.save(_log);
+		referee_user.setXgsj(new Date());
 		member_userDao.update(referee_user);
 		_log = log.clone();
 		_log.setType(LogServiceImpl.TYPE_UPDATE);
@@ -158,6 +176,7 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 			_log.setTablename("capital_log");
 			_log.setOperation(member_user.getUserid()+"见点奖收入"+utils.SEE_PAYPOINT_PAY+"元");
 			logDao.save(_log);
+			member_user.setXgsj(new Date());
 			member_userDao.update(member_user);
 			_log = log.clone();
 			_log.setType(LogServiceImpl.TYPE_UPDATE);
@@ -227,6 +246,7 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
 		_log.setTablename("capital_log");
 		_log.setOperation(p_user.getUserid()+"管理奖收入"+utils.TOUCH_PAY+"元");
 		logDao.save(_log);
+		p_user.setXgsj(new Date());
 		member_userDao.update(p_user);
 		_log = log.clone();
 		_log.setType(LogServiceImpl.TYPE_UPDATE);
@@ -274,6 +294,7 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
         		_log.setTablename("capital_log");
         		_log.setOperation(p_user.getUserid()+"管理奖收入"+utils.TOUCH_PAY+"元");
         		logDao.save(_log);
+        		p_user.setXgsj(new Date());
         		member_userDao.update(p_user);
         		_log = log.clone();
         		_log.setType(LogServiceImpl.TYPE_UPDATE);

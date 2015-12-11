@@ -389,9 +389,7 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 																		Member_user member_user= member_userService.getUserByUserId(tree[1]);
 																		tree[3]=member_user.getLeftid();
 																		tree[4]=member_user.getRightid();
-																		System.out.println("11111111");
 																		stateArry[1] = member_user.getState()==1?true:false;
-																		System.out.println("stateArry[1]:"+stateArry[1]);
 															%>																							
 															<tr align="center">
 																<td colspan="2" class="tdfilter ulevel1"><a
@@ -928,7 +926,8 @@ BACKGROUND: url(${path}/business/templets/XZ20140517/images/q.jpg) repeat-x left
 													<table width="100" cellspacing="0" cellpadding="0"
 														class="tablefilter">
 														<tbody>
-															<%if(tree[12]!=null&&!"".equals(tree[12])){
+															<%
+															if(tree[12]!=null&&!"".equals(tree[12])){
 																		Member_user member_user= member_userService.getUserByUserId(tree[12]);
 															%>																						
 															<tr align="center">

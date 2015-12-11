@@ -49,7 +49,11 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 
 	@Override
 	public int countMember_users(String userid) {
-		Query query = getSession().createQuery("select count(0) from Member_user where referee_id = '"+userid+"'");
+		String hql = "select count(0) from Member_user where referee_id = '"+userid+"'";
+		if("000001".equals(userid)){
+			hql = "select count(0) from Member_user";
+		}
+		Query query = getSession().createQuery(hql);
 		return Integer.parseInt(query.uniqueResult().toString());
 	}
 
@@ -75,15 +79,12 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 	}
 	@Override
 	public int getNodeRealCont(String userid,int state) {
-		Query query = getSession().createSQLQuery("select  getChildList('"+userid+"')");
+		Query query = getSession().createSQLQuery("select  getChildListReal('"+userid+"')");
 		String nodes = query.uniqueResult().toString();
 		String nodelist[] = nodes.split(",");
 		if(nodelist.length==2){
-			Query query2 = getSession().createQuery("from Member_user where userid = '"+userid+"' and state = "+state);
-			List<Member_user> member_users = query2.list();      
-	        if(member_users==null||member_users.size()==0){
-	        	return 0;
-	        }
+			Query query2 = getSession().createQuery("select count(0) from Member_user where userid = '"+userid+"' and state = "+state);
+			return Integer.parseInt(query2.uniqueResult().toString());
 		}
 		return nodelist.length-1;
 	}

@@ -1,6 +1,7 @@
 package com.fmd.service.Impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -150,39 +151,29 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
 	
 	@Override
 	public void updateChildCon(Member_user member_user) {
+		Member_user p_user = member_user;
 		for(;;){
-			member_user = member_userDao.getUserByUserId(member_user.getNode_id());
+			p_user = member_userDao.getUserByUserId(p_user.getNode_id());
 			boolean isupdate =false;
-			if(member_user.getLastleftcon()==0){
-				int leftcount = countChildList(member_user.getLeftid(),1);
-				if(leftcount==1){
-					 Member_user leftuser = member_userDao.getUserByUserId(member_user.getLeftid());
-					 if(leftuser==null||leftuser.getState()!=1){
-						 leftcount = 0;
-					 }
-				}
+			if(p_user.getLastleftcon()==0){
+				int leftcount = member_userDao.getNodeRealCont(p_user.getLeftid(),1);
 				if(leftcount!=0){
-					member_user.setLastleftcon(leftcount);
+					p_user.setLastleftcon(leftcount);
 					isupdate=true;
 				}
 			}
-			if(member_user.getLastrightcon()==0){
-				int rightcount = countChildList(member_user.getRightid(),1);
-				if(rightcount==1){
-					 Member_user rightuser = member_userDao.getUserByUserId(member_user.getRightid());
-					 if(rightuser==null||rightuser.getState()!=1){
-						 rightcount = 0;
-					 }
-				}
+			if(p_user.getLastrightcon()==0){
+				int rightcount = member_userDao.getNodeRealCont(p_user.getRightid(),1);
 				if(rightcount!=0){
-					member_user.setLastrightcon(rightcount);
+					p_user.setLastrightcon(rightcount);
 					isupdate=true; 
 				}
 			}
 			if(isupdate){
-				member_userDao.update(member_user);
+				p_user.setXgsj(new Date());
+				member_userDao.update(p_user);
 			}
-			if(member_user.getNode_id()==null||"0".equals(member_user.getNode_id())){
+			if(p_user.getNode_id()==null||"0".equals(p_user.getNode_id())){
 				break;
 			}
 		}

@@ -76,6 +76,7 @@ public class Member_userController {
 				e.printStackTrace();
 			}
 			member_userService.save(member_user);
+			member_userService.updateChildCon(member_user);
 			logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_CREATE,
 					gson.toJson(member_user), utils.getIpAddrByRequest(request), "member_user",
 					loginedUser.getUserid() + "注册新用户" + member_user.getUserid());
@@ -244,7 +245,6 @@ public class Member_userController {
 					log.setUser_name(loginedUser.getAccount_name());
 					log.setIp(utils.getIpAddrByRequest(request));
 					log.setState(1);
-					member_userService.updateChildCon(member_user);
 					capital_logService.refereeCapital(log, member_user);
 					capital_logService.codeCaptital(log, member_user);
 					capital_logService.managerCapital(log, member_user);
