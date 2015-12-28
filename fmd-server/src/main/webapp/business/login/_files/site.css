@@ -748,7 +748,7 @@ a {
 
 input[type="text"], input[type="password"], .login-table .error,
 	.login-tab li b, .login-card-close {
-	background: url(../img/login_icon.png) no-repeat
+	background: url(./../img/login_icon.png) no-repeat
 }
 
 .partner-login li a, .change-btn, .code-error, .refresh-code b {

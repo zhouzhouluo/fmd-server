@@ -27,14 +27,14 @@
 	content="途牛旅游网：中国最大的旅游行业在线电子商务网站，为您提供最为周到的旅游服务。途牛旅游网">
 <meta name="keywords" content="会员登录">
 
-<link type="text/css" rel="stylesheet" href="./_files/site.css">
-<link type="text/css" rel="stylesheet" href="./_files/layer.css"
+<link type="text/css" rel="stylesheet" href="${path}/business/login/_files/site.css">
+<link type="text/css" rel="stylesheet" href="${path}/business/login/_files/layer.css"
 	id="skinlayercss">
 	<script type="text/javascript" src="${path}/business/_files/login.js"></script>
 	<script type="text/javascript" src="${path}/business/_files/jquery.js"></script>
 	<script src="${path}/business/_files/function.js" type="text/javascript"></script>
 </head>
-<body background="img/loginbg.jpg"
+<body background="${path}/business/login/img/loginbg.jpg"
 	style="background-color:#999; background-size:cover; background-position:100% 5%;background-repeat: no-repeat;"
 	onload="onlogin();">
 	<div id="loginWrap">
@@ -99,11 +99,9 @@
 										</td>
 									</tr>
 									<tr>
-										<td class="line2"><input type="hidden"
-											name="current_login_url"
-											value="https://passport.tuniu.com/login?origin=http://www.tuniu.com/ssoConnect">
-											<input type="button" value="登录" name="submit_login"
-											tabindex="5" class="sub"></td>
+										<td class="line2">
+											<input type="button" name="chkbotton" value="登陆" id="chkbotton"  tabindex="5" class="sub" onclick="createRequest();">
+										</td>
 									</tr>
 
 								</tbody>
@@ -116,9 +114,9 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="./_files/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="./_files/layer.min.js"></script>
-	<script type="text/javascript" src="./_files/login_check.js"></script>
+	<script type="text/javascript" src="${path}/business/login/_files/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="${path}/business/login/_files/layer.min.js"></script>
+	<script type="text/javascript" src="${path}/business/login/_files/login_check.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			//判断fab是否崩溃 
