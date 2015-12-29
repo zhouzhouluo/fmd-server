@@ -57,7 +57,7 @@ public class EncryptUtil {
 		return new String(decryptData, encoding);
 	}
 	public static void main(String[] args){
-		String test = "fmd222222";
+		String test = "111111";
 		try {
 			test = EncryptUtil.encode(test);
 			System.out.println(test);

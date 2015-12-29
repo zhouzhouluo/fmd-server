@@ -1,5 +1,6 @@
 package com.fmd.service.Impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,7 +34,19 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
     }  
     @Resource(name = "member_userDao")  
     private Member_userDao member_userDao;
-    /** 
+    
+    
+    /**
+     * 
+     * @param userid
+     */
+	public void updateMember_user(String userid) {
+		String updateL = "update member_user set leftid = ''  where leftid ='"+userid+"'";
+		String updateR = "update member_user set rightid = '' where rightid ='"+userid+"'";
+		member_userDao.updateMember_user(updateL);
+		member_userDao.updateMember_user(updateR);
+	}
+	/** 
      * 若CustomerService 定义了BaseService没有的方法，则可以在这里实现 
      */  
     @Override

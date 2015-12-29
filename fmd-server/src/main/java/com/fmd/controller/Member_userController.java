@@ -97,8 +97,8 @@ public class Member_userController {
 		}
 		Member_user member_user = member_userService.getUserByUserId(userid);
 		try {
-//			System.out.println("pwd-----------------:"+EncryptUtil.encode(pwd));
-//			System.out.println("member_user.getPwd1()-----------------:"+member_user.getPwd1());
+			System.out.println("pwd-----------------:"+EncryptUtil.encode(pwd));
+			System.out.println("member_user.getPwd1()-----------------:"+member_user.getPwd1());
 			if (member_user != null && EncryptUtil.encode(pwd).equals(member_user.getPwd1())) {
 				request.getSession().setAttribute("loginedUser", member_user);
 				logService.saveLog(userid, member_user.getAccount_name(), LogService.TYPE_LOGIN, "userid:" + userid + "//pwd:" + pwd + "//" + "登录",
@@ -227,14 +227,17 @@ public class Member_userController {
 		Object obj = request.getSession().getAttribute("loginedUser");
 		if (obj != null) {
 			Member_user loginedUser = (Member_user) obj;
+			System.out.println("userid:"+userid);
+			System.out.println("state:"+state);
 			if ("000001".equals(loginedUser.getUserid())) {
 				Member_user member_user = member_userService.getUserByUserId(userid);
 				if (99 == state) {
 					member_userService.delete(member_user.getId());
+					member_userService.updateMember_user(member_user.getUserid());
 					logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_DELETE,
 							gson.toJson(member_user), utils.getIpAddrByRequest(request), "member_user",
 							loginedUser.getUserid() + "删除用户" + member_user.getUserid());
-				} else if(1 == state){
+				} else if(1 == state&&member_user.getState()!=1){
 					member_user.setState(state);
 					member_userService.update(member_user);
 					logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_UPDATE,

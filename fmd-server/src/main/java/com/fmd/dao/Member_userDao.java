@@ -20,4 +20,5 @@ public interface Member_userDao extends BaseDao<Member_user> {
 	int getNodeRealCont(String userid,int state);
 	List<Member_user> queryMember_Send(int isSend,int pagesize,int from);
 	int countMember_Send(int isSend);
+	void updateMember_user(String sql);
 }

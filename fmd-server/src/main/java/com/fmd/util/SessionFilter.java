@@ -80,7 +80,7 @@ public class SessionFilter extends OncePerRequestFilter {
                     builder.append("';");
                     builder.append("</script>");
                     out.print(builder.toString());
-                    response.sendRedirect(request.getContextPath()+"/business/login.jsp");
+                    response.sendRedirect(request.getContextPath()+"/business");
                 } else if(userPwd2==null&&(uri.indexOf("UserPassword.jsp")==-1)){
                 	request.setCharacterEncoding("UTF-8");
                     response.setCharacterEncoding("UTF-8");

@@ -89,7 +89,7 @@
 	
 	<servlet>
 	    <servlet-name>business</servlet-name>
-	    <jsp-file>/business/index.jsp</jsp-file>
+	    <jsp-file>/business/login/login.jsp</jsp-file>
     </servlet>
 	<servlet-mapping>
 		<servlet-name>business</servlet-name>

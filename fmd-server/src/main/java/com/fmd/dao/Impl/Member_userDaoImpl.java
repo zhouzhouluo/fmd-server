@@ -3,6 +3,8 @@ package com.fmd.dao.Impl;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.fmd.dao.Member_userDao;
@@ -15,6 +17,10 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 	/** 
      * 若CustomerDao 定义了BaseDAO没有的方法，则可以在这里实现 
      */
+	
+	
+	
+	
 	
 	@Override
 	public Member_user getUserByUserId(String userid) {
@@ -109,6 +115,14 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 		}
 		Query query = getSession().createQuery(sql);
 		return Integer.parseInt(query.uniqueResult().toString());
+	}
+	/**
+	 * 
+	 */
+	@Override
+	public void updateMember_user(String sql) {
+		SQLQuery sQLQuery=getSession().createSQLQuery(sql);
+		sQLQuery.executeUpdate(); 
 	}  
 	
 }  	
