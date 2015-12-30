@@ -82,13 +82,13 @@
 
 				<tbody>
 					<tr class="tit2">
-						<th><strong>序号</strong></th>
-						<th><strong>姓名</strong></th>
+						<th width="5%"><strong>序号</strong></th>
+						<th width="7%"><strong>姓名</strong></th>
 						<th><strong>用户名</strong></th>
 						<th><strong>微信</strong></th>
 						<th><strong>联系电话</strong></th>
-						<th><strong>E-mail</strong></th>
-						<th><strong>推荐时间</strong></th>
+						<th width="7%"><strong>E-mail</strong></th>
+						<th width="8%"><strong>推荐时间</strong></th>
 						<th><strong>推荐人</strong></th>
 						<th><strong>推荐人ID</strong></th>
 						<th><strong>节点人</strong></th>
@@ -120,6 +120,8 @@
 								id="Repeater1__ctl1_ModIspay"
 								href="javascript:fh('<%=user.getUserid() %>',1)"
 								style="color: Red;">发货</a>
+							<%}else{ %>
+								-
 							<%} %>
 						</td>
 					</tr>

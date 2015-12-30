@@ -65,7 +65,11 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 
 	@Override
 	public List<Member_user> queryMember_Dsp(int state, int pagesize, int from) {
-		Query query = getSession().createQuery("from Member_user where state = "+state);
+		String sql= "from Member_user";
+		if(state != 99){
+			sql = sql+" where state = "+state;
+		}
+		Query query = getSession().createQuery(sql);
 		query.setFirstResult(from); 
 		query.setMaxResults(pagesize); 
 		List<Member_user> member_users = query.list();      
@@ -74,7 +78,11 @@ public class Member_userDaoImpl  extends BaseDaoImpl<Member_user> implements Mem
 
 	@Override
 	public int countMember_Dsp(int state) {
-		Query query = getSession().createQuery("select count(0) from Member_user where state = "+state);
+		String sql= "select count(0) from Member_user";
+		if(state != 99){
+			sql = sql+" where issend = "+state;
+		}
+		Query query = getSession().createQuery(sql);
 		return Integer.parseInt(query.uniqueResult().toString());
 	}
 

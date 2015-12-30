@@ -14,6 +14,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	Object obj = request.getSession().getAttribute("loginedUser");
+	int state = request.getParameter("state")==null?0:Integer.parseInt(request.getParameter("state"));
 	Member_user member_user = null;
 	if(obj!=null){
 		member_user = (Member_user)obj;
@@ -24,8 +25,8 @@
 	int from = (pageNum-1)*pagesize;
 	WebApplicationContext wac=WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
 	Member_userService member_userService =(Member_userService)wac.getBean("member_userService");
-	List<Member_user> member_user_lsit = member_userService.queryMember_Dsp(0,pagesize,from);
-	count = member_userService.countMember_Dsp(0);
+	List<Member_user> member_user_lsit = member_userService.queryMember_Dsp(state,pagesize,from);
+	count = member_userService.countMember_Dsp(state);
 %>
 <c:set var="ctx" value="<%=basePath%>" />
 <c:set var="base" value="<%=base%>" />
@@ -49,6 +50,10 @@
 	<script type="text/javascript" src="${path}/business/_files/jquery.js"></script>
 	<script type="text/javascript">
 		var contextPath = "<%=path%>";
+		function Selected() {
+	        var state = document.Form1["state"].value;
+	        window.location.href = "./Admin_Member1.jsp?state="+state;
+	    }
 	</script>
 </head>
 <body>
@@ -58,27 +63,17 @@
 			<div class="accounttitle">
 				<h1>审核会员</h1>
 			</div>
-			<table class="tab2" style="display: none;">
+			<table class="tab2" style="display:;">
 				<tbody>
-					<tr align="center">
-						<td height="30"><a
-							href="Admin_Member1.jsp#"
-							onclick="chk_idAll(Form1,1);">全部选择</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<a
-							href="Admin_Member1.jsp#"
-							onclick="chk_idAll(Form1,0);">全部取消</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
-							onclick="return confirm('请确认是否真的要开通会员?');" id="lbIspay"
-							class="linktext" href="javascript:__doPostBack('lbIspay','')">开通会员</a></td>
-					</tr>
-					<tr align="center">
-						<td>用户：<input name="UserName" type="text" maxlength="18"
-							id="UserName" style="width: 80px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							姓名：<input name="BankUserName" type="text" maxlength="10"
-							id="BankUserName" style="width: 80px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						</select>&nbsp;&nbsp; <input type="submit" name="lbSeach" value="搜索"
-							id="lbSeach"></td>
+					<tr align="">
+						<td>
+						是否审核&nbsp;<select name="state" id="state" onchange="Selected();">
+								<option value=99 <%=state==99?"selected":""%>>全部</option>
+								<option value=0 <%=state==0?"selected":"" %>>未审核</option>
+								<option value=1 <%=state==1?"selected":"" %>>已审核</option>
+								</select>
+						<input type="button" name="lbSeach" value="搜索" id="lbSeach" style="display:none;">
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -118,13 +113,17 @@
 						<td><%=user.getNode_id() %></td>
 						<td><font color="red"><%=user.getState()==0?"非正式":"正式"%></font></td>
 						<td>
-							<a onclick="return confirm('请确认是否真的要设置该用户为正式会员?');"
-							id="Repeater1__ctl1_ModIspay"
-							href="javascript:sp('<%=user.getUserid() %>',1)"
-							style="color: Red;">开通会员</a> <a
-							onclick="return confirm('请确认是否真的要删除该用户?');"
-							id="Repeater1__ctl1_DelUser"
-							href="javascript:sp('<%=user.getUserid() %>',99)">删除</a>
+							<%if(user.getState()==0){ %>
+								<a onclick="return confirm('请确认是否真的要设置该用户为正式会员?');"
+								id="Repeater1__ctl1_ModIspay"
+								href="javascript:sp('<%=user.getUserid() %>',1)"
+								style="color: Red;">开通会员</a> <a
+								onclick="return confirm('请确认是否真的要删除该用户?');"
+								id="Repeater1__ctl1_DelUser"
+								href="javascript:sp('<%=user.getUserid() %>',99)">删除</a>
+							<%}else{ %>
+								-
+							<%} %>
 						</td>
 					</tr>
 					<%}}%>

@@ -31,7 +31,11 @@ public class Withdraw_logDaoImpl  extends BaseDaoImpl<Withdraw_log> implements W
 
 	@Override
 	public List<Withdraw_log> queryWithdraw_log_dsp(int state, int pagesize, int from) {
-		Query query = getSession().createQuery("from Withdraw_log where state = "+state+" order by Id desc");
+		String sql= "from Withdraw_log";
+		if(state != 99){
+			sql = sql+" where state = "+state;
+		}
+		Query query = getSession().createQuery(sql);
 		query.setFirstResult(from); 
 		query.setMaxResults(pagesize); 
 		List<Withdraw_log> withdraw_logs = query.list();      
@@ -40,7 +44,11 @@ public class Withdraw_logDaoImpl  extends BaseDaoImpl<Withdraw_log> implements W
 
 	@Override
 	public int countWithdraw_log_dsp(int state) {
-		Query query = getSession().createQuery("select count(0) from Withdraw_log where state = "+state);
+		String sql= "select count(0) from Withdraw_log";
+		if(state != 99){
+			sql = sql+" where state = "+state;
+		}
+		Query query = getSession().createQuery(sql);
 		return Integer.parseInt(query.uniqueResult().toString());
 	} 
 	

@@ -16,6 +16,7 @@
 	int pageNum = request.getParameter("pageNum")==null?1:Integer.parseInt(request.getParameter("pageNum"));
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+	int state = request.getParameter("state")==null?0:Integer.parseInt(request.getParameter("state"));
 	WebApplicationContext wac=WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
 	Withdraw_logService withdraw_logService = (Withdraw_logService)wac.getBean("withdraw_logService");
 	Member_userService member_userService =(Member_userService)wac.getBean("member_userService");
@@ -26,8 +27,8 @@
 	if(obj!=null){
 		member_user = (Member_user)obj;
 		int from = (pageNum-1)*pagesize;
-		withdraw_log_list = withdraw_logService.queryWithdraw_log_dsp(0,pagesize,from);
-		count = withdraw_logService.countWithdraw_log_dsp(0);
+		withdraw_log_list = withdraw_logService.queryWithdraw_log_dsp(state,pagesize,from);
+		count = withdraw_logService.countWithdraw_log_dsp(state);
 	}
 %>
 <c:set var="basePath" value="<%=basePath%>" />
@@ -56,6 +57,10 @@
 	<script type="text/javascript">
 		var contextPath = "<%=path%>";
 		var capital = <%=member_user.getCapital() %>;
+		function Selected() {
+	        var state = document.Form1["state"].value;
+	        window.location.href = "./User_DistillCurrenciesSp.jsp?state="+state;
+	    }
 	</script>	
 </head>
 <body>
@@ -66,8 +71,18 @@
 			<div class="accounttitle">
 				<h1>奖金提现</h1>
 			</div>
-			<table width="98%" border="0" class="tab2">
+			<table class="tab2" style="display:;">
 				<tbody>
+					<tr align="">
+						<td>
+						是否审核&nbsp;<select name="state" id="state" onchange="Selected();">
+								<option value=99 <%=state==99?"selected":""%>>全部</option>
+								<option value=0 <%=state==0?"selected":"" %>>未审核</option>
+								<option value=1 <%=state==1?"selected":"" %>>已审核</option>
+								</select>
+						<input type="button" name="lbSeach" value="搜索" id="lbSeach" style="display:none;">
+						</td>
+					</tr>
 				</tbody>
 			</table>
 
