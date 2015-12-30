@@ -58,34 +58,42 @@ public class Capital_logServiceImpl extends BaseServiceImpl<Capital_log> impleme
     	Member_user p_user = member_user;
     	for(;;){
     		p_user = member_userDao.getUserByUserId(p_user.getNode_id());
+    		if(p_user==null){
+    			break;
+    		}
 //    		System.out.println("p_user.getUserid():"+p_user.getUserid());
 //        	System.out.println("p_user.getNode_id():"+p_user.getNode_id());
 //        	System.out.println("p_user.getLastleftcon():"+p_user.getLastleftcon());
 //        	System.out.println("p_user.getLastrightcon():"+p_user.getLastrightcon());
+//        	System.out.println("p_user.getLeftid():"+p_user.getLeftid());
+//        	System.out.println("p_user.getRightid():"+p_user.getRightid());
+        	int lastleftcon = p_user.getLastleftcon();
+    		int lastrigthcon = p_user.getLastrightcon();
+    		int leftcon = member_userDao.getNodeRealCont(p_user.getLeftid(), 1);
+    		int rightcon = member_userDao.getNodeRealCont(p_user.getRightid(), 1);
+//    		System.out.println("leftcon:"+leftcon);
+//    		System.out.println("rightcon:"+rightcon);
+    		p_user.setLastleftcon(leftcon);
+			p_user.setLastrightcon(rightcon);
     		if(p_user.getLastleftcon()==0&&p_user.getLastrightcon()==0){
-        		continue;
+    			member_userDao.update(p_user);
         	}else{
-        		int lastleftcon = p_user.getLastleftcon();
-        		int lastrigthcon = p_user.getLastrightcon();
-        		int leftcon = member_userDao.getNodeRealCont(p_user.getLeftid(), 1);
-        		int rightcon = member_userDao.getNodeRealCont(p_user.getRightid(), 1);
-//        		System.out.println("p_user.getUserid():"+p_user.getUserid());
-//        		System.out.println("lastleftcon:"+lastleftcon);
-//        		System.out.println("lastrigthcon:"+lastrigthcon);
-//        		System.out.println("leftcon:"+leftcon);
-//        		System.out.println("rightcon:"+rightcon);
         		if(lastleftcon>=lastrigthcon&&leftcon>=rightcon&&rightcon>lastrigthcon){
-        			p_user.setLastrightcon(rightcon);
+//        			p_user.setLastrightcon(rightcon);
 //        			System.out.println("111111111111111111111111:"+p_user.getUserid());
         			managerNewCaital(log,p_user);
         		}else if(lastrigthcon>=lastleftcon&&rightcon>=leftcon&&leftcon>lastleftcon){
-        			p_user.setLastleftcon(leftcon);
+//        			p_user.setLastleftcon(leftcon);
         			managerNewCaital(log,p_user);
 //        			System.out.println("222222222222222222222222:"+p_user.getUserid());
         		}else if(leftcon==rightcon&&(leftcon>lastleftcon||rightcon>lastrigthcon)){
-        			p_user.setLastleftcon(leftcon);
-        			p_user.setLastrightcon(rightcon);
+//        			p_user.setLastleftcon(leftcon);
+//        			p_user.setLastrightcon(rightcon);
         			managerNewCaital(log,p_user);
+        		}else{
+//        			p_user.setLastleftcon(leftcon);
+//        			p_user.setLastrightcon(rightcon);
+        			member_userDao.update(p_user);
         		}
         	}
 //    		System.out.println("---------------------------------");

@@ -140,6 +140,9 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
 		return member_userDao.countMember_Dsp(state);
 	}
 	
+	/**
+	 * 获取子数目
+	 */
 	@Override
 	public int countChildList(String userid,int state) {
 		if(userid==null||"".equals(userid)){
@@ -149,6 +152,9 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
 		String nodelist[] = nodes.split(",");
 		return nodelist.length-1;
 	}
+	/**
+	 * 获取99的子数目
+	 */
 	@Override
 	public int countChildList(String userid) {
 		return countChildList(userid,99);
@@ -161,21 +167,23 @@ public class Member_userServiceImpl extends BaseServiceImpl<Member_user> impleme
 	public int countMember_Send(int isSend) {
 		return member_userDao.countMember_Send(isSend);
 	}
-	
+	/**
+	 * 更新子数目
+	 */
 	@Override
 	public void updateChildCon(Member_user member_user) {
 		Member_user p_user = member_user;
 		for(;;){
 			p_user = member_userDao.getUserByUserId(p_user.getNode_id());
 			boolean isupdate =false;
-			if(p_user.getLastleftcon()==0){
+			if(p_user.getLastleftcon()==0&&p_user.getLeftid()!=null&&!"".equals(p_user.getLeftid())){
 				int leftcount = member_userDao.getNodeRealCont(p_user.getLeftid(),1);
 				if(leftcount!=0){
 					p_user.setLastleftcon(leftcount);
 					isupdate=true;
 				}
 			}
-			if(p_user.getLastrightcon()==0){
+			if(p_user.getLastrightcon()==0&&p_user.getRightid()!=null&&!"".equals(p_user.getRightid())){
 				int rightcount = member_userDao.getNodeRealCont(p_user.getRightid(),1);
 				if(rightcount!=0){
 					p_user.setLastrightcon(rightcount);
