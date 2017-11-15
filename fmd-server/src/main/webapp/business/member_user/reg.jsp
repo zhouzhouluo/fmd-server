@@ -69,9 +69,9 @@
 					</tr>
 					<tr>
 						<td style="width: 90px; text-align: right">用户ID：</td>
-						<td colspan="2" align="left"><input name="userid" type="text" readOnly="true"
-							value="<%=userid %>" maxlength="14" id="userid"
-							style="border-width: 1px; border-style: Solid;"><font
+						<td colspan="2" align="left"><input name="userid" type="text" 
+							value="<%=userid %>" maxlength="6" id="userid"
+							style="border-width: 1px; border-style: Solid;" onchange="getUserIdIsExit();"><font
 							color="red">*必须填写</font> <span id="chkssn_stat"></span>
 						</td>
 						<td style="display: none">

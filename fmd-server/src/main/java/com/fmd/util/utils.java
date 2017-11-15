@@ -9,9 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 
 public class utils {
 	private final static String format  = "yyyy-MM-dd HH:mm:ss";
-	public final static int TOUCH_PAY = 100;
-	public final static int RECOMMEND_PAY= 200;
-	public final static int SEE_PAYPOINT_PAY= 2;
+//	public final static int TOUCH_PAY = 100;
+//	public final static int RECOMMEND_PAY= 200;
+//	public final static int SEE_PAYPOINT_PAY= 2;
+	
+	public final static int TOUCH_PAY = 30000;
+	public final static int RECOMMEND_PAY= 0;
+	public final static int SEE_PAYPOINT_PAY= 0;
+	public final static int TAKE_MONEY = 300000;
+	
 	/**
      * @param request IP
      * @return IP Address
@@ -88,4 +94,10 @@ public class utils {
 //        System.out.println(sdf.format(calendar.getTime()));//输出结果
         return sdf.format(date);
     }
+    
+    public static void main(String[] args) {
+		System.out.println("zzzzzzzzzzzzzzzzz");
+	}
+    
+    
 }

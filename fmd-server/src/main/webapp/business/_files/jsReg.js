@@ -54,16 +54,17 @@ function out_uRe(){
 
 
 function out_uname(){
-	var obj=document.getElementById("d_userid");
-	var str=sl(document.getElementById("userid").value);
-	var chk=true;
+	var obj = document.getElementById("d_userid");
+	var str = sl(document.getElementById("userid").value);
+	var chk = true;
 	//alert(str);
 	if (str<4 || str>18){chk=false;}
 	if (chk)
 	{
 		obj.className="d_ok";
 		obj.innerHTML='用户名已经输入。';
-		IsExistUserName();
+		chk = IsExistUserName();
+		alert(chk);
 	}
 	else {
 	    alert("用户名" + msg[2]);
@@ -79,6 +80,24 @@ function IsExistUserName()
 	// 异步调用GetInfo方法
 //	var UserName=document.getElementById("userid").value
 //	Member_Reg.IsExistUserName(UserName, IsExistUserName_callback);
+	
+	var chk = false;
+	$.ajax({
+		type : "POST",
+		async: false,
+		contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+		url : contextPath + "/member/getUserIdIsExit.action",
+		data : {
+			userid : $("#userid").val(),
+		},
+		datatype : "text",// "xml", "html", "script", "json", "jsonp", "text".
+		success : function(data) {
+			if(data == 0){
+				chk = true;
+			}
+		}
+	});
+	return chk;
 }
 
 // 回调函数,显示返回的信息
@@ -705,6 +724,10 @@ function out_node(){
 	}
 	return chk;
 }
+/**
+ * 
+ * @returns {Boolean}
+ */
 function chk_reg()
 {
 	var chk=true

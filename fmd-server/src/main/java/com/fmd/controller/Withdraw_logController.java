@@ -32,7 +32,7 @@ import com.google.gson.GsonBuilder;
 @RequestMapping("withdraw")
 @Controller
 public class Withdraw_logController {
-
+	
 	@Resource(name = "withdraw_logService")
 	private Withdraw_logService withdraw_logService;
 
@@ -59,7 +59,7 @@ public class Withdraw_logController {
 					return "2";
 				}
 				member_user = member_userService.getById(member_user.getId());
-				if (Float.valueOf(member_user.getCapital()) >= take&&take%100==0) {
+				if (Float.valueOf(member_user.getCapital()) >= take && take % utils.TAKE_MONEY == 0) {
 					Withdraw_log withdraw_log = new Withdraw_log();
 					withdraw_log.setCapital(take);
 					withdraw_log.setNumber(member_user.getId());

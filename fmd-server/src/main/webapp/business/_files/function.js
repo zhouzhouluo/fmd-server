@@ -203,8 +203,8 @@ function sp(userid,state){
 }
 
 function take(){
-	if(capital<1000){
-		alert("余额不够1000，未能提现！");
+	if(capital<300000){
+		alert("余额不够300000，未能提现！");
 		return false;
 	}
 	if(confirm('确定申请提现吗！')){
@@ -381,6 +381,31 @@ function getRefree(){
 		// 调用出错执行的函数
 		error : function() {
 			// 请求出错处理
+		}
+	});
+}
+
+function getUserIdIsExit(){
+	$.ajax({
+		// 提交数据的类型 POST GET
+		type : "POST",
+		contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+		// 提交的网址
+		url : contextPath + "/member/getUserIdIsExit.action",
+		// 提交的数据
+		data : {
+			userid : $("#userid").val(),
+		},
+		// 返回数据的格式
+		datatype : "text",// "xml", "html", "script", "json", "jsonp", "text".
+		// 在请求之前调用的函数
+		// beforeSend:function(){$("#msg").html("logining");},
+		// 成功返回之后调用的函数
+		success : function(data) {
+			if(data != 0){
+				alert("输入帐号已存在,请输入没有被注册的账号");
+				$("#userid").val("");
+			}
 		}
 	});
 }

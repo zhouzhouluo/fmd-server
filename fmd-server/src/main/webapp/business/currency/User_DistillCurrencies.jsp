@@ -59,13 +59,18 @@
 		var capital = <%=member_user.getCapital() %>;
 		
 		function takecash() {
+			if (capital < 300000) {
+				alert("余额不足！");
+				return false;
+			}
+			
 			var take = document.Form1.take.value;
-			if (take < 100) {
-				alert("只能提现大于100的整数");
+			if (take < 300000) {
+				alert("只能提现大于300000的整数！");
 				return false;
 			}
 			if (take % 100 != 0) {
-				alert("只能提现100的倍数");
+				alert("只能提现300000的倍数！");
 				return false;
 			}
 			if (confirm('确定申请提现吗！')) {
@@ -125,7 +130,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2" height="30">申请提现金额: <input id="take" type="text" style="width: 70px;" value="100" onchange=""/>&nbsp;&nbsp;&nbsp;
+						<td colspan="2" height="30">申请提现金额（需为300000的倍数）: <input id="take" type="text" style="width: 70px;" value="300000" onchange=""/>&nbsp;&nbsp;&nbsp;
 							开户姓名：<%=member_user.getAccount_name() %>&nbsp;&nbsp;&nbsp;三级密码:<input name="pwd3" type="password" maxlength="18" id="pwd3" style="width: 100px;"> 
 							&nbsp;&nbsp;&nbsp;<input type="button" name="btDistillCurrencies" value="确定申请" onclick="takecash();" id="btDistillCurrencies"></td>
 					</tr>

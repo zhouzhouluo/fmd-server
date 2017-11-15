@@ -45,6 +45,7 @@ public class Member_userController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(HttpServletRequest request, Member_user member_user) {
+		System.out.println("0000000000000000000000000000000000000000000000");
 		Object obj = request.getSession().getAttribute("loginedUser");
 		if (obj != null) {
 			Member_user loginedUser = (Member_user) obj;
@@ -75,6 +76,7 @@ public class Member_userController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			member_userService.save(member_user);
 			member_userService.updateChildCon(member_user);
 			logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_CREATE,
@@ -315,6 +317,32 @@ public class Member_userController {
 			e.printStackTrace();
 		} 
 	}
+	
+	@RequestMapping(value = "/getUserIdIsExit", method = RequestMethod.POST)
+//	@ResponseBody
+	public void getUserIdIsExit(HttpServletResponse response,String userid) {
+		Member_user member_user = member_userService.getUserByUserId(userid);
+		String name = "0";
+		if(member_user!=null){
+			name = member_user.getAccount_name();
+		}else {
+			name = "0";
+		}
+		response.setContentType("text/html;charset=utf-8");
+        response.setHeader("Cache-Control", "no-cache");  
+        PrintWriter out;
+		try {
+			out = response.getWriter();//输出中文，这一句一定要放到response.setContentType("text/html;charset=utf-8"),  response.setHeader("Cache-Control", "no-cache")后面，否则中文返回到页面是乱码  
+			out.print(name);
+	        out.flush();
+	        out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	
+	
 	@RequestMapping(value = "/fh", method = RequestMethod.POST)
 	@ResponseBody
 	public String fh(HttpServletRequest request, String userid, int send) {
