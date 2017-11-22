@@ -15,7 +15,8 @@
 //	Member_userService member_userService= (Member_userService)ApplicationContextManagement.getApplicationContext().getBean("member_userService");
 	WebApplicationContext wac=WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
 	Member_userService member_userService =(Member_userService)wac.getBean("member_userService");
-	String userid = member_userService.getMaxUserid();
+//	String userid = member_userService.getMaxUserid();
+	String userid = "";
 	Object obj = request.getSession().getAttribute("loginedUser");
 	Member_user member_user = null;
 	if(obj!=null){
@@ -68,9 +69,9 @@
 							账号信息（默认登录密码：111111 二级密码：222222 三级密码：333333;）</td>
 					</tr>
 					<tr>
-						<td style="width: 90px; text-align: right">用户ID：</td>
+						<td style="width: 90px; text-align: right">用户手机号：</td>
 						<td colspan="2" align="left"><input name="userid" type="text" 
-							value="<%=userid %>" maxlength="6" id="userid"
+							value="<%=userid %>" maxlength="11" id="userid"
 							style="border-width: 1px; border-style: Solid;" onchange="getUserIdIsExit();"><font
 							color="red">*必须填写</font> <span id="chkssn_stat"></span>
 						</td>

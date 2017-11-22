@@ -55,16 +55,18 @@ function out_uRe(){
 
 function out_uname(){
 	var obj = document.getElementById("d_userid");
-	var str = sl(document.getElementById("userid").value);
+	var str = document.getElementById("userid").value;
 	var chk = true;
 	//alert(str);
-	if (str<4 || str>18){chk=false;}
+//	if (str<4 || str>18){chk=false;}
+	
+	chk = checkMobile(str);
 	if (chk)
 	{
 		obj.className="d_ok";
 		obj.innerHTML='用户名已经输入。';
 		chk = IsExistUserName();
-		alert(chk);
+//		alert(chk);
 	}
 	else {
 	    alert("用户名" + msg[2]);
@@ -425,7 +427,7 @@ function init_reg(){
 	  msg=new Array(
 	"请输入4-18位字符，英文、数字的组合。",
 	"请输入4-18位字符，英文、数字的组合。",
-	"请输入4-18位字符，英文、数字的组合。",
+	"请输入正确的手机号码",
 	"请输入6位以上字符，不允许空格。",
 	"请重复输入上面的密码。",
 	"请输入6位以上字符，不允许空格。",
@@ -885,3 +887,12 @@ function changeArea(areaValue){
 	document.Form1.area.value = areaValue;
 	alert(document.Form1.area.value );
 }
+
+function checkMobile(sMobile) {
+	if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))) {
+		return false;
+	} else {
+		return true;
+	}
+} 
+
