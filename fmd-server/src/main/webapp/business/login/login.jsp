@@ -22,7 +22,7 @@
 	NREUMQ.push([ "mark", "firstbyte", new Date().getTime() ]);
 	var contextPath = "<%=path%>";
 </script>
-<title>用户登录</title>
+<title>会员管理系统</title>
 <meta name="description"
 	content="途牛旅游网：中国最大的旅游行业在线电子商务网站，为您提供最为周到的旅游服务。途牛旅游网">
 <meta name="keywords" content="会员登录">
@@ -65,8 +65,8 @@
 											<div class="input_div">
 												<input type="text" name="userid" autocomplete="off" id="userid"
 													tabindex="1" class="txt txt-m txt-focus cgrey2"
-													style="font-size: 12px;" placeholder="手机号/会员名/邮箱/会员卡号"
-													maxlength="6">
+													style="font-size: 12px;" placeholder="手机号/会员名"
+													maxlength="11">
 											</div>
 										</td>
 									</tr>
