@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
 	   xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:task="http://www.springframework.org/schema/task" 
 	   xsi:schemaLocation="
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -12,7 +13,9 @@
 		http://www.springframework.org/schema/aop 
 		http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/context 
-		http://www.springframework.org/schema/context/spring-context.xsd"
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task.xsd"
 	  default-lazy-init="true">
 
 	<!-- 自动扫描组件，这里要把controller去除，如果不去除会影响事务管理 -->
@@ -43,7 +46,6 @@
         </property>
         <property name="hibernateProperties">
             <props>
-                <!-- <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop> -->
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="hibernate.hbm2ddl.auto">none</prop>
                 <prop key="hibernate.show_sql">true</prop>
@@ -70,5 +72,9 @@
         <property name="maxUploadSize" value="10485760"/>
     </bean>
     
+    <task:scheduled-tasks scheduler="myScheduler">  
+        <task:scheduled ref="timingBackupJob" method="dataBaseTaskMain" cron="0 0 0/3 * * *"/>  
+    </task:scheduled-tasks>  
+    <task:scheduler id="myScheduler" pool-size="10"/>
  
 </beans>

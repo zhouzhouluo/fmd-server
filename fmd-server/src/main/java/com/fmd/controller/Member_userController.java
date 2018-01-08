@@ -45,7 +45,6 @@ public class Member_userController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(HttpServletRequest request, Member_user member_user) {
-		System.out.println("0000000000000000000000000000000000000000000000");
 		Object obj = request.getSession().getAttribute("loginedUser");
 		if (obj != null) {
 			Member_user loginedUser = (Member_user) obj;
@@ -76,7 +75,6 @@ public class Member_userController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			member_userService.save(member_user);
 			member_userService.updateChildCon(member_user);
 			logService.saveLog(loginedUser.getUserid(), loginedUser.getAccount_name(), LogService.TYPE_CREATE,
@@ -99,8 +97,8 @@ public class Member_userController {
 		}
 		Member_user member_user = member_userService.getUserByUserId(userid);
 		try {
-			System.out.println("pwd-----------------:"+EncryptUtil.encode(pwd));
-			System.out.println("member_user.getPwd1()-----------------:"+member_user.getPwd1());
+//			System.out.println("pwd-----------------:"+EncryptUtil.encode(pwd));
+//			System.out.println("member_user.getPwd1()-----------------:"+member_user.getPwd1());
 			if (member_user != null && EncryptUtil.encode(pwd).equals(member_user.getPwd1())) {
 				request.getSession().setAttribute("loginedUser", member_user);
 				logService.saveLog(userid, member_user.getAccount_name(), LogService.TYPE_LOGIN, "userid:" + userid + "//pwd:" + pwd + "//" + "登录",
@@ -229,8 +227,8 @@ public class Member_userController {
 		Object obj = request.getSession().getAttribute("loginedUser");
 		if (obj != null) {
 			Member_user loginedUser = (Member_user) obj;
-			System.out.println("userid:"+userid);
-			System.out.println("state:"+state);
+//			System.out.println("userid:"+userid);
+//			System.out.println("state:"+state);
 			if ("000001".equals(loginedUser.getUserid())) {
 				Member_user member_user = member_userService.getUserByUserId(userid);
 				if (99 == state) {

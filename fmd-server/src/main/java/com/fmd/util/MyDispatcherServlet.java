@@ -101,8 +101,7 @@ public class MyDispatcherServlet extends DispatcherServlet {
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		String prefix = getServletContext().getRealPath("/"); // 获取项目所在绝对路径
-//		System.out.println("22222222222222222222222222222222222");
-//		Config.readProperties(prefix + "WEB-INF/classes/config.properties");
+		ConfigUtils.readProperties(prefix + "WEB-INF/classes/configs/config.properties");
 	}
 	
 	@Override
